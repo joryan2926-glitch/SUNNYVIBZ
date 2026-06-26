@@ -62,3 +62,26 @@ Il crée les tables :
 - `artists`
 - `gallery`
 - `contact_messages`
+
+### Création des tables + données d’exemple
+
+Dans Supabase, ouvrir `SQL Editor`, coller le contenu de `supabase/schema.sql`, puis exécuter le script.
+
+Le site n’utilise ensuite que les variables publiques :
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
+
+### Vérifier la connexion Supabase
+
+```bash
+npm run supabase:check
+```
+
+Pour tester aussi l’insertion du formulaire de contact :
+
+```bash
+npm run supabase:check -- --write-contact
+```

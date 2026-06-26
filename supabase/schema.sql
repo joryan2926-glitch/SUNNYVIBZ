@@ -87,7 +87,13 @@ create policy "Published gallery items are publicly readable"
 drop policy if exists "Anyone can send contact messages" on public.contact_messages;
 create policy "Anyone can send contact messages"
   on public.contact_messages for insert
-  with check (true);
+  with check (status = 'new');
+
+grant usage on schema public to anon, authenticated;
+grant select on public.events to anon, authenticated;
+grant select on public.artists to anon, authenticated;
+grant select on public.gallery to anon, authenticated;
+grant insert on public.contact_messages to anon, authenticated;
 
 insert into public.events
   (title, slug, excerpt, description, start_date, location, category, price_label, published)
@@ -112,6 +118,17 @@ values
     'Creative Lab',
     'Atelier',
     'Sur inscription',
+    true
+  ),
+  (
+    'Exposition Couleurs Urbaines',
+    'exposition-couleurs-urbaines',
+    'Une exposition collective autour de l’énergie urbaine et des cultures visuelles.',
+    'Peinture, photographie, illustration et performance réunies pour célébrer la scène artistique locale.',
+    '2026-07-18 19:00:00+02',
+    'Maison Créative',
+    'Exposition',
+    'Billetterie bientôt',
     true
   )
 on conflict (slug) do nothing;
@@ -138,6 +155,16 @@ values
     null,
     true,
     true
+  ),
+  (
+    'Lina Wave',
+    'lina-wave',
+    'Artiste visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.',
+    'Ateliers & médiation',
+    null,
+    'https://sunnyvibz.fr',
+    true,
+    true
   )
 on conflict (slug) do nothing;
 
@@ -161,4 +188,24 @@ values
     'Créateurs locaux',
     2,
     true
+  ),
+  (
+    'Galerie nocturne',
+    '/sunnyvibz-hero.svg',
+    'Galerie nocturne avec lumière néon',
+    'Galerie',
+    'SUNNYVIBZ',
+    3,
+    true
+  ),
+  (
+    'Scène ouverte',
+    '/sunnyvibz-hero.svg',
+    'Scène ouverte artistique SUNNYVIBZ',
+    'Événements',
+    'Collectif',
+    4,
+    true
   );
+
+notify pgrst, 'reload schema';

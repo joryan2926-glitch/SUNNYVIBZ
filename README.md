@@ -29,3 +29,12 @@ Puis ouvrir [http://localhost:3000](http://localhost:3000).
 npm run lint
 npm run build
 ```
+
+## Variables Vercel / Supabase
+
+Créer les variables suivantes dans Vercel :
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+```

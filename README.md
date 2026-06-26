@@ -38,3 +38,27 @@ Créer les variables suivantes dans Vercel :
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 ```
+
+## Pages du site
+
+- Accueil : hero, présentation, agenda, galerie, artistes, appel au contact
+- À propos : vision et valeurs de l’association
+- Agenda : événements depuis Supabase
+- Galerie : éléments publiés depuis Supabase
+- Artistes : profils artistes depuis Supabase
+- Contact : formulaire connecté à `contact_messages`
+
+## Base de données Supabase
+
+Le schéma SQL est disponible dans :
+
+```bash
+supabase/schema.sql
+```
+
+Il crée les tables :
+
+- `events`
+- `artists`
+- `gallery`
+- `contact_messages`

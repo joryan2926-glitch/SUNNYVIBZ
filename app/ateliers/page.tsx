@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 const workshopBenefits = [
-  "Aucun niveau requis : venez avec votre curiosité.",
-  "Une ambiance bienveillante, créative et premium.",
-  "Des formats pour apprendre, tester, rencontrer et repartir avec du concret.",
-  "Des ateliers reliés aux talents, au Market et aux événements SUNNYVIBZ.",
+  "Réservation obligatoire pour garantir une bonne expérience.",
+  "Places restantes visibles et statut disponible/complet.",
+  "Tarifs préférentiels selon la formule SunnyVibz.",
+  "Accès prioritaire pour les formules Créative et Premium.",
 ] as const;
 
 export default async function WorkshopsPage() {
@@ -26,7 +26,7 @@ export default async function WorkshopsPage() {
       <SectionHeading
         eyebrow="Ateliers"
         title="Réservez une expérience créative, pas juste une place."
-        text="Les ateliers SUNNYVIBZ sont pensés pour apprendre, rencontrer et créer dans une ambiance chaleureuse. Chaque session indique la date, le lieu, le prix, les places restantes et le statut disponible ou complet."
+        text="Chaque atelier indique la date, le lieu, la capacité, les places restantes, le statut disponible/complet et les tarifs selon abonnement. La réservation permet de réguler les flux et de préserver la qualité du moment."
       />
 
       <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

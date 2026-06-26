@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Mon compte",
   description:
-    "Espace membre SUNNYVIBZ : réservations, profil talent, upload média, abonnement et futurs avantages.",
+    "Espace membre SUNNYVIBZ : abonnement actuel, réservations d’ateliers, statut utilisateur et profil artiste.",
 };
 
 export default function AccountPage() {
@@ -14,7 +14,7 @@ export default function AccountPage() {
       <SectionHeading
         eyebrow="Espace membre"
         title="Votre tableau de bord SunnyVibz."
-        text="L’espace membre centralise les réservations et prépare la suite : profil talent, médias, abonnements, wallet, crédits, messages et accès premium."
+        text="Retrouvez votre abonnement actuel, vos réservations d’ateliers, votre statut utilisateur et l’état de votre profil artiste si vous êtes concerné."
       />
       <AccountDashboard />
     </main>

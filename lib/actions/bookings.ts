@@ -20,6 +20,11 @@ export async function reserveWorkshop(
   const name = getValue(formData, "name");
   const email = getValue(formData, "email").toLowerCase();
   const phone = getValue(formData, "phone");
+  const subscriptionPlanSlug = getValue(formData, "subscription_plan_slug") || null;
+  const priorityAccess = subscriptionPlanSlug === "creative" || subscriptionPlanSlug === "premium";
+  const pricingNote = subscriptionPlanSlug
+    ? `Formule déclarée : ${subscriptionPlanSlug}. Tarif préférentiel à confirmer par SUNNYVIBZ.`
+    : "Sans formule déclarée. Tarif public à confirmer.";
 
   if (!workshopId || !name || !email) {
     return {
@@ -31,7 +36,7 @@ export async function reserveWorkshop(
   try {
     const { data: workshop, error: workshopError } = await supabase
       .from("workshops")
-      .select("id,title,start_date,seats_remaining,status,published")
+      .select("id,title,start_date,seats_remaining,status,published,requires_booking,subscriber_priority")
       .eq("id", workshopId)
       .eq("published", true)
       .maybeSingle();
@@ -60,6 +65,9 @@ export async function reserveWorkshop(
       name,
       email,
       phone: phone || null,
+      subscription_plan_slug: subscriptionPlanSlug,
+      pricing_note: pricingNote,
+      priority_access: priorityAccess && Boolean(workshop.subscriber_priority),
       status: "pending",
     });
 
@@ -81,6 +89,7 @@ export async function reserveWorkshop(
 
   return {
     ok: true,
-    message: "Réservation envoyée. Vous recevrez une confirmation SUNNYVIBZ très vite.",
+    message:
+      "Réservation envoyée. SUNNYVIBZ vérifiera la capacité, la priorité éventuelle et le tarif lié à votre formule.",
   };
 }

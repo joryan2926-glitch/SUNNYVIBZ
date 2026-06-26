@@ -73,13 +73,25 @@ function normalizeArtist(artist: Artist): Artist {
 }
 
 function normalizeWorkshop(workshop: Workshop): Workshop {
+  const basePrice = workshop.base_price_cents ?? null;
+  const subscriberPrice = workshop.subscriber_price_cents ?? basePrice;
+  const creativePrice = workshop.creative_price_cents ?? subscriberPrice;
+  const premiumPrice = workshop.premium_price_cents ?? creativePrice;
+
   return {
     ...workshop,
+    base_price_cents: basePrice,
+    subscriber_price_cents: subscriberPrice,
+    creative_price_cents: creativePrice,
+    premium_price_cents: premiumPrice,
     seats_remaining: Math.max(0, workshop.seats_remaining ?? 0),
     status:
       workshop.status === "available" && (workshop.seats_remaining ?? 0) <= 0
         ? "full"
         : workshop.status,
+    requires_booking: workshop.requires_booking ?? true,
+    subscriber_priority: workshop.subscriber_priority ?? false,
+    access_notes: workshop.access_notes ?? null,
   };
 }
 
@@ -270,18 +282,17 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   return fallback ? normalizeArticle(fallback) : null;
 }
 
-export async function getSubscriptions(limit = 3): Promise<Subscription[]> {
+export async function getSubscriptions(limit = 4): Promise<Subscription[]> {
   try {
     const { data, error } = await supabase
-      .from("subscriptions")
+      .from("subscription_plans")
       .select("*")
       .eq("active", true)
-      .order("featured", { ascending: false })
-      .order("created_at", { ascending: true })
+      .order("sort_order", { ascending: true })
       .limit(limit);
 
     if (error) {
-      console.error("Supabase subscriptions error:", error.message);
+      console.error("Supabase subscription_plans error:", error.message);
       return fallbackSubscriptions.slice(0, limit);
     }
 
@@ -289,7 +300,7 @@ export async function getSubscriptions(limit = 3): Promise<Subscription[]> {
       ? mergeWithFallback(data, fallbackSubscriptions, limit, (subscription) => subscription.slug)
       : fallbackSubscriptions.slice(0, limit);
   } catch (error) {
-    console.error("Supabase subscriptions request failed:", error);
+    console.error("Supabase subscription_plans request failed:", error);
     return fallbackSubscriptions.slice(0, limit);
   }
 }

@@ -53,7 +53,8 @@ const checks = [
   ["gallery", "gallery"],
   ["workshops", "workshops"],
   ["articles", "articles publiés"],
-  ["subscriptions", "subscriptions actives"],
+  ["subscription_plans", "subscription_plans actifs"],
+  ["user_subscriptions", "user_subscriptions"],
 ];
 
 const results = [];

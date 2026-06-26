@@ -55,9 +55,9 @@ Le site fonctionne uniquement avec ces deux variables publiques côté front. Le
 - Partenaires : associations, entreprises, sponsors, lieux et structures culturelles
 - Market : créations, prestations, services, commandes et mise en avant économique
 - Articles : contenus publiés uniquement
-- Abonnements : Découverte, Artiste, Premium
+- Abonnements : Essentielle 39 €/mois, Créative 65 €/mois, Premium 85 €/mois, Annuelle 720 €/an
 - Connexion : Supabase Auth
-- Mon compte : réservations, upload média talent et futurs modules membre
+- Mon compte : abonnement actuel, réservations, statut utilisateur, profil artiste actif/inactif et upload média talent
 - FAQ : réponses simples sur SunnyVibz, ateliers, Sunny Friday, market et abonnements
 - Admin : création rapide ateliers, articles, talents et abonnements
 - Contact : formulaire connecté à `contact_messages`
@@ -81,7 +81,7 @@ Il crée les tables :
 - `sunny_friday_applications`
 - `articles`
 - `profiles`
-- `subscriptions`
+- `subscription_plans`
 - `user_subscriptions`
 
 Il prépare aussi :
@@ -89,6 +89,7 @@ Il prépare aussi :
 - RLS et policies publiques / utilisateurs / admin
 - Trigger de création de profil après inscription
 - Trigger anti-surbooking pour les ateliers complets
+- Tarifs préférentiels ateliers et priorité Créative/Premium
 - Bucket Supabase Storage `talent-media` pour photos/vidéos
 - Candidatures exposants Sunny Friday
 

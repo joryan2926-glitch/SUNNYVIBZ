@@ -10,6 +10,18 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   minute: "2-digit",
 });
 
+function formatCents(cents: number | null) {
+  if (cents === null) {
+    return "Selon formule";
+  }
+
+  if (cents === 0) {
+    return "Inclus";
+  }
+
+  return `${new Intl.NumberFormat("fr-FR").format(cents / 100)} €`;
+}
+
 export function WorkshopCard({ workshop }: { workshop: Workshop }) {
   const isFull = workshop.status !== "available" || workshop.seats_remaining <= 0;
 
@@ -47,9 +59,15 @@ export function WorkshopCard({ workshop }: { workshop: Workshop }) {
 
         <div className="mt-5 grid gap-2 text-sm text-[#fbf3df]/70">
           <p>Lieu : {workshop.location}</p>
-          <p>Prix : {workshop.price_label}</p>
+          <p>Tarif public : {workshop.price_label}</p>
+          <p>Créative : {formatCents(workshop.creative_price_cents)}</p>
+          <p>Premium : {formatCents(workshop.premium_price_cents)}</p>
           <p>
             Places : {workshop.seats_remaining}/{workshop.capacity} restantes
+          </p>
+          <p className="text-[#ffd978]">
+            {workshop.requires_booking ? "Réservation obligatoire" : "Accès libre"} ·{" "}
+            {workshop.subscriber_priority ? "priorité Créative/Premium" : "priorité standard"}
           </p>
         </div>
 

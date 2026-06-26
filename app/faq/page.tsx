@@ -37,7 +37,12 @@ const faqs = [
   {
     question: "À quoi servent les abonnements ?",
     answer:
-      "Découverte sert à entrer dans la communauté, Artiste à gagner en visibilité, Premium à accélérer ses projets avec plus d’avantages et d’accompagnement.",
+      "Les abonnements SunnyVibz structurent l’accès aux espaces créatifs : Essentielle à 39 €/mois, Créative à 65 €/mois, Premium à 85 €/mois et Annuelle à 720 €/an. Créative est l’offre principale avec Creative Lab, Sunilounge, -20% ateliers et réservation prioritaire.",
+  },
+  {
+    question: "Les ateliers sont-ils inclus dans l’abonnement ?",
+    answer:
+      "Les ateliers restent soumis à réservation et capacité. Selon la formule, l’abonné bénéficie de tarifs préférentiels, d’un accès prioritaire ou d’avantages exclusifs. Les places restantes sont affichées sur chaque fiche atelier.",
   },
 ] as const;
 

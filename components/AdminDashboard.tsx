@@ -69,14 +69,22 @@ const adminCreateForms = [
     },
   },
   {
-    table: "subscriptions",
+    table: "subscription_plans",
     title: "Créer une formule",
     fields: [
       ["name", "Nom"],
       ["slug", "Slug"],
       ["description", "Description"],
       ["price_label", "Prix"],
+      ["amount_cents", "Montant en centimes"],
+      ["billing_period", "Période : month ou year"],
+      ["commitment_label", "Engagement"],
+      ["access_label", "Accès"],
+      ["objective_label", "Objectif"],
       ["benefits", "Avantages séparés par des virgules"],
+      ["workshop_discount_percent", "Réduction ateliers (%)"],
+      ["priority_level", "Niveau priorité"],
+      ["sort_order", "Ordre"],
     ],
     defaults: {
       featured: false,
@@ -185,7 +193,14 @@ export function AdminDashboard() {
         continue;
       }
 
-      if (key === "capacity" || key === "seats_remaining") {
+      if (
+        key === "capacity" ||
+        key === "seats_remaining" ||
+        key === "amount_cents" ||
+        key === "workshop_discount_percent" ||
+        key === "priority_level" ||
+        key === "sort_order"
+      ) {
         payload[key] = Number(cleanValue);
       } else if (key === "benefits" && typeof cleanValue === "string") {
         payload[key] = cleanValue

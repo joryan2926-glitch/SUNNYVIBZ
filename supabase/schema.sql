@@ -65,12 +65,28 @@ create table if not exists public.workshops (
   start_date timestamptz not null,
   location text not null,
   price_label text not null default 'Sur inscription',
+  base_price_cents integer check (base_price_cents is null or base_price_cents >= 0),
+  subscriber_price_cents integer check (subscriber_price_cents is null or subscriber_price_cents >= 0),
+  creative_price_cents integer check (creative_price_cents is null or creative_price_cents >= 0),
+  premium_price_cents integer check (premium_price_cents is null or premium_price_cents >= 0),
   capacity integer not null default 0 check (capacity >= 0),
   seats_remaining integer not null default 0 check (seats_remaining >= 0),
   status text not null default 'available' check (status in ('available', 'full', 'cancelled')),
+  requires_booking boolean not null default true,
+  subscriber_priority boolean not null default true,
+  access_notes text,
   published boolean not null default false,
   created_at timestamptz not null default now()
 );
+
+alter table public.workshops
+  add column if not exists base_price_cents integer check (base_price_cents is null or base_price_cents >= 0),
+  add column if not exists subscriber_price_cents integer check (subscriber_price_cents is null or subscriber_price_cents >= 0),
+  add column if not exists creative_price_cents integer check (creative_price_cents is null or creative_price_cents >= 0),
+  add column if not exists premium_price_cents integer check (premium_price_cents is null or premium_price_cents >= 0),
+  add column if not exists requires_booking boolean not null default true,
+  add column if not exists subscriber_priority boolean not null default true,
+  add column if not exists access_notes text;
 
 create table if not exists public.workshop_bookings (
   id uuid primary key default gen_random_uuid(),
@@ -81,9 +97,17 @@ create table if not exists public.workshop_bookings (
   name text not null,
   email text not null,
   phone text,
+  subscription_plan_slug text,
+  pricing_note text,
+  priority_access boolean not null default false,
   status text not null default 'pending' check (status in ('pending', 'confirmed', 'cancelled')),
   created_at timestamptz not null default now()
 );
+
+alter table public.workshop_bookings
+  add column if not exists subscription_plan_slug text,
+  add column if not exists pricing_note text,
+  add column if not exists priority_access boolean not null default false;
 
 create table if not exists public.sunny_friday_applications (
   id uuid primary key default gen_random_uuid(),
@@ -116,31 +140,46 @@ create table if not exists public.profiles (
   full_name text,
   phone text,
   roles text[] not null default array['adherent']::text[],
+  artist_status text not null default 'inactive' check (artist_status in ('active', 'inactive')),
   is_admin boolean not null default false,
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.subscriptions (
+alter table public.profiles
+  add column if not exists artist_status text not null default 'inactive' check (artist_status in ('active', 'inactive'));
+
+create table if not exists public.subscription_plans (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
   name text not null,
   description text not null,
   price_label text not null,
+  amount_cents integer not null default 0 check (amount_cents >= 0),
+  billing_period text not null default 'month' check (billing_period in ('month', 'year')),
+  commitment_label text not null default 'Engagement 3 mois',
+  access_label text not null default 'Accès global',
+  objective_label text not null default 'Fidélisation',
   benefits text[] not null default '{}',
+  workshop_discount_percent integer not null default 0 check (workshop_discount_percent >= 0),
+  priority_level integer not null default 1 check (priority_level >= 0),
   featured boolean not null default false,
   active boolean not null default true,
+  sort_order integer not null default 100,
   created_at timestamptz not null default now()
 );
 
 create table if not exists public.user_subscriptions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  subscription_id uuid not null references public.subscriptions(id) on delete restrict,
+  plan_id uuid references public.subscription_plans(id) on delete restrict,
   status text not null default 'active' check (status in ('active', 'past_due', 'cancelled', 'expired')),
   started_at timestamptz not null default now(),
   ends_at timestamptz,
   created_at timestamptz not null default now()
 );
+
+alter table public.user_subscriptions
+  add column if not exists plan_id uuid references public.subscription_plans(id) on delete restrict;
 
 create index if not exists events_published_start_date_idx
   on public.events (published, start_date);
@@ -169,8 +208,8 @@ create index if not exists sunny_friday_applications_status_idx
 create index if not exists articles_status_published_at_idx
   on public.articles (status, published_at desc);
 
-create index if not exists subscriptions_active_featured_idx
-  on public.subscriptions (active, featured, created_at);
+create index if not exists subscription_plans_active_sort_idx
+  on public.subscription_plans (active, sort_order, created_at);
 
 create index if not exists user_subscriptions_user_idx
   on public.user_subscriptions (user_id, status);
@@ -184,7 +223,7 @@ alter table public.workshop_bookings enable row level security;
 alter table public.sunny_friday_applications enable row level security;
 alter table public.articles enable row level security;
 alter table public.profiles enable row level security;
-alter table public.subscriptions enable row level security;
+alter table public.subscription_plans enable row level security;
 alter table public.user_subscriptions enable row level security;
 
 create or replace function public.is_admin()
@@ -319,14 +358,14 @@ create policy "Users can insert own profile"
   on public.profiles for insert
   with check (id = auth.uid() and is_admin = false);
 
-drop policy if exists "Active subscriptions are publicly readable" on public.subscriptions;
-create policy "Active subscriptions are publicly readable"
-  on public.subscriptions for select
+drop policy if exists "Active subscription plans are publicly readable" on public.subscription_plans;
+create policy "Active subscription plans are publicly readable"
+  on public.subscription_plans for select
   using (active = true);
 
-drop policy if exists "Admins can manage subscriptions" on public.subscriptions;
-create policy "Admins can manage subscriptions"
-  on public.subscriptions for all
+drop policy if exists "Admins can manage subscription plans" on public.subscription_plans;
+create policy "Admins can manage subscription plans"
+  on public.subscription_plans for all
   using (public.is_admin())
   with check (public.is_admin());
 
@@ -374,12 +413,12 @@ grant insert on public.sunny_friday_applications to anon, authenticated;
 grant select, update, delete on public.sunny_friday_applications to authenticated;
 grant select on public.articles to anon, authenticated;
 grant select, insert, update on public.profiles to authenticated;
-grant select on public.subscriptions to anon, authenticated;
+grant select on public.subscription_plans to anon, authenticated;
 grant select on public.user_subscriptions to authenticated;
 grant insert, update, delete on public.workshops to authenticated;
 grant update, delete on public.workshop_bookings to authenticated;
 grant insert, update, delete on public.articles to authenticated;
-grant insert, update, delete on public.subscriptions to authenticated;
+grant insert, update, delete on public.subscription_plans to authenticated;
 grant insert, update, delete on public.user_subscriptions to authenticated;
 
 insert into public.events
@@ -612,7 +651,26 @@ create trigger before_workshop_booking_insert
   for each row execute function public.reserve_workshop_seat();
 
 insert into public.workshops
-  (title, slug, description, image_url, start_date, location, price_label, capacity, seats_remaining, status, published)
+  (
+    title,
+    slug,
+    description,
+    image_url,
+    start_date,
+    location,
+    price_label,
+    base_price_cents,
+    subscriber_price_cents,
+    creative_price_cents,
+    premium_price_cents,
+    capacity,
+    seats_remaining,
+    status,
+    requires_booking,
+    subscriber_priority,
+    access_notes,
+    published
+  )
 values
   (
     'Atelier peinture & techniques mixtes',
@@ -622,9 +680,16 @@ values
     '2026-07-10 15:00:00+02',
     'Creative Lab',
     '25 €',
+    2500,
+    2000,
+    2000,
+    0,
     18,
     7,
     'available',
+    true,
+    true,
+    'Réservation obligatoire. Créative et Premium bénéficient d’un accès prioritaire.',
     true
   ),
   (
@@ -635,9 +700,16 @@ values
     '2026-07-17 18:00:00+02',
     'Maison Créative',
     '35 €',
+    3500,
+    2800,
+    2800,
+    2000,
     12,
     0,
     'full',
+    true,
+    true,
+    'Atelier complet. Les listes d’attente et priorités abonnés seront gérées depuis l’admin.',
     true
   ),
   (
@@ -648,9 +720,16 @@ values
     '2026-07-24 19:30:00+02',
     'Sunilounge',
     'Entrée libre sur réservation',
+    0,
+    0,
+    0,
+    0,
     30,
     14,
     'available',
+    true,
+    true,
+    'Réservation obligatoire pour réguler la capacité et maintenir une expérience confortable.',
     true
   )
 on conflict (slug) do update set
@@ -659,9 +738,16 @@ on conflict (slug) do update set
   start_date = excluded.start_date,
   location = excluded.location,
   price_label = excluded.price_label,
+  base_price_cents = excluded.base_price_cents,
+  subscriber_price_cents = excluded.subscriber_price_cents,
+  creative_price_cents = excluded.creative_price_cents,
+  premium_price_cents = excluded.premium_price_cents,
   capacity = excluded.capacity,
   seats_remaining = excluded.seats_remaining,
   status = excluded.status,
+  requires_booking = excluded.requires_booking,
+  subscriber_priority = excluded.subscriber_priority,
+  access_notes = excluded.access_notes,
   published = excluded.published;
 
 insert into public.articles
@@ -720,43 +806,108 @@ on conflict (slug) do update set
   content = excluded.content,
   status = excluded.status;
 
-insert into public.subscriptions
-  (slug, name, description, price_label, benefits, featured, active)
+insert into public.subscription_plans
+  (
+    slug,
+    name,
+    description,
+    price_label,
+    amount_cents,
+    billing_period,
+    commitment_label,
+    access_label,
+    objective_label,
+    benefits,
+    workshop_discount_percent,
+    priority_level,
+    featured,
+    active,
+    sort_order
+  )
 values
   (
-    'decouverte',
-    'Découverte',
-    'Pour entrer dans la communauté, suivre les événements et découvrir la vibz sans pression.',
-    'Gratuit / lancement',
-    array['Agenda prioritaire', 'Newsletter', 'Accès communauté', 'Invitations découverte']::text[],
+    'essentielle',
+    'Essentielle',
+    'Le pass d’entrée pour découvrir le lieu, venir en heures creuses et commencer à installer une habitude créative.',
+    '39 € / mois',
+    3900,
+    'month',
+    'Engagement 3 mois',
+    'Accès limité heures creuses',
+    'Acquisition',
+    array['Accès limité heures creuses', 'Accès Sunilounge', 'Découverte du lieu']::text[],
+    0,
+    1,
     false,
-    true
+    true,
+    1
   ),
   (
-    'artiste',
-    'Artiste',
-    'Pour gagner en visibilité, publier son profil média et relier ses créations au Market.',
-    'À partir de 9 €/mois',
-    array['Profil talent', 'Galerie média', 'Mise en avant Market', 'Candidature Sunny Friday']::text[],
+    'creative',
+    'Créative',
+    'L’offre principale pour pratiquer régulièrement, réserver plus facilement et profiter des ateliers à tarif préférentiel.',
+    '65 € / mois',
+    6500,
+    'month',
+    'Engagement 3 mois',
+    'Accès régulier',
+    'Volume',
+    array['Creative Lab', 'Sunilounge', '-20% ateliers', 'Réservation prioritaire']::text[],
+    20,
+    2,
     true,
-    true
+    true,
+    2
   ),
   (
     'premium',
     'Premium',
-    'Pour accélérer ses projets avec plus de visibilité, d’avantages et d’accompagnement.',
-    'À partir de 19 €/mois',
-    array['Boost visibilité', 'Accès ateliers premium', 'Réductions stands', 'Accompagnement projet']::text[],
+    'Pour les membres les plus engagés : accès élargi, priorité forte, événements réservés et avantages exclusifs.',
+    '85 € / mois',
+    8500,
+    'month',
+    'Engagement 3 mois',
+    'Accès élargi',
+    'Marge',
+    array['Accès élargi', 'Priorité forte', 'Accès événements', 'Avantages exclusifs']::text[],
+    30,
+    3,
     false,
-    true
+    true,
+    3
+  ),
+  (
+    'annuelle',
+    'Annuelle',
+    'La formule de fidélisation forte : paiement anticipé, accès global et réduction tarifaire par rapport au paiement mensuel.',
+    '720 € / an',
+    72000,
+    'year',
+    '12 mois',
+    'Accès global',
+    'Trésorerie',
+    array['Paiement anticipé', 'Fidélisation forte', 'Réduction tarifaire']::text[],
+    25,
+    2,
+    false,
+    true,
+    4
   )
 on conflict (slug) do update set
   name = excluded.name,
   description = excluded.description,
   price_label = excluded.price_label,
+  amount_cents = excluded.amount_cents,
+  billing_period = excluded.billing_period,
+  commitment_label = excluded.commitment_label,
+  access_label = excluded.access_label,
+  objective_label = excluded.objective_label,
   benefits = excluded.benefits,
+  workshop_discount_percent = excluded.workshop_discount_percent,
+  priority_level = excluded.priority_level,
   featured = excluded.featured,
-  active = excluded.active;
+  active = excluded.active,
+  sort_order = excluded.sort_order;
 
 insert into storage.buckets
   (id, name, public, file_size_limit, allowed_mime_types)

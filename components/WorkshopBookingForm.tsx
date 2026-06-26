@@ -60,6 +60,25 @@ export function WorkshopBookingForm({ workshop }: { workshop: Workshop }) {
             placeholder="06..."
           />
         </label>
+        <label className="grid gap-2 text-sm font-semibold text-[#fbf3df]/78">
+          Votre formule SunnyVibz
+          <select
+            name="subscription_plan_slug"
+            defaultValue=""
+            className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
+          >
+            <option value="">Sans abonnement / à confirmer</option>
+            <option value="essentielle">Essentielle</option>
+            <option value="creative">Créative — priorité</option>
+            <option value="premium">Premium — priorité forte</option>
+            <option value="annuelle">Annuelle</option>
+          </select>
+        </label>
+      </div>
+
+      <div className="mt-5 rounded-2xl border border-[#ffd978]/16 bg-[#ffd978]/10 p-4 text-xs leading-6 text-[#fbf3df]/70">
+        <p>Réservation obligatoire · {workshop.seats_remaining} place(s) restante(s).</p>
+        <p>Créative et Premium disposent d’un accès prioritaire selon les capacités disponibles.</p>
       </div>
 
       <button

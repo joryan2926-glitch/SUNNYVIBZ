@@ -38,9 +38,16 @@ export type Workshop = {
   start_date: string;
   location: string;
   price_label: string;
+  base_price_cents: number | null;
+  subscriber_price_cents: number | null;
+  creative_price_cents: number | null;
+  premium_price_cents: number | null;
   capacity: number;
   seats_remaining: number;
   status: "available" | "full" | "cancelled";
+  requires_booking: boolean;
+  subscriber_priority: boolean;
+  access_notes: string | null;
   published: boolean;
   created_at: string;
 };
@@ -54,6 +61,9 @@ export type WorkshopBooking = {
   name: string;
   email: string;
   phone: string | null;
+  subscription_plan_slug: string | null;
+  pricing_note: string | null;
+  priority_access: boolean;
   status: "pending" | "confirmed" | "cancelled";
   created_at: string;
 };
@@ -77,26 +87,37 @@ export type Profile = {
   full_name: string | null;
   phone: string | null;
   roles: string[];
+  artist_status: "active" | "inactive";
   is_admin: boolean;
   created_at: string;
 };
 
-export type Subscription = {
+export type SubscriptionPlan = {
   id: string;
   slug: string;
   name: string;
   description: string;
   price_label: string;
+  amount_cents: number;
+  billing_period: "month" | "year";
+  commitment_label: string;
+  access_label: string;
+  objective_label: string;
   benefits: string[];
+  workshop_discount_percent: number;
+  priority_level: number;
   featured: boolean;
   active: boolean;
+  sort_order: number;
   created_at: string;
 };
+
+export type Subscription = SubscriptionPlan;
 
 export type UserSubscription = {
   id: string;
   user_id: string;
-  subscription_id: string;
+  plan_id: string | null;
   status: "active" | "past_due" | "cancelled" | "expired";
   started_at: string;
   ends_at: string | null;
@@ -181,13 +202,13 @@ export type Database = {
         Update: Partial<Omit<Profile, "id" | "created_at">>;
         Relationships: [];
       };
-      subscriptions: {
-        Row: Subscription;
-        Insert: Omit<Subscription, "id" | "created_at"> & {
+      subscription_plans: {
+        Row: SubscriptionPlan;
+        Insert: Omit<SubscriptionPlan, "id" | "created_at"> & {
           id?: string;
           created_at?: string;
         };
-        Update: Partial<Omit<Subscription, "id" | "created_at">>;
+        Update: Partial<Omit<SubscriptionPlan, "id" | "created_at">>;
         Relationships: [];
       };
       user_subscriptions: {

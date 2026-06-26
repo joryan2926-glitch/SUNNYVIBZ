@@ -33,6 +33,18 @@ const experienceCards = [
   },
 ] as const;
 
+function formatCents(cents: number | null) {
+  if (cents === null) {
+    return "Selon formule";
+  }
+
+  if (cents === 0) {
+    return "Inclus";
+  }
+
+  return `${new Intl.NumberFormat("fr-FR").format(cents / 100)} €`;
+}
+
 export const revalidate = 60;
 
 export async function generateStaticParams() {
@@ -107,10 +119,17 @@ export default async function WorkshopDetailPage({ params }: WorkshopDetailPageP
             <p className="mt-4 text-sm leading-8 text-[#fbf3df]/72">{workshop.description}</p>
             <div className="mt-6 grid gap-3 text-sm text-[#fbf3df]/72 sm:grid-cols-2">
               <p>Lieu : {workshop.location}</p>
-              <p>Tarif : {workshop.price_label}</p>
+              <p>Tarif public : {workshop.price_label}</p>
+              <p>Essentielle : {formatCents(workshop.subscriber_price_cents)}</p>
+              <p>Créative : {formatCents(workshop.creative_price_cents)}</p>
+              <p>Premium : {formatCents(workshop.premium_price_cents)}</p>
               <p>Capacité : {workshop.capacity} places</p>
               <p>Places restantes : {workshop.seats_remaining}</p>
             </div>
+            <p className="mt-5 rounded-2xl border border-[#ffd978]/16 bg-[#ffd978]/10 p-4 text-xs leading-6 text-[#fbf3df]/68">
+              {workshop.access_notes ??
+                "Réservation obligatoire, contrôle des capacités et accès prioritaire pour les formules Créative et Premium."}
+            </p>
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-3">

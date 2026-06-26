@@ -38,6 +38,34 @@ const futureModules = [
   "Prestations sur devis",
 ] as const;
 
+const featuredOffers = [
+  {
+    title: "Portrait photo artistique",
+    category: "Prestation",
+    price: "À partir de 80 €",
+    text: "Shooting créatif relié à un profil talent et livrable pour réseaux sociaux, portfolio ou exposition.",
+  },
+  {
+    title: "Œuvre originale",
+    category: "Création",
+    price: "Sur devis",
+    text: "Peinture, illustration, sculpture ou pièce unique proposée par les talents SUNNYVIBZ.",
+  },
+  {
+    title: "Animation atelier",
+    category: "Service",
+    price: "À partir de 120 €",
+    text: "Intervention créative pour associations, entreprises, centres de loisirs ou événements.",
+  },
+] as const;
+
+const marketWorkflow = [
+  "Le talent publie une offre",
+  "SUNNYVIBZ valide la mise en avant",
+  "Le public réserve ou demande un devis",
+  "La commande est suivie depuis l’espace membre",
+] as const;
+
 export default function MarketplacePage() {
   return (
     <main>
@@ -102,6 +130,31 @@ export default function MarketplacePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <SectionHeading
+          eyebrow="Offres exemples"
+          title="Ce que le Market pourra mettre en avant."
+          text="Ces cartes préfigurent les futures fiches produits, services et prestations. Elles seront ensuite connectées aux boutiques talents, commandes et paiements."
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {featuredOffers.map((offer) => (
+            <article
+              key={offer.title}
+              className="premium-card rounded-[2rem] border border-[#18f2a6]/18 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/42"
+            >
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+                {offer.category}
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+                {offer.title}
+              </h2>
+              <p className="mt-2 text-lg font-semibold text-[#ffd978]">{offer.price}</p>
+              <p className="mt-4 text-sm leading-7 text-[#fbf3df]/66">{offer.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="rounded-[2.4rem] border border-[#ffd978]/18 bg-white/[0.055] p-7 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
@@ -118,7 +171,7 @@ export default function MarketplacePage() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2">
-              {futureModules.map((module) => (
+              {[...futureModules, ...marketWorkflow].map((module) => (
                 <div
                   key={module}
                   className="rounded-3xl border border-white/10 bg-black/24 p-4 text-sm font-semibold text-[#fbf3df]/76"

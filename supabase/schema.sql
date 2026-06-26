@@ -85,6 +85,18 @@ create table if not exists public.workshop_bookings (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.sunny_friday_applications (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  phone text,
+  project_name text not null,
+  discipline text,
+  needs text,
+  status text not null default 'pending' check (status in ('pending', 'accepted', 'refused', 'archived')),
+  created_at timestamptz not null default now()
+);
+
 create table if not exists public.articles (
   id uuid primary key default gen_random_uuid(),
   title text not null,
@@ -151,6 +163,9 @@ create index if not exists workshop_bookings_workshop_idx
 create index if not exists workshop_bookings_user_email_idx
   on public.workshop_bookings (user_id, lower(email), created_at desc);
 
+create index if not exists sunny_friday_applications_status_idx
+  on public.sunny_friday_applications (status, created_at desc);
+
 create index if not exists articles_status_published_at_idx
   on public.articles (status, published_at desc);
 
@@ -166,6 +181,7 @@ alter table public.gallery enable row level security;
 alter table public.contact_messages enable row level security;
 alter table public.workshops enable row level security;
 alter table public.workshop_bookings enable row level security;
+alter table public.sunny_friday_applications enable row level security;
 alter table public.articles enable row level security;
 alter table public.profiles enable row level security;
 alter table public.subscriptions enable row level security;
@@ -265,6 +281,17 @@ create policy "Admins can manage workshop bookings"
   using (public.is_admin())
   with check (public.is_admin());
 
+drop policy if exists "Anyone can create Sunny Friday applications" on public.sunny_friday_applications;
+create policy "Anyone can create Sunny Friday applications"
+  on public.sunny_friday_applications for insert
+  with check (status = 'pending' and name <> '' and email <> '' and project_name <> '');
+
+drop policy if exists "Admins can manage Sunny Friday applications" on public.sunny_friday_applications;
+create policy "Admins can manage Sunny Friday applications"
+  on public.sunny_friday_applications for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
 drop policy if exists "Published articles are publicly readable" on public.articles;
 create policy "Published articles are publicly readable"
   on public.articles for select
@@ -343,6 +370,8 @@ grant select, update on public.contact_messages to authenticated;
 grant select on public.workshops to anon, authenticated;
 grant insert on public.workshop_bookings to anon, authenticated;
 grant select on public.workshop_bookings to authenticated;
+grant insert on public.sunny_friday_applications to anon, authenticated;
+grant select, update, delete on public.sunny_friday_applications to authenticated;
 grant select on public.articles to anon, authenticated;
 grant select, insert, update on public.profiles to authenticated;
 grant select on public.subscriptions to anon, authenticated;
@@ -728,5 +757,47 @@ on conflict (slug) do update set
   benefits = excluded.benefits,
   featured = excluded.featured,
   active = excluded.active;
+
+insert into storage.buckets
+  (id, name, public, file_size_limit, allowed_mime_types)
+values
+  (
+    'talent-media',
+    'talent-media',
+    true,
+    52428800,
+    array['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm']::text[]
+  )
+on conflict (id) do update set
+  public = excluded.public,
+  file_size_limit = excluded.file_size_limit,
+  allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists "Talent media is publicly readable" on storage.objects;
+create policy "Talent media is publicly readable"
+  on storage.objects for select
+  using (bucket_id = 'talent-media');
+
+drop policy if exists "Users can upload own talent media" on storage.objects;
+create policy "Users can upload own talent media"
+  on storage.objects for insert
+  to authenticated
+  with check (
+    bucket_id = 'talent-media'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+drop policy if exists "Users can update own talent media" on storage.objects;
+create policy "Users can update own talent media"
+  on storage.objects for update
+  to authenticated
+  using (
+    bucket_id = 'talent-media'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  )
+  with check (
+    bucket_id = 'talent-media'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
 
 notify pgrst, 'reload schema';

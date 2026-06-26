@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
+import { TalentMediaUploader } from "@/components/TalentMediaUploader";
 import { createBrowserSupabase } from "@/lib/supabase/browser";
 
 type BookingRow = {
@@ -144,6 +145,8 @@ export function AccountDashboard() {
           )}
         </div>
       </section>
+
+      <TalentMediaUploader session={session} />
     </div>
   );
 }

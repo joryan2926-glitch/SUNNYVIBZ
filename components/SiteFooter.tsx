@@ -7,10 +7,41 @@ const socials = [
   ["Facebook", "https://www.facebook.com/"],
 ] as const;
 
+const footerGroups = [
+  {
+    title: "Découvrir",
+    links: [
+      ["À propos", "/a-propos"],
+      ["Galerie", "/galerie"],
+      ["Articles", "/articles"],
+      ["Partenaires", "/partenaires"],
+    ],
+  },
+  {
+    title: "Participer",
+    links: [
+      ["Ateliers", "/ateliers"],
+      ["Agenda", "/agenda"],
+      ["Sunny Friday", "/sunny-friday"],
+      ["Talents", "/talents"],
+    ],
+  },
+  {
+    title: "Plateforme",
+    links: [
+      ["Market", "/marketplace"],
+      ["Abonnements", "/abonnements"],
+      ["Connexion", "/connexion"],
+      ["Mon compte", "/mon-compte"],
+      ["Admin", "/admin"],
+    ],
+  },
+] as const;
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#ffd978]/15 bg-black/35 backdrop-blur">
-      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.1fr_1.4fr_0.7fr]">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-3">
             <SunnyLogo />
@@ -27,21 +58,21 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div>
-          <h2 className="mb-4 text-sm uppercase tracking-[0.18em] text-[#ffd978]">Navigation</h2>
-          <div className="grid gap-2 text-sm text-[#fbf3df]/70">
-            <Link href="/a-propos">À propos</Link>
-            <Link href="/agenda">Agenda</Link>
-            <Link href="/ateliers">Ateliers</Link>
-            <Link href="/articles">Articles</Link>
-            <Link href="/galerie">Galerie</Link>
-            <Link href="/marketplace">Market</Link>
-            <Link href="/talents">Talents</Link>
-            <Link href="/abonnements">Abonnements</Link>
-            <Link href="/partenaires">Partenaires</Link>
-            <Link href="/connexion">Connexion</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {footerGroups.map((group) => (
+            <div key={group.title}>
+              <h2 className="mb-4 text-sm uppercase tracking-[0.18em] text-[#ffd978]">
+                {group.title}
+              </h2>
+              <div className="grid gap-2 text-sm text-[#fbf3df]/70">
+                {group.links.map(([label, href]) => (
+                  <Link key={href} href={href}>
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div>

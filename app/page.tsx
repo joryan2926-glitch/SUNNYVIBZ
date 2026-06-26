@@ -13,6 +13,7 @@ export const revalidate = 60;
 const stats = [
   ["Agenda", "Événements, ateliers, Sunny Friday"],
   ["Ateliers", "Réserver, créer, apprendre"],
+  ["Sunny Friday", "Stands, exposants, rencontres"],
   ["Galerie", "Créations, expositions, ambiances"],
   ["Market", "Œuvres, services, stands"],
   ["Articles", "Actualités & coulisses"],
@@ -25,6 +26,24 @@ const marketHighlights = [
   ["Services & prestations", "Ateliers, animations, performances, shooting, scénographie et accompagnement."],
   ["Sunny Friday", "Réservation de stands, exposants, QR exposant et mise en avant événementielle."],
   ["Profils talents", "Chaque offre pourra être reliée à un profil avec photos, vidéos et réseau social."],
+] as const;
+
+const primaryPathways = [
+  {
+    title: "Réserver un atelier",
+    text: "Voir les créneaux disponibles, les places restantes et réserver une expérience créative.",
+    href: "/ateliers",
+  },
+  {
+    title: "Découvrir les talents",
+    text: "Explorer les profils, disciplines, photos, vidéos, prestations et univers créatifs.",
+    href: "/talents",
+  },
+  {
+    title: "Rejoindre SunnyVibz",
+    text: "Créer un compte, choisir une formule et entrer dans la communauté Art & Culture.",
+    href: "/abonnements",
+  },
 ] as const;
 
 export default async function Home() {
@@ -53,21 +72,27 @@ export default async function Home() {
               </span>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-[#fbf3df]/76 sm:text-lg">
-              Un site vivant pour découvrir l’association, suivre l’agenda, explorer la galerie,
-              préparer le Market créatif, rencontrer les talents et rejoindre une communauté.
+              SUNNYVIBZ est une plateforme Art & Culture pour découvrir des talents, réserver des
+              ateliers, participer à des événements et soutenir la création locale.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
-                href="/a-propos"
+                href="/ateliers"
                 className="rounded-full border border-[#18f2a6]/55 bg-[#18f2a6]/16 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#fbf3df] shadow-[0_0_34px_rgba(24,242,166,0.28)] transition hover:-translate-y-1"
               >
-                Découvrir
+                Réserver un atelier
               </Link>
               <Link
-                href="/marketplace"
+                href="/talents"
                 className="rounded-full border border-[#ffd978]/40 bg-[#ffd978]/10 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#ffd978] transition hover:-translate-y-1"
               >
-                Voir le Market
+                Découvrir les talents
+              </Link>
+              <Link
+                href="/abonnements"
+                className="rounded-full border border-white/15 bg-white/[0.06] px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#fbf3df] transition hover:-translate-y-1 hover:border-[#18f2a6]/35"
+              >
+                Rejoindre
               </Link>
             </div>
           </div>
@@ -88,6 +113,26 @@ export default async function Home() {
               ))}
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+        <div className="grid gap-5 md:grid-cols-3">
+          {primaryPathways.map((pathway) => (
+            <Link
+              key={pathway.href}
+              href={pathway.href}
+              className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/42"
+            >
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-[#18f2a6]">
+                Parcours
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+                {pathway.title}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-[#fbf3df]/66">{pathway.text}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

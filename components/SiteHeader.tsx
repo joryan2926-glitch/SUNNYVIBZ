@@ -3,16 +3,12 @@ import { SunnyLogo } from "./SunnyLogo";
 
 const navItems = [
   ["Accueil", "/"],
-  ["À propos", "/a-propos"],
-  ["Agenda", "/agenda"],
   ["Ateliers", "/ateliers"],
-  ["Articles", "/articles"],
-  ["Galerie", "/galerie"],
-  ["Market", "/marketplace"],
+  ["Agenda", "/agenda"],
+  ["Sunny Friday", "/sunny-friday"],
   ["Talents", "/talents"],
+  ["Market", "/marketplace"],
   ["Abonnements", "/abonnements"],
-  ["Partenaires", "/partenaires"],
-  ["Compte", "/mon-compte"],
   ["Contact", "/contact"],
 ] as const;
 
@@ -33,7 +29,7 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold uppercase tracking-[0.1em] text-[#fbf3df]/72 sm:gap-4"
+          className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold uppercase tracking-[0.1em] text-[#fbf3df]/72 sm:gap-3"
           aria-label="Navigation principale"
         >
           {navItems.map(([label, href]) => (
@@ -45,6 +41,12 @@ export function SiteHeader() {
               {label}
             </Link>
           ))}
+          <Link
+            href="/connexion"
+            className="rounded-full border border-[#ffd978]/28 bg-[#ffd978]/10 px-3 py-2 text-[#ffd978] transition duration-300 hover:-translate-y-0.5 hover:border-[#ffd978]/45"
+          >
+            Connexion
+          </Link>
         </nav>
       </div>
     </header>

@@ -42,7 +42,7 @@ export function ContactForm() {
           <input
             name="subject"
             className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
-            placeholder="Adhésion, exposition, partenariat..."
+            placeholder="Atelier, Sunny Friday, talent, partenaire, projet..."
           />
         </label>
 
@@ -54,7 +54,7 @@ export function ContactForm() {
             minLength={10}
             rows={6}
             className="resize-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
-            placeholder="Écrivez votre message..."
+            placeholder="Expliquez votre besoin, votre idée, votre discipline, vos dates ou votre projet..."
           />
         </label>
       </div>

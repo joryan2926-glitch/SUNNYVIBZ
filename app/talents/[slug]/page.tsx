@@ -12,6 +12,21 @@ type TalentProfilePageProps = {
   }>;
 };
 
+const profileHighlights = [
+  {
+    title: "Portfolio vivant",
+    text: "Photos, vidéos, œuvres, coulisses et moments forts pourront être rassemblés dans un espace clair.",
+  },
+  {
+    title: "Visibilité utile",
+    text: "Le profil peut être relié aux ateliers, événements, Sunny Friday, prestations et offres du Market.",
+  },
+  {
+    title: "Accès créateur",
+    text: "Chaque talent prépare son identité : discipline, bio, réseaux, médias, services et prochaines dates.",
+  },
+] as const;
+
 export const revalidate = 60;
 
 export async function generateStaticParams() {
@@ -36,7 +51,7 @@ export async function generateMetadata({ params }: TalentProfilePageProps): Prom
     title: `${artist.name} | Talent SUNNYVIBZ`,
     description:
       artist.bio ??
-      "Profil talent SUNNYVIBZ avec photos, vidéos, événements, disciplines et liens sociaux.",
+      "Profil talent SUNNYVIBZ avec portfolio, photos, vidéos, événements, services et liens sociaux.",
   };
 }
 
@@ -67,7 +82,7 @@ export default async function TalentProfilePage({ params }: TalentProfilePagePro
             <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/12 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-[0.7rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
-                Profil média
+                Profil talent
               </p>
               <h1 className="mt-2 text-4xl font-semibold tracking-[-0.055em] text-[#fbf3df] sm:text-5xl">
                 {artist.name}
@@ -77,7 +92,7 @@ export default async function TalentProfilePage({ params }: TalentProfilePagePro
 
           <div>
             <p className="text-[0.72rem] font-black uppercase tracking-[0.2em] text-[#ffd978]">
-              Talent SUNNYVIBZ
+              Vitrine créative SUNNYVIBZ
             </p>
             <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-5xl">
               {artist.specialty ?? "Création, scène et culture"}
@@ -85,17 +100,21 @@ export default async function TalentProfilePage({ params }: TalentProfilePagePro
             <p className="mt-6 max-w-2xl text-sm leading-7 text-[#fbf3df]/70 sm:text-base">
               {artist.bio}
             </p>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[#fbf3df]/62">
+              SunnyVibz met en avant les talents que la plateforme sublime : photo, peinture,
+              sculpture, musique, performance, artisanat, ateliers, services et projets culturels.
+            </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {["Photos", "Vidéos", "Événements"].map((item) => (
+              {profileHighlights.map((item) => (
                 <div
-                  key={item}
-                  className="rounded-3xl border border-white/10 bg-white/[0.045] p-4 text-center"
+                  key={item.title}
+                  className="rounded-3xl border border-white/10 bg-white/[0.045] p-4"
                 >
                   <p className="text-[0.68rem] font-black uppercase tracking-[0.14em] text-[#ffd978]">
-                    {item}
+                    {item.title}
                   </p>
-                  <p className="mt-2 text-xs text-[#fbf3df]/58">Espace profil prêt</p>
+                  <p className="mt-2 text-xs leading-6 text-[#fbf3df]/58">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -125,8 +144,8 @@ export default async function TalentProfilePage({ params }: TalentProfilePagePro
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <SectionHeading
           eyebrow="Mur créatif"
-          title="Photos, vidéos et moments à mettre en avant."
-          text="Cette zone prépare le futur flux social SUNNYVIBZ : publications, médias, coulisses, œuvres, prestations et événements liés au profil."
+          title="Un futur espace social pour montrer le travail, les coulisses et les événements."
+          text="Cette zone prépare le réseau social SUNNYVIBZ : publications, médias, vidéos, œuvres, prestations, événements, retours d’expérience et liens vers le Market."
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((item, index) => (

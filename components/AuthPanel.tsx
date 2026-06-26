@@ -55,8 +55,8 @@ export function AuthPanel() {
     } else {
       setMessage(
         mode === "signin"
-          ? "Connexion réussie. Vous pouvez accéder à votre compte."
-          : "Inscription créée. Vérifiez votre email si Supabase demande une confirmation.",
+          ? "Connexion réussie. Votre espace SunnyVibz est prêt."
+          : "Compte créé. Si la confirmation email est activée dans Supabase, validez votre adresse pour finaliser l’accès.",
       );
     }
 
@@ -65,11 +65,11 @@ export function AuthPanel() {
 
   async function signOut() {
     await supabase.auth.signOut();
-    setMessage("Vous êtes déconnecté.");
+    setMessage("Vous êtes bien déconnecté.");
   }
 
   if (loading) {
-    return <p className="text-sm text-[#fbf3df]/70">Chargement de la session...</p>;
+    return <p className="text-sm text-[#fbf3df]/70">Chargement de votre accès...</p>;
   }
 
   if (session) {
@@ -79,14 +79,15 @@ export function AuthPanel() {
           Connecté
         </p>
         <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
-          {session.user.email}
+          Bienvenue dans votre espace
         </h2>
+        <p className="mt-3 text-sm text-[#fbf3df]/66">{session.user.email}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href="/mon-compte"
             className="rounded-full border border-[#18f2a6]/40 bg-[#18f2a6]/10 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#18f2a6]"
           >
-            Mon compte
+            Ouvrir mon compte
           </a>
           <button
             type="button"
@@ -103,6 +104,11 @@ export function AuthPanel() {
 
   return (
     <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 shadow-2xl shadow-black/30 backdrop-blur-xl">
+      <p className="mb-5 text-sm leading-7 text-[#fbf3df]/68">
+        Créez votre accès pour réserver un atelier, suivre vos demandes et préparer votre futur profil
+        talent ou partenaire.
+      </p>
+
       <div className="mb-6 flex gap-2 rounded-full border border-white/10 bg-black/20 p-1">
         {(["signin", "signup"] as const).map((item) => (
           <button
@@ -126,6 +132,7 @@ export function AuthPanel() {
             type="email"
             required
             autoComplete="email"
+            placeholder="vous@email.fr"
             className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
           />
         </label>
@@ -137,6 +144,7 @@ export function AuthPanel() {
             required
             minLength={6}
             autoComplete={mode === "signin" ? "current-password" : "new-password"}
+            placeholder="Minimum 6 caractères"
             className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
           />
         </label>
@@ -145,11 +153,15 @@ export function AuthPanel() {
           disabled={pending}
           className="mt-2 rounded-full border border-[#18f2a6]/45 bg-[#18f2a6]/12 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#18f2a6] transition hover:-translate-y-0.5 disabled:opacity-60"
         >
-          {pending ? "Traitement..." : mode === "signin" ? "Se connecter" : "Créer mon compte"}
+          {pending ? "Traitement..." : mode === "signin" ? "Se connecter" : "Créer mon accès"}
         </button>
       </form>
 
-      {message ? <p className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-[#fbf3df]/70">{message}</p> : null}
+      {message ? (
+        <p className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-[#fbf3df]/70">
+          {message}
+        </p>
+      ) : null}
     </div>
   );
 }

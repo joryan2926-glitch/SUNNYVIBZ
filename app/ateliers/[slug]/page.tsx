@@ -18,6 +18,21 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   minute: "2-digit",
 });
 
+const experienceCards = [
+  {
+    title: "Un cadre guidé",
+    text: "L’atelier est pensé pour apprendre sans pression : consignes claires, ambiance chaleureuse et vraie place pour l’expression personnelle.",
+  },
+  {
+    title: "Une création à vivre",
+    text: "On ne vient pas seulement consommer un cours. On expérimente, on échange, on repart avec une matière, une idée ou une réalisation.",
+  },
+  {
+    title: "Une porte d’entrée",
+    text: "Chaque atelier peut devenir un lien vers la communauté, les talents, Sunny Friday, le Market ou un futur projet culturel.",
+  },
+] as const;
+
 export const revalidate = 60;
 
 export async function generateStaticParams() {
@@ -33,8 +48,10 @@ export async function generateMetadata({ params }: WorkshopDetailPageProps): Pro
   const workshop = await getWorkshopBySlug(slug);
 
   return {
-    title: workshop ? workshop.title : "Atelier introuvable",
-    description: workshop?.description,
+    title: workshop ? `${workshop.title} | Atelier SUNNYVIBZ` : "Atelier introuvable",
+    description:
+      workshop?.description ??
+      "Réservez un atelier SUNNYVIBZ : expérience créative, rencontre culturelle et nombre de places limité.",
   };
 }
 
@@ -84,13 +101,30 @@ export default async function WorkshopDetailPage({ params }: WorkshopDetailPageP
           </div>
 
           <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.045] p-7">
-            <p className="text-sm leading-8 text-[#fbf3df]/72">{workshop.description}</p>
+            <p className="text-[0.7rem] font-black uppercase tracking-[0.18em] text-[#18f2a6]">
+              Expérience créative
+            </p>
+            <p className="mt-4 text-sm leading-8 text-[#fbf3df]/72">{workshop.description}</p>
             <div className="mt-6 grid gap-3 text-sm text-[#fbf3df]/72 sm:grid-cols-2">
               <p>Lieu : {workshop.location}</p>
-              <p>Prix : {workshop.price_label}</p>
+              <p>Tarif : {workshop.price_label}</p>
               <p>Capacité : {workshop.capacity} places</p>
-              <p>Restantes : {workshop.seats_remaining} places</p>
+              <p>Places restantes : {workshop.seats_remaining}</p>
             </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {experienceCards.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-[1.5rem] border border-[#ffd978]/14 bg-white/[0.045] p-5"
+              >
+                <h2 className="text-lg font-semibold tracking-[-0.035em] text-[#fbf3df]">
+                  {card.title}
+                </h2>
+                <p className="mt-3 text-xs leading-6 text-[#fbf3df]/62">{card.text}</p>
+              </article>
+            ))}
           </div>
         </div>
 

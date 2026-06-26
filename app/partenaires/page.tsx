@@ -11,29 +11,29 @@ export const metadata: Metadata = {
 const partnerTypes = [
   {
     title: "Associations",
-    text: "Créer des passerelles, organiser des actions communes et toucher de nouveaux publics.",
+    text: "Créer des passerelles, accueillir des publics, monter des actions communes et rendre la culture plus accessible.",
   },
   {
     title: "Entreprises",
-    text: "Soutenir la création locale, accueillir des événements et développer des projets culturels.",
+    text: "Soutenir la création locale, proposer des expériences à vos équipes et associer votre image à un projet positif.",
   },
   {
     title: "Sponsors",
-    text: "Financer des ateliers, mettre en avant des talents et renforcer l’impact culturel.",
+    text: "Financer des ateliers, des stands, des événements ou des parcours talents avec une visibilité claire et mesurable.",
   },
   {
     title: "Lieux & institutions",
-    text: "Ouvrir des espaces, programmer des talents et faire vivre les rencontres SUNNYVIBZ.",
+    text: "Ouvrir des espaces, programmer des talents et faire vivre des rencontres artistiques avec une vraie direction.",
   },
 ] as const;
 
 const benefits = [
-  "Visibilité sur le site",
-  "Mise en avant événementielle",
-  "Accès aux projets créatifs",
-  "Collaboration avec les talents",
+  "Page partenaire dédiée",
+  "Mise en avant sur les événements",
+  "Lien avec les talents actifs",
   "Présence Sunny Friday",
   "Actions culturelles sur mesure",
+  "Projet local à impact visible",
 ] as const;
 
 export default function PartnersPage() {
@@ -41,8 +41,8 @@ export default function PartnersPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Partenaires"
-        title="Les structures qui font rayonner les talents avec SUNNYVIBZ."
-        text="Cette rubrique présente les partenaires, sponsors, associations, entreprises et lieux qui soutiennent l’écosystème SUNNYVIBZ."
+        title="Des partenaires pour donner plus de scène aux talents."
+        text="SunnyVibz ne veut pas seulement organiser des événements : la plateforme veut créer des alliances utiles entre talents, publics, associations, entreprises, sponsors et lieux culturels."
       />
 
       <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -52,7 +52,7 @@ export default function PartnersPage() {
             className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/38"
           >
             <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
-              Partenaire
+              Alliance culturelle
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
               {partner.title}
@@ -68,12 +68,12 @@ export default function PartnersPage() {
             Programme partenaire
           </p>
           <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-            Devenir partenaire SUNNYVIBZ.
+            Un partenariat doit servir le terrain, pas seulement mettre un logo.
           </h2>
           <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
-            Les partenaires pourront être reliés aux événements, aux talents, aux ateliers et aux
-            projets mis en avant sur la plateforme. L’objectif : donner de la visibilité, créer des
-            connexions et soutenir les disciplines artistiques.
+            Chaque partenaire pourra être relié aux événements, ateliers, talents, candidatures
+            Sunny Friday, projets locaux et contenus éditoriaux. L’objectif : créer de la visibilité,
+            mais aussi des opportunités concrètes pour celles et ceux qui créent.
           </p>
           <Link
             href="/contact"

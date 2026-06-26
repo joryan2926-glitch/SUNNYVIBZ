@@ -4,7 +4,9 @@ Plateforme premium Art & Culture pour l’association SUNNYVIBZ.
 
 ## Vision
 
-SUNNYVIBZ vise à devenir un écosystème culturel complet : réservations, ateliers, événements, Sunny Friday, talents, market créatif, abonnements, communauté, partenaires, projets, formation et outils IA.
+SUNNYVIBZ révèle les talents, crée des rencontres culturelles et transforme l’énergie locale en expériences concrètes : ateliers, événements, Sunny Friday, profils talents, galerie, market créatif, réservations, abonnements, partenaires, contenus et futurs outils IA.
+
+Le site n’est pas seulement une vitrine. Il prépare un écosystème culturel complet, proche d’un mélange entre agenda, réseau social créatif, marketplace, espace membre et plateforme événementielle.
 
 ## Stack
 
@@ -39,21 +41,25 @@ NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 ```
 
+Le site fonctionne uniquement avec ces deux variables publiques côté front. Le script SQL Supabase doit être exécuté manuellement dans le SQL Editor.
+
 ## Pages du site
 
-- Accueil : proposition claire + parcours Ateliers / Talents / Abonnements
-- À propos : vision et valeurs de l’association
-- Agenda : événements depuis Supabase
-- Ateliers : ateliers, places restantes et réservation
-- Sunny Friday : stands exposants, parcours créateurs, market événementiel
-- Galerie : éléments publiés depuis Supabase
-- Talents : profils créatifs actifs
-- Market : offres, services, prestations, commandes à connecter
+- Accueil : promesse claire, hero premium, parcours, market, agenda, galerie, talents, preuve sociale et contact
+- À propos : mission, positionnement, valeurs et ton de marque SunnyVibz
+- Agenda : événements publiés depuis Supabase
+- Ateliers : ateliers disponibles, places restantes, détail atelier et réservation
+- Sunny Friday : rendez-vous des créateurs, exposants, stands, QR exposant et market événementiel
+- Galerie : œuvres, moments, ateliers et créations publiés depuis Supabase
+- Talents : profils actifs avec photos, vidéos, réseaux, services et futur mur social
+- Partenaires : associations, entreprises, sponsors, lieux et structures culturelles
+- Market : créations, prestations, services, commandes et mise en avant économique
 - Articles : contenus publiés uniquement
 - Abonnements : Découverte, Artiste, Premium
 - Connexion : Supabase Auth
-- Mon compte : réservations et upload média talent
-- Admin : création rapide ateliers, articles, talents, abonnements
+- Mon compte : réservations, upload média talent et futurs modules membre
+- FAQ : réponses simples sur SunnyVibz, ateliers, Sunny Friday, market et abonnements
+- Admin : création rapide ateliers, articles, talents et abonnements
 - Contact : formulaire connecté à `contact_messages`
 
 ## Base de données Supabase
@@ -90,13 +96,6 @@ Il prépare aussi :
 
 Dans Supabase, ouvrir `SQL Editor`, coller le contenu de `supabase/schema.sql`, puis exécuter le script.
 
-Le site n’utilise ensuite que les variables publiques :
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-```
-
 ### Créer le compte administrateur
 
 1. Aller sur `/connexion`.
@@ -126,4 +125,5 @@ npm run supabase:check -- --write-contact
 
 - Paiement réel : Stripe, PayPal ou autre PSP.
 - Emails automatiques : Resend, SendGrid, Brevo ou SMTP.
-- Upload vidéo avancé : optimisation/transcodage éventuel.
+- Upload vidéo avancé : optimisation et transcodage éventuel.
+- Modération des publications talent avant affichage public.

@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Market créatif",
   description:
-    "Market créatif SUNNYVIBZ : future marketplace pour œuvres, services, prestations, stands Sunny Friday et talents locaux.",
+    "Market créatif SUNNYVIBZ : acheter des créations, réserver des prestations, commander des services artistiques et soutenir les talents locaux.",
 };
 
 const categories = [
@@ -75,8 +75,8 @@ export default function MarketplacePage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <SectionHeading
               eyebrow="Market créatif"
-              title="Le futur espace pour acheter, réserver et soutenir la création SUNNYVIBZ."
-              text="Cette page met en avant le potentiel marketplace du site : œuvres, prestations, services, stands exposants, offres partenaires et profils talents reliés au même écosystème."
+              title="Acheter une création, réserver une prestation, soutenir un talent."
+              text="Le Market SUNNYVIBZ est pensé comme le prolongement naturel des profils talents : une vitrine pour vendre, réserver, commander, financer et faire circuler la création locale."
             />
 
             <div className="premium-card rounded-[2.4rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-7 shadow-[0_0_54px_rgba(24,242,166,0.15)] sm:p-9">
@@ -84,12 +84,12 @@ export default function MarketplacePage() {
                 Pré-lancement
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-                Une vitrine prête avant le paiement.
+                Une vitrine prête à devenir un moteur économique.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
-                Le Market est présenté dès maintenant pour montrer la vision. L’étape suivante sera
-                de connecter les produits, les commandes, les paiements et les profils membres à
-                Supabase.
+                Le public pourra découvrir une offre, contacter le talent, réserver une prestation
+                ou acheter une création. L’étape suivante sera de connecter les commandes, les
+                paiements, les stocks et les boutiques talents.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
@@ -132,8 +132,8 @@ export default function MarketplacePage() {
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <SectionHeading
           eyebrow="Offres exemples"
-          title="Ce que le Market pourra mettre en avant."
-          text="Ces cartes préfigurent les futures fiches produits, services et prestations. Elles seront ensuite connectées aux boutiques talents, commandes et paiements."
+          title="Des offres concrètes, lisibles et prêtes à vendre."
+          text="Le Market doit aider le visiteur à comprendre rapidement ce qu’il peut acheter, réserver ou demander : une œuvre, un service, une animation, une prestation ou un stand."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {featuredOffers.map((offer) => (
@@ -162,11 +162,11 @@ export default function MarketplacePage() {
                 Modules possibles
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-                Le Market pourra devenir un vrai moteur économique pour l’association.
+                Le Market peut devenir un vrai moteur économique pour l’association.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
-                L’objectif est de valoriser tout ce que SUNNYVIBZ sublime : artistes, photographes,
-                peintres, sculpteurs, musiciens, ateliers, événements, partenaires et projets.
+                L’objectif est de valoriser tout ce que SUNNYVIBZ sublime : photographes, peintres,
+                sculpteurs, musiciens, ateliers, événements, partenaires, projets et services créatifs.
               </p>
             </div>
 

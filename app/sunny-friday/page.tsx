@@ -6,7 +6,7 @@ import { SunnyFridayApplicationForm } from "@/components/SunnyFridayApplicationF
 export const metadata: Metadata = {
   title: "Sunny Friday",
   description:
-    "Sunny Friday SUNNYVIBZ : marché des créateurs, stands exposants, performances, rencontres, QR exposant et visibilité Market.",
+    "Sunny Friday SUNNYVIBZ : rendez-vous des créateurs, exposants, curieux, partenaires, stands, performances et marché culturel.",
 };
 
 const exhibitorSteps = [
@@ -42,8 +42,8 @@ export default function SunnyFridayPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeading
             eyebrow="Sunny Friday"
-            title="Le rendez-vous des créateurs, exposants et talents SUNNYVIBZ."
-            text="Sunny Friday devient la marque événementielle forte : marché créatif, stands exposants, performances, rencontres, QR exposant et passerelle directe vers le Market."
+            title="Le rendez-vous où les créateurs rencontrent leur public."
+            text="Sunny Friday, c’est le marché culturel SUNNYVIBZ : stands, ventes, performances, musique, rencontres, QR exposant et passerelle directe vers le Market."
           />
 
           <div className="premium-card rounded-[2.4rem] border border-[#ffd978]/18 bg-white/[0.055] p-7 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-9">
@@ -51,11 +51,11 @@ export default function SunnyFridayPage() {
               Exposants
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-              Un parcours simple : candidater, réserver, exposer, vendre.
+              Un parcours simple : candidater, exposer, vendre, se connecter.
             </h2>
             <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
-              La réservation de stand et le paiement seront connectés ensuite. Aujourd’hui, la page
-              prépare le parcours public et les futures données Supabase.
+              Chaque exposant doit pouvoir être visible avant, pendant et après l’événement :
+              candidature, stand, profil talent, QR exposant, offre Market et contact public.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
@@ -98,7 +98,7 @@ export default function SunnyFridayPage() {
         <SectionHeading
           eyebrow="Stands"
           title="Des formules exposants prêtes à connecter."
-          text="Ces offres structurent le modèle économique Sunny Friday avant l’intégration paiement et plan interactif."
+          text="Ces offres structurent le modèle économique Sunny Friday : tester, vendre, être visible et créer des contacts."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {standOffers.map((offer) => (
@@ -120,7 +120,7 @@ export default function SunnyFridayPage() {
         <SectionHeading
           eyebrow="Candidature"
           title="Préparer l’espace exposant."
-          text="Les candidatures sont enregistrées dans Supabase. L’étape suivante sera la sélection, le paiement du stand, le QR exposant et le plan interactif."
+          text="Le formulaire capte les candidatures. L’étape suivante sera la sélection, le paiement du stand, le QR exposant et le plan interactif."
         />
         <SunnyFridayApplicationForm />
       </section>

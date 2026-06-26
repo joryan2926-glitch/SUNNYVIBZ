@@ -15,6 +15,7 @@ const footerGroups = [
       ["Galerie", "/galerie"],
       ["Articles", "/articles"],
       ["Partenaires", "/partenaires"],
+      ["FAQ", "/faq"],
     ],
   },
   {

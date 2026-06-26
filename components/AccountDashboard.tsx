@@ -34,6 +34,21 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   minute: "2-digit",
 });
 
+const memberCards = [
+  {
+    title: "Réservations",
+    text: "Vos ateliers et prochains rendez-vous seront centralisés ici.",
+  },
+  {
+    title: "Profil talent",
+    text: "Ajoutez progressivement vos médias, votre univers, vos services et vos liens.",
+  },
+  {
+    title: "Avantages",
+    text: "L’espace préparera les abonnements, crédits, récompenses et accès premium.",
+  },
+] as const;
+
 export function AccountDashboard() {
   const supabase = useMemo(() => createBrowserSupabase(), []);
   const [session, setSession] = useState<Session | null>(null);
@@ -63,7 +78,7 @@ export function AccountDashboard() {
       if (error) {
         console.error("Supabase account bookings error:", error.message);
         setMessage(
-          "Les réservations seront visibles ici après exécution du SQL Supabase et connexion des données.",
+          "Les réservations apparaîtront ici après l’exécution du SQL Supabase et la création de la table workshop_bookings.",
         );
       } else {
         setBookings(data ?? []);
@@ -86,7 +101,8 @@ export function AccountDashboard() {
           Connexion requise
         </h2>
         <p className="mt-3 text-sm leading-7 text-[#fbf3df]/68">
-          Connectez-vous pour retrouver vos réservations et vos futures informations d’abonnement.
+          Connectez-vous pour retrouver vos réservations, préparer votre profil talent et accéder
+          aux futurs avantages SunnyVibz.
         </p>
         <a
           href="/connexion"
@@ -107,10 +123,24 @@ export function AccountDashboard() {
         <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#fbf3df]">
           {session.user.email}
         </h2>
-        <p className="mt-4 text-sm leading-7 text-[#fbf3df]/68">
-          Cet espace prépare le futur dashboard membre : réservations, abonnement, profil, messages,
-          crédits et avantages SUNNYVIBZ.
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-[#fbf3df]/68">
+          Ce tableau de bord devient votre point d’entrée : réservations, médias, profil talent,
+          abonnements, messages, crédits et avantages pourront s’y connecter progressivement.
         </p>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-3">
+        {memberCards.map((card) => (
+          <article
+            key={card.title}
+            className="rounded-[1.6rem] border border-white/10 bg-white/[0.045] p-5"
+          >
+            <h2 className="text-lg font-semibold tracking-[-0.035em] text-[#fbf3df]">
+              {card.title}
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-[#fbf3df]/62">{card.text}</p>
+          </article>
+        ))}
       </section>
 
       <section>
@@ -132,7 +162,9 @@ export function AccountDashboard() {
                 <p className="text-[0.7rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
                   {booking.status}
                 </p>
-                <h3 className="mt-2 text-xl font-semibold text-[#fbf3df]">{booking.workshop_title}</h3>
+                <h3 className="mt-2 text-xl font-semibold text-[#fbf3df]">
+                  {booking.workshop_title}
+                </h3>
                 <p className="mt-2 text-sm text-[#fbf3df]/64">
                   {dateFormatter.format(new Date(booking.workshop_date))}
                 </p>
@@ -140,7 +172,7 @@ export function AccountDashboard() {
             ))
           ) : (
             <p className="rounded-2xl border border-white/10 bg-white/[0.045] p-5 text-sm text-[#fbf3df]/66">
-              Aucune réservation pour le moment.
+              Aucune réservation pour le moment. Réservez un atelier pour voir l’historique apparaître ici.
             </p>
           )}
         </div>

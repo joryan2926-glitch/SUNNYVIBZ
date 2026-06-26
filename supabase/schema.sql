@@ -388,8 +388,8 @@ values
   (
     'Sunny Friday',
     'sunny-friday',
-    'Marché créatif, stands exposants, musique et rencontres talents.',
-    'Un rendez-vous chaleureux pour découvrir des créateurs et vivre l’énergie SUNNYVIBZ.',
+    'Le rendez-vous créateurs : stands, musique, ventes, rencontres et vraie vibz culturelle.',
+    'Un moment vivant pour découvrir des talents, soutenir la création locale, tester des offres et créer des connexions autour d’une ambiance premium et accessible.',
     '2026-07-03 18:30:00+02',
     'SUNNYVIBZ Art & Culture',
     '/gallery/marche-createurs.svg',
@@ -400,8 +400,8 @@ values
   (
     'Atelier peinture & techniques mixtes',
     'atelier-peinture-techniques-mixtes',
-    'Un atelier accessible pour explorer couleur, matière et expression personnelle.',
-    'Guidé par un talent invité, cet atelier initie les participants à une pratique créative libre.',
+    'Explorer la couleur, la matière et repartir avec une œuvre personnelle.',
+    'Un atelier guidé, sans niveau requis, pour apprendre des techniques simples, libérer le geste et vivre un moment créatif en groupe.',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
     '/gallery/atelier-couleurs.svg',
@@ -413,7 +413,7 @@ values
     'Exposition Couleurs Urbaines',
     'exposition-couleurs-urbaines',
     'Une exposition collective autour de l’énergie urbaine et des cultures visuelles.',
-    'Peinture, photographie, illustration et performance réunies pour célébrer la scène artistique locale.',
+    'Peinture, photographie, illustration et performance réunies pour donner de la visibilité aux talents et provoquer des rencontres.',
     '2026-07-18 19:00:00+02',
     'Maison Créative',
     '/gallery/galerie-nocturne.svg',
@@ -437,7 +437,7 @@ values
   (
     'Maya Sol',
     'maya-sol',
-    'Plasticienne solaire, entre abstraction organique, couleurs chaudes et énergie collective.',
+    'Plasticienne solaire qui transforme la couleur en expérience sensible, entre abstraction organique, chaleur visuelle et énergie collective.',
     'Peinture & installation',
     '/artists/maya-sol.svg',
     'https://instagram.com/',
@@ -449,7 +449,7 @@ values
   (
     'Noam Vibes',
     'noam-vibes',
-    'Photographe documentaire des scènes locales, des coulisses et des visages créatifs.',
+    'Photographe des scènes locales, des coulisses et des visages créatifs, avec un regard documentaire et urbain.',
     'Photo & culture urbaine',
     '/artists/noam-vibes.svg',
     'https://instagram.com/',
@@ -461,7 +461,7 @@ values
   (
     'Lina Wave',
     'lina-wave',
-    'Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.',
+    'Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs qui donnent confiance aux publics.',
     'Ateliers & médiation',
     '/artists/lina-wave.svg',
     null,
@@ -617,7 +617,7 @@ values
   (
     'Atelier peinture & techniques mixtes',
     'atelier-peinture-techniques-mixtes',
-    'Un atelier guidé pour explorer la couleur, la matière, le geste et créer une œuvre personnelle dans l’ambiance premium SUNNYVIBZ.',
+    'On explore la couleur, la matière et le geste dans une ambiance bienveillante. Chaque participant repart avec une création personnelle et des techniques faciles à réutiliser.',
     '/gallery/atelier-couleurs.svg',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
@@ -630,7 +630,7 @@ values
   (
     'Photo urbaine & storytelling',
     'photo-urbaine-storytelling',
-    'Apprendre à raconter une histoire visuelle avec son téléphone ou son appareil photo : lumière, cadrage, portraits, ambiance.',
+    'Apprendre à composer une image, capter une ambiance et raconter une histoire visuelle avec son téléphone ou son appareil photo.',
     '/artists/noam-vibes.svg',
     '2026-07-17 18:00:00+02',
     'Maison Créative',
@@ -643,7 +643,7 @@ values
   (
     'Scène ouverte & expression',
     'scene-ouverte-expression',
-    'Un format vivant pour tester un texte, une performance, une musique ou une prise de parole dans un cadre bienveillant.',
+    'Un format vivant pour tester un texte, une performance, une musique ou une prise de parole dans un cadre chaleureux et sans jugement.',
     '/gallery/scene-ouverte.svg',
     '2026-07-24 19:30:00+02',
     'Sunilounge',
@@ -670,34 +670,34 @@ values
   (
     'Pourquoi SUNNYVIBZ prépare un Market créatif',
     'pourquoi-sunnyvibz-prepare-un-market-creatif',
-    'Le Market doit devenir une passerelle entre talents, publics, partenaires et projets culturels.',
+    'Acheter, réserver, commander, soutenir : le Market doit aider les talents à transformer leur visibilité en opportunités.',
     '/gallery/marche-createurs.svg',
     'Market',
     'Équipe SUNNYVIBZ',
     '2026-06-26 10:00:00+02',
-    'SUNNYVIBZ veut valoriser les créations, les prestations, les ateliers et les stands exposants. Le Market est pensé comme une vitrine simple au départ, puis comme un futur moteur économique connecté aux profils talents, aux réservations et aux événements.',
+    'Le Market SUNNYVIBZ est pensé comme une passerelle concrète entre la création et le public. On pourra y trouver des œuvres, des prestations, des ateliers, des stands exposants et des services créatifs reliés aux profils talents. L’objectif est simple : donner de la visibilité, créer des commandes et soutenir l’économie culturelle locale.',
     'published'
   ),
   (
     'Mettre les talents au centre de l’écosystème',
     'mettre-les-talents-au-centre',
-    'Photos, vidéos, événements, services : les profils talents deviennent le cœur vivant de la plateforme.',
+    'Photos, vidéos, événements, services : les profils talents deviennent les vitrines vivantes de la plateforme.',
     '/gallery/sunny-community.svg',
     'Talents',
     'SUNNYVIBZ',
     '2026-06-26 11:00:00+02',
-    'Les profils talents sont pensés comme des mini espaces média. Chaque créateur pourra présenter son univers, ses contenus, ses événements, ses prestations et ses collaborations.',
+    'Un profil talent ne doit pas être une fiche froide. Il doit montrer une énergie, un univers, des créations, des vidéos, des événements, des prestations et des envies de collaboration. SunnyVibz veut rendre ces parcours plus visibles et plus accessibles.',
     'published'
   ),
   (
     'Des ateliers pour créer, transmettre et rencontrer',
     'des-ateliers-pour-creer-transmettre-rencontrer',
-    'Les ateliers SUNNYVIBZ connectent pratique artistique, transmission et communauté.',
+    'Les ateliers SUNNYVIBZ sont des portes d’entrée simples pour apprendre, tester et rencontrer.',
     '/gallery/creative-lab.svg',
     'Ateliers',
     'Creative Lab',
     '2026-06-26 12:00:00+02',
-    'Les ateliers sont l’un des piliers de SUNNYVIBZ : apprendre, expérimenter, se rencontrer et créer des ponts entre disciplines. La réservation en ligne prépare une expérience simple et professionnelle.',
+    'Un atelier réussi n’est pas seulement un cours. C’est un moment où l’on ose essayer, où l’on échange, où l’on repart avec quelque chose de concret. SUNNYVIBZ veut créer des formats accessibles, beaux, utiles et humains.',
     'published'
   ),
   (
@@ -726,7 +726,7 @@ values
   (
     'decouverte',
     'Découverte',
-    'Pour rejoindre la communauté, suivre l’agenda et tester les premiers formats.',
+    'Pour entrer dans la communauté, suivre les événements et découvrir la vibz sans pression.',
     'Gratuit / lancement',
     array['Agenda prioritaire', 'Newsletter', 'Accès communauté', 'Invitations découverte']::text[],
     false,
@@ -735,7 +735,7 @@ values
   (
     'artiste',
     'Artiste',
-    'Pour disposer d’un profil média et mettre en avant ses créations et prestations.',
+    'Pour gagner en visibilité, publier son profil média et relier ses créations au Market.',
     'À partir de 9 €/mois',
     array['Profil talent', 'Galerie média', 'Mise en avant Market', 'Candidature Sunny Friday']::text[],
     true,
@@ -744,7 +744,7 @@ values
   (
     'premium',
     'Premium',
-    'Pour bénéficier d’une visibilité renforcée, d’avantages événementiels et d’un accompagnement.',
+    'Pour accélérer ses projets avec plus de visibilité, d’avantages et d’accompagnement.',
     'À partir de 19 €/mois',
     array['Boost visibilité', 'Accès ateliers premium', 'Réductions stands', 'Accompagnement projet']::text[],
     false,

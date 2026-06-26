@@ -31,7 +31,7 @@ export function TalentMediaUploader({ session }: { session: Session }) {
 
     if (error) {
       setMessage(
-        "Upload impossible pour le moment. Exécutez le SQL Supabase pour créer le bucket talent-media et ses policies.",
+        "Upload impossible pour le moment. Exécutez le SQL Supabase pour créer le bucket talent-media et ses règles d’accès.",
       );
       setPending(false);
       return;
@@ -39,7 +39,7 @@ export function TalentMediaUploader({ session }: { session: Session }) {
 
     const { data } = supabase.storage.from("talent-media").getPublicUrl(path);
     setLastUrl(data.publicUrl);
-    setMessage("Média envoyé. Il pourra ensuite être relié à votre profil talent.");
+    setMessage("Média envoyé. Il pourra ensuite nourrir votre profil talent SunnyVibz.");
     setPending(false);
   }
 
@@ -49,11 +49,11 @@ export function TalentMediaUploader({ session }: { session: Session }) {
         Médias talent
       </p>
       <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
-        Ajouter une photo ou une vidéo.
+        Ajouter une photo, une œuvre ou une vidéo.
       </h2>
       <p className="mt-4 text-sm leading-7 text-[#fbf3df]/68">
-        Cet upload prépare le futur réseau social SUNNYVIBZ : portfolios, coulisses, vidéos,
-        créations et publications reliées aux profils talents.
+        Cet espace prépare le futur réseau social SunnyVibz : portfolios, coulisses, créations,
+        prestations, performances, extraits vidéo et publications reliées aux profils talents.
       </p>
       <label className="mt-6 inline-flex cursor-pointer rounded-full border border-[#18f2a6]/40 bg-[#18f2a6]/12 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#18f2a6] transition hover:-translate-y-0.5">
         {pending ? "Envoi..." : "Choisir un média"}

@@ -46,6 +46,24 @@ const primaryPathways = [
   },
 ] as const;
 
+const proofPoints = [
+  {
+    quote:
+      "Je viens pour créer, mais je repars surtout avec des idées, des contacts et l’envie de revenir.",
+    name: "Membre atelier",
+  },
+  {
+    quote:
+      "SunnyVibz donne un cadre clair pour montrer son travail, rencontrer un public et tester une offre.",
+    name: "Talent créatif",
+  },
+  {
+    quote:
+      "Le projet parle autant aux artistes qu’aux partenaires : il crée du lien et une vraie énergie locale.",
+    name: "Partenaire culturel",
+  },
+] as const;
+
 export default async function Home() {
   const [events, gallery, artists, workshops, articles] = await Promise.all([
     getEvents(3),
@@ -63,17 +81,19 @@ export default async function Home() {
         <div className="mx-auto grid min-h-[calc(100vh-88px)] max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
           <div className="hero-rise">
             <p className="mb-5 text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">
-              Association culturelle • Création • Partage
+              Plateforme Art & Culture • Talents • Ateliers • Sunny Friday
             </p>
             <h1 className="text-balance text-5xl font-light leading-[0.9] tracking-[-0.07em] text-[#18f2a6] drop-shadow-[0_0_28px_rgba(24,242,166,0.45)] sm:text-7xl lg:text-8xl">
-              SUNNYVIBZ
+              L’ART.
+              <span className="block">LA CULTURE.</span>
+              <span className="block">LA VIBZ.</span>
               <span className="mt-5 block text-xl font-medium uppercase tracking-[0.16em] text-[#ffd978] sm:text-3xl">
-                Pôle Art & Culture
+                SUNNYVIBZ
               </span>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-[#fbf3df]/76 sm:text-lg">
-              SUNNYVIBZ est une plateforme Art & Culture pour découvrir des talents, réserver des
-              ateliers, participer à des événements et soutenir la création locale.
+              SUNNYVIBZ révèle les talents, crée des rencontres culturelles et transforme la
+              créativité locale en ateliers, événements, market, projets et opportunités.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
@@ -140,18 +160,18 @@ export default async function Home() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeading
             eyebrow="Présentation"
-            title="Une association artistique chaleureuse, moderne et ouverte."
-            text="SUNNYVIBZ connecte talents, adhérents, bénévoles et partenaires autour de projets créatifs, d’événements, d’ateliers et de rencontres culturelles."
+            title="Un lieu d’énergie pour créer, exposer, apprendre et se rencontrer."
+            text="Le site n’est pas seulement une vitrine : c’est la porte d’entrée d’un écosystème culturel où chacun peut trouver sa place — talent, public, exposant, bénévole, partenaire ou futur membre."
           />
           <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
             <p>
-              Le site est pensé comme une vitrine claire aujourd’hui et comme la base d’un futur
-              écosystème : inscriptions, réservations, galerie, market, talents, partenaires, agenda et
-              communauté.
+              SunnyVibz part d’une conviction simple : la culture a besoin d’espaces où les idées
+              circulent, où les talents deviennent visibles et où les projets passent du rêve au
+              concret.
             </p>
             <p className="mt-5">
-              Chaque section est prête à être connectée à Supabase pour permettre à l’association de
-              publier facilement ses contenus.
+              Les ateliers donnent envie d’apprendre. Sunny Friday donne envie d’exposer. Le Market
+              donne envie de soutenir. Les profils talents donnent envie de collaborer.
             </p>
           </div>
         </div>
@@ -165,12 +185,12 @@ export default async function Home() {
                 Market créatif
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-5xl">
-                Une future vitrine pour vendre, réserver et soutenir les talents.
+                Une vitrine pour acheter, réserver et soutenir les talents.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70 sm:text-base">
-                Le Market SUNNYVIBZ pourra mettre en avant les créations, prestations, ateliers,
-                stands Sunny Friday et services proposés par la communauté. Pour l’instant, la
-                page présente le concept et prépare la structure avant l’activation paiement.
+                Le Market prolonge naturellement les profils talents : acheter une création,
+                réserver une prestation, commander un service artistique ou soutenir un exposant
+                Sunny Friday.
               </p>
               <Link
                 href="/marketplace"
@@ -201,8 +221,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Agenda"
-            title="Les prochains rendez-vous."
-            text="Les événements sont lus depuis Supabase, avec un fallback visible tant que la base est vide."
+            title="Des rendez-vous pour vivre la culture, pas seulement la regarder."
+            text="Ateliers, expositions, Sunny Friday, scènes ouvertes : l’agenda rassemble les moments où la communauté se rencontre."
           />
           <Link href="/agenda" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Tout l’agenda →
@@ -220,7 +240,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Ateliers"
             title="Réserver une expérience créative."
-            text="Les ateliers affichent les places restantes, le statut disponible ou complet, et une réservation connectée à Supabase."
+            text="Chaque atelier annonce ce qu’on apprend, où ça se passe, combien de places restent et comment réserver simplement."
           />
           <Link href="/ateliers" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Voir les ateliers →
@@ -237,8 +257,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Galerie"
-            title="Images, œuvres et moments SUNNYVIBZ."
-            text="La galerie dynamique lit les éléments publiés dans la table Supabase gallery."
+            title="Des images pour sentir l’ambiance."
+            text="Ateliers, créations, scènes ouvertes, marchés et coulisses : la galerie donne un aperçu sensible de la vibz SUNNYVIBZ."
           />
           <Link href="/galerie" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Voir la galerie →
@@ -255,8 +275,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Articles"
-            title="Actualités, coulisses et culture."
-            text="Une rubrique éditoriale pour publier uniquement les articles validés depuis Supabase."
+            title="Des coulisses, des idées et des récits."
+            text="Les articles racontent la vie du projet : talents, ateliers, Sunny Friday, market, partenaires et ambitions culturelles."
           />
           <Link href="/articles" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Lire les articles →
@@ -273,8 +293,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Talents"
-            title="Des profils média pour valoriser chaque univers créatif."
-            text="La page Talents présente les photographes, peintres, sculpteurs, musiciens et créateurs publiés depuis Supabase. Elle prépare les profils avec photos, vidéos, événements et liens sociaux."
+            title="Des profils média pour rendre les talents visibles."
+            text="Chaque profil devient une mini vitrine : univers, discipline, photos, vidéos, événements, services et liens sociaux."
           />
           <Link href="/talents" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Découvrir les talents →
@@ -288,10 +308,31 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <SectionHeading
+          eyebrow="Pourquoi ça compte"
+          title="La culture avance quand les gens se rencontrent."
+          text="SunnyVibz veut créer ce moment rare où un talent trouve un public, un partenaire découvre un projet, et une idée devient une action concrète."
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {proofPoints.map((proof) => (
+            <article
+              key={proof.name}
+              className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl"
+            >
+              <p className="text-base leading-8 text-[#fbf3df]/76">“{proof.quote}”</p>
+              <p className="mt-5 text-[0.72rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+                {proof.name}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div className="premium-card rounded-[2.5rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-8 text-center shadow-[0_0_50px_rgba(24,242,166,0.16)] sm:p-12">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">Contact</p>
           <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-medium tracking-[-0.055em] text-[#fbf3df] sm:text-6xl">
-            Rejoindre, exposer, soutenir ou organiser un projet ?
+            Vous venez pour apprendre, exposer, soutenir ou proposer une idée ?
           </h2>
           <Link
             href="/contact"

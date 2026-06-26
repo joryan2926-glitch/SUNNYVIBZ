@@ -101,7 +101,7 @@ values
   (
     'Sunny Friday',
     'sunny-friday',
-    'Marché créatif, stands exposants, musique et rencontres artistes.',
+    'Marché créatif, stands exposants, musique et rencontres talents.',
     'Un rendez-vous chaleureux pour découvrir des créateurs et vivre l’énergie SUNNYVIBZ.',
     '2026-07-03 18:30:00+02',
     'SUNNYVIBZ Art & Culture',
@@ -114,7 +114,7 @@ values
     'Atelier peinture & techniques mixtes',
     'atelier-peinture-techniques-mixtes',
     'Un atelier accessible pour explorer couleur, matière et expression personnelle.',
-    'Guidé par un artiste invité, cet atelier initie les participants à une pratique créative libre.',
+    'Guidé par un talent invité, cet atelier initie les participants à une pratique créative libre.',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
     '/gallery/atelier-couleurs.svg',
@@ -172,7 +172,7 @@ values
   (
     'Lina Wave',
     'lina-wave',
-    'Artiste visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.',
+    'Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.',
     'Ateliers & médiation',
     '/artists/lina-wave.svg',
     null,

@@ -26,20 +26,20 @@ export function EventCard({ event }: { event: Event }) {
         </div>
       ) : null}
       <div className="mb-8 flex items-start justify-between gap-5">
-        <span className="rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+        <span className="rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.14em] text-[#18f2a6]">
           {event.category ?? "Événement"}
         </span>
-        <span className="text-right text-xs font-bold uppercase tracking-[0.14em] text-[#ffd978]">
+        <span className="text-right text-[0.68rem] font-bold uppercase tracking-[0.12em] text-[#ffd978]">
           {event.price_label ?? "SUNNYVIBZ"}
         </span>
       </div>
       <p className="text-sm font-semibold text-[#fbf3df]/62">
         {dateFormatter.format(new Date(event.start_date))}
       </p>
-      <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+      <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[#fbf3df]">
         {event.title}
       </h3>
-      <p className="mt-4 leading-7 text-[#fbf3df]/66">{event.excerpt ?? event.description}</p>
+      <p className="mt-4 text-sm leading-7 text-[#fbf3df]/66">{event.excerpt ?? event.description}</p>
       {event.location ? (
         <p className="mt-6 text-sm font-bold uppercase tracking-[0.14em] text-[#d8a62a]">
           {event.location}

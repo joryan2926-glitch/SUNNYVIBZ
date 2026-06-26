@@ -19,10 +19,10 @@ export function GalleryCard({ item, index }: { item: GalleryItem; index: number 
         </span>
       </div>
       <div className="p-6">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#ffd978]">
+        <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#ffd978]">
           {item.category ?? "Galerie"}
         </p>
-        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+        <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[#fbf3df]">
           {item.title}
         </h3>
         {item.artist_name ? (

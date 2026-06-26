@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Artist } from "@/lib/supabase/types";
 
 export function ArtistCard({ artist }: { artist: Artist }) {
   return (
     <article className="premium-card overflow-hidden rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/45">
-      <div className="relative grid h-72 place-items-center overflow-hidden bg-[radial-gradient(circle_at_40%_20%,rgba(255,217,120,0.24),transparent_34%),linear-gradient(135deg,rgba(24,242,166,0.16),rgba(3,4,3,0.92))]">
+      <div className="relative grid h-64 place-items-center overflow-hidden bg-[radial-gradient(circle_at_40%_20%,rgba(255,217,120,0.24),transparent_34%),linear-gradient(135deg,rgba(24,242,166,0.16),rgba(3,4,3,0.92))]">
         {artist.image_url ? (
           <Image
             src={artist.image_url}
@@ -21,14 +22,25 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
       <div className="p-6">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#18f2a6]">
-          {artist.specialty ?? "Artiste SUNNYVIBZ"}
+        <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+          {artist.specialty ?? "Talent SUNNYVIBZ"}
         </p>
-        <h3 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[#fbf3df]">
+        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
           {artist.name}
         </h3>
-        <p className="mt-4 leading-7 text-[#fbf3df]/66">{artist.bio}</p>
+        <p className="mt-4 text-sm leading-7 text-[#fbf3df]/66">{artist.bio}</p>
+        <div className="mt-5 flex flex-wrap gap-2 text-[0.72rem] font-bold uppercase tracking-[0.1em] text-[#fbf3df]/62">
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">Photos</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">Vidéos</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">Événements</span>
+        </div>
         <div className="mt-6 flex flex-wrap gap-3 text-sm">
+          <Link
+            href={`/talents/${artist.slug}`}
+            className="rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 px-4 py-2 text-[#18f2a6]"
+          >
+            Voir le profil
+          </Link>
           {artist.instagram_url ? (
             <a
               href={artist.instagram_url}

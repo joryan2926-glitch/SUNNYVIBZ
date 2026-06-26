@@ -11,7 +11,8 @@ export const revalidate = 60;
 const stats = [
   ["Agenda", "Événements, ateliers, Sunny Friday"],
   ["Galerie", "Créations, expositions, ambiances"],
-  ["Artistes", "Talents, portfolios, collaborations"],
+  ["Talents", "Photos, vidéos, profils, collaborations"],
+  ["Partenaires", "Structures, sponsors, associations"],
 ] as const;
 
 export default async function Home() {
@@ -31,15 +32,15 @@ export default async function Home() {
             <p className="mb-5 text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">
               Association culturelle • Création • Partage
             </p>
-            <h1 className="text-balance text-6xl font-light leading-[0.86] tracking-[-0.08em] text-[#18f2a6] drop-shadow-[0_0_28px_rgba(24,242,166,0.45)] sm:text-8xl lg:text-9xl">
+            <h1 className="text-balance text-5xl font-light leading-[0.9] tracking-[-0.07em] text-[#18f2a6] drop-shadow-[0_0_28px_rgba(24,242,166,0.45)] sm:text-7xl lg:text-8xl">
               SUNNYVIBZ
-              <span className="mt-5 block text-2xl font-medium uppercase tracking-[0.18em] text-[#ffd978] sm:text-4xl">
+              <span className="mt-5 block text-xl font-medium uppercase tracking-[0.16em] text-[#ffd978] sm:text-3xl">
                 Pôle Art & Culture
               </span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-[#fbf3df]/76 sm:text-xl">
+            <p className="mt-8 max-w-2xl text-base leading-8 text-[#fbf3df]/76 sm:text-lg">
               Un site vivant pour découvrir l’association, suivre l’agenda, explorer la galerie,
-              rencontrer les artistes et rejoindre une communauté créative.
+              rencontrer les talents et rejoindre une communauté créative.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
@@ -81,12 +82,12 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Présentation"
             title="Une association artistique chaleureuse, moderne et ouverte."
-            text="SUNNYVIBZ connecte artistes, adhérents, bénévoles et partenaires autour de projets créatifs, d’événements, d’ateliers et de rencontres culturelles."
+            text="SUNNYVIBZ connecte talents, adhérents, bénévoles et partenaires autour de projets créatifs, d’événements, d’ateliers et de rencontres culturelles."
           />
           <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
             <p>
               Le site est pensé comme une vitrine claire aujourd’hui et comme la base d’un futur
-              écosystème : inscriptions, réservations, galerie, marketplace, artistes, agenda et
+              écosystème : inscriptions, réservations, galerie, marketplace, talents, partenaires, agenda et
               communauté.
             </p>
             <p className="mt-5">
@@ -136,12 +137,12 @@ export default async function Home() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="Artistes"
-            title="Des profils pour valoriser les talents."
-            text="La page Artistes est prête à afficher les créateurs publiés depuis Supabase."
+            eyebrow="Talents"
+            title="Des profils média pour valoriser chaque univers créatif."
+            text="La page Talents présente les photographes, peintres, sculpteurs, musiciens et créateurs publiés depuis Supabase. Elle prépare les profils avec photos, vidéos, événements et liens sociaux."
           />
-          <Link href="/artistes" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
-            Découvrir les artistes →
+          <Link href="/talents" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+            Découvrir les talents →
           </Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">

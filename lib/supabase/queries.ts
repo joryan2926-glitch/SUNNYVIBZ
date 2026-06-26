@@ -121,6 +121,31 @@ export async function getArtists(limit = 12): Promise<Artist[]> {
   }
 }
 
+export async function getArtistBySlug(slug: string): Promise<Artist | null> {
+  try {
+    const { data, error } = await supabase
+      .from("artists")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Supabase artist profile error:", error.message);
+    }
+
+    if (data) {
+      return normalizeArtist(data);
+    }
+  } catch (error) {
+    console.error("Supabase artist profile request failed:", error);
+  }
+
+  const fallback = fallbackArtists.find((artist) => artist.slug === slug);
+
+  return fallback ? normalizeArtist(fallback) : null;
+}
+
 export async function getGalleryItems(limit = 12): Promise<GalleryItem[]> {
   try {
     const { data, error } = await supabase

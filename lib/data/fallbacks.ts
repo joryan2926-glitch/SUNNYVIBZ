@@ -5,7 +5,7 @@ export const fallbackEvents: Event[] = [
     id: "fallback-sunny-friday",
     title: "Sunny Friday",
     slug: "sunny-friday",
-    excerpt: "Marché créatif, stands exposants, musique et rencontres artistes.",
+    excerpt: "Marché créatif, stands exposants, musique et rencontres talents.",
     description:
       "Un rendez-vous chaleureux pour découvrir des créateurs, soutenir les talents locaux et vivre l’énergie SUNNYVIBZ.",
     start_date: "2026-07-03T18:30:00+02:00",
@@ -23,7 +23,7 @@ export const fallbackEvents: Event[] = [
     slug: "atelier-peinture-techniques-mixtes",
     excerpt: "Un atelier accessible pour explorer couleur, matière et expression personnelle.",
     description:
-      "Guidé par un artiste invité, cet atelier initie les participants à une pratique créative libre et collective.",
+      "Guidé par un talent invité, cet atelier initie les participants à une pratique créative libre et collective.",
     start_date: "2026-07-10T15:00:00+02:00",
     end_date: null,
     location: "Creative Lab",
@@ -82,7 +82,7 @@ export const fallbackArtists: Artist[] = [
     id: "fallback-lina",
     name: "Lina Wave",
     slug: "lina-wave",
-    bio: "Artiste visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.",
+    bio: "Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.",
     specialty: "Ateliers & médiation",
     image_url: "/artists/lina-wave.svg",
     instagram_url: null,

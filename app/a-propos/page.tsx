@@ -4,11 +4,11 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "Découvrez SUNNYVIBZ, association Art & Culture dédiée aux artistes, aux ateliers, aux expositions et aux événements culturels.",
+    "Découvrez SUNNYVIBZ, association Art & Culture dédiée aux talents, aux partenaires, aux ateliers, aux expositions et aux événements culturels.",
 };
 
 const values = [
-  "Créer des passerelles entre artistes, publics et partenaires.",
+  "Créer des passerelles entre talents, publics et partenaires.",
   "Rendre la culture accessible, vivante et visible.",
   "Accompagner les talents avec une plateforme moderne et évolutive.",
 ];
@@ -26,12 +26,12 @@ export default function AboutPage() {
         <article className="rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-8 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl">
           <p>
             SUNNYVIBZ est pensée comme un lieu et une plateforme : un espace où l’on peut découvrir
-            des artistes, participer à des ateliers, venir à des événements, exposer, échanger et
+            des talents, participer à des ateliers, venir à des événements, exposer, échanger et
             rejoindre une communauté créative.
           </p>
           <p className="mt-5">
             Le site construit ici pose les fondations numériques : pages publiques, agenda,
-            galerie, profils artistes, contact et connexion Supabase pour gérer les contenus.
+            galerie, profils talents, partenaires, contact et connexion Supabase pour gérer les contenus.
           </p>
         </article>
 

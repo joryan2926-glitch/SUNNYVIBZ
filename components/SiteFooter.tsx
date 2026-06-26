@@ -22,8 +22,8 @@ export function SiteFooter() {
             </span>
           </Link>
           <p className="max-w-md text-sm leading-7 text-[#fbf3df]/64">
-            Une plateforme culturelle pour créer, exposer, transmettre, connecter les artistes et
-            faire rayonner les talents locaux.
+            Une plateforme culturelle pour créer, exposer, transmettre, connecter les talents,
+            les partenaires et faire rayonner les projets locaux.
           </p>
         </div>
 
@@ -33,7 +33,8 @@ export function SiteFooter() {
             <Link href="/a-propos">À propos</Link>
             <Link href="/agenda">Agenda</Link>
             <Link href="/galerie">Galerie</Link>
-            <Link href="/artistes">Artistes</Link>
+            <Link href="/talents">Talents</Link>
+            <Link href="/partenaires">Partenaires</Link>
             <Link href="/contact">Contact</Link>
           </div>
         </div>

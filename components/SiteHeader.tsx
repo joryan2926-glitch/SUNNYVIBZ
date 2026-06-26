@@ -6,7 +6,8 @@ const navItems = [
   ["À propos", "/a-propos"],
   ["Agenda", "/agenda"],
   ["Galerie", "/galerie"],
-  ["Artistes", "/artistes"],
+  ["Talents", "/talents"],
+  ["Partenaires", "/partenaires"],
   ["Contact", "/contact"],
 ] as const;
 
@@ -17,7 +18,7 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-3" aria-label="Accueil SUNNYVIBZ">
           <SunnyLogo />
           <span>
-            <strong className="block text-xl font-semibold tracking-[0.18em] text-[#ffd978] drop-shadow-[0_0_16px_rgba(255,217,120,0.48)] sm:text-2xl">
+            <strong className="block text-lg font-semibold tracking-[0.18em] text-[#ffd978] drop-shadow-[0_0_16px_rgba(255,217,120,0.48)] sm:text-xl">
               SUNNYVIBZ
             </strong>
             <small className="block text-xs uppercase tracking-[0.22em] text-[#d8a62a]">
@@ -27,7 +28,7 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-[#fbf3df]/72 sm:gap-5"
+          className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold uppercase tracking-[0.1em] text-[#fbf3df]/72 sm:gap-4"
           aria-label="Navigation principale"
         >
           {navItems.map(([label, href]) => (

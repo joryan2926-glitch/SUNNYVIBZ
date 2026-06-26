@@ -11,8 +11,16 @@ export const revalidate = 60;
 const stats = [
   ["Agenda", "Événements, ateliers, Sunny Friday"],
   ["Galerie", "Créations, expositions, ambiances"],
+  ["Market", "Œuvres, services, stands"],
   ["Talents", "Photos, vidéos, profils, collaborations"],
   ["Partenaires", "Structures, sponsors, associations"],
+] as const;
+
+const marketHighlights = [
+  ["Œuvres & créations", "Peinture, photo, sculpture, illustration, artisanat et éditions limitées."],
+  ["Services & prestations", "Ateliers, animations, performances, shooting, scénographie et accompagnement."],
+  ["Sunny Friday", "Réservation de stands, exposants, QR exposant et mise en avant événementielle."],
+  ["Profils talents", "Chaque offre pourra être reliée à un profil avec photos, vidéos et réseau social."],
 ] as const;
 
 export default async function Home() {
@@ -40,7 +48,7 @@ export default async function Home() {
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-[#fbf3df]/76 sm:text-lg">
               Un site vivant pour découvrir l’association, suivre l’agenda, explorer la galerie,
-              rencontrer les talents et rejoindre une communauté créative.
+              préparer le Market créatif, rencontrer les talents et rejoindre une communauté.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
@@ -50,10 +58,10 @@ export default async function Home() {
                 Découvrir
               </Link>
               <Link
-                href="/contact"
+                href="/marketplace"
                 className="rounded-full border border-[#ffd978]/40 bg-[#ffd978]/10 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#ffd978] transition hover:-translate-y-1"
               >
-                Nous contacter
+                Voir le Market
               </Link>
             </div>
           </div>
@@ -87,13 +95,53 @@ export default async function Home() {
           <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
             <p>
               Le site est pensé comme une vitrine claire aujourd’hui et comme la base d’un futur
-              écosystème : inscriptions, réservations, galerie, marketplace, talents, partenaires, agenda et
+              écosystème : inscriptions, réservations, galerie, market, talents, partenaires, agenda et
               communauté.
             </p>
             <p className="mt-5">
               Chaque section est prête à être connectée à Supabase pour permettre à l’association de
               publier facilement ses contenus.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="premium-card overflow-hidden rounded-[2.6rem] border border-[#ffd978]/18 bg-[radial-gradient(circle_at_top_left,rgba(255,217,120,0.18),transparent_26rem),rgba(255,255,255,0.055)] p-7 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-[0.72rem] font-black uppercase tracking-[0.22em] text-[#ffd978]">
+                Market créatif
+              </p>
+              <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-5xl">
+                Une future vitrine pour vendre, réserver et soutenir les talents.
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70 sm:text-base">
+                Le Market SUNNYVIBZ pourra mettre en avant les créations, prestations, ateliers,
+                stands Sunny Friday et services proposés par la communauté. Pour l’instant, la
+                page présente le concept et prépare la structure avant l’activation paiement.
+              </p>
+              <Link
+                href="/marketplace"
+                className="mt-7 inline-flex rounded-full border border-[#18f2a6]/42 bg-[#18f2a6]/12 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#18f2a6] transition hover:-translate-y-0.5"
+              >
+                Explorer le Market
+              </Link>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {marketHighlights.map(([title, text]) => (
+                <article
+                  key={title}
+                  className="rounded-[1.6rem] border border-white/10 bg-black/24 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#ffd978]/30"
+                >
+                  <h3 className="text-lg font-semibold tracking-[-0.03em] text-[#fbf3df]">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[#fbf3df]/62">{text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

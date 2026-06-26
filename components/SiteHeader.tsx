@@ -6,6 +6,7 @@ const navItems = [
   ["À propos", "/a-propos"],
   ["Agenda", "/agenda"],
   ["Galerie", "/galerie"],
+  ["Market", "/marketplace"],
   ["Talents", "/talents"],
   ["Partenaires", "/partenaires"],
   ["Contact", "/contact"],

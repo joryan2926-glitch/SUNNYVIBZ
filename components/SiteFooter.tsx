@@ -33,6 +33,7 @@ export function SiteFooter() {
             <Link href="/a-propos">À propos</Link>
             <Link href="/agenda">Agenda</Link>
             <Link href="/galerie">Galerie</Link>
+            <Link href="/marketplace">Market</Link>
             <Link href="/talents">Talents</Link>
             <Link href="/partenaires">Partenaires</Link>
             <Link href="/contact">Contact</Link>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   description:
-    "SUNNYVIBZ est une association Art & Culture dédiée à la création, aux talents, aux partenaires, aux événements, aux ateliers et à la communauté.",
+    "SUNNYVIBZ est une association Art & Culture dédiée à la création, aux talents, au market créatif, aux partenaires, aux événements, aux ateliers et à la communauté.",
   keywords: [
     "SUNNYVIBZ",
     "art",
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     "association culturelle",
     "événements",
     "talents",
+    "marketplace",
+    "market créatif",
     "partenaires",
     "galerie",
     "ateliers",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SUNNYVIBZ | Pôle Art & Culture",
     description:
-      "Un écosystème culturel moderne pour créer, exposer, apprendre, rencontrer et soutenir les talents et partenaires culturels.",
+      "Un écosystème culturel moderne pour créer, exposer, vendre, apprendre, rencontrer et soutenir les talents et partenaires culturels.",
     url: "https://sunnyvibz.fr",
     siteName: "SUNNYVIBZ",
     locale: "fr_FR",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SUNNYVIBZ | Pôle Art & Culture",
     description:
-      "Un écosystème culturel moderne pour créer, exposer, apprendre, rencontrer et soutenir les talents et partenaires culturels.",
+      "Un écosystème culturel moderne pour créer, exposer, vendre, apprendre, rencontrer et soutenir les talents et partenaires culturels.",
     images: ["/sunnyvibz-hero.svg"],
   },
 };

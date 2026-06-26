@@ -5,10 +5,14 @@ const navItems = [
   ["Accueil", "/"],
   ["À propos", "/a-propos"],
   ["Agenda", "/agenda"],
+  ["Ateliers", "/ateliers"],
+  ["Articles", "/articles"],
   ["Galerie", "/galerie"],
   ["Market", "/marketplace"],
   ["Talents", "/talents"],
+  ["Abonnements", "/abonnements"],
   ["Partenaires", "/partenaires"],
+  ["Compte", "/mon-compte"],
   ["Contact", "/contact"],
 ] as const;
 

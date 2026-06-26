@@ -1,6 +1,13 @@
-import { fallbackArtists, fallbackEvents, fallbackGallery } from "@/lib/data/fallbacks";
+import {
+  fallbackArticles,
+  fallbackArtists,
+  fallbackEvents,
+  fallbackGallery,
+  fallbackSubscriptions,
+  fallbackWorkshops,
+} from "@/lib/data/fallbacks";
 import { supabase } from "./client";
-import type { Artist, Event, GalleryItem } from "./types";
+import type { Article, Artist, Event, GalleryItem, Subscription, Workshop } from "./types";
 
 const eventImages: Record<string, string> = {
   "sunny-friday": "/gallery/marche-createurs.svg",
@@ -61,6 +68,25 @@ function normalizeArtist(artist: Artist): Artist {
   return {
     ...artist,
     image_url: artist.image_url ?? artistImages[artist.slug] ?? null,
+    status: artist.status ?? "active",
+  };
+}
+
+function normalizeWorkshop(workshop: Workshop): Workshop {
+  return {
+    ...workshop,
+    seats_remaining: Math.max(0, workshop.seats_remaining ?? 0),
+    status:
+      workshop.status === "available" && (workshop.seats_remaining ?? 0) <= 0
+        ? "full"
+        : workshop.status,
+  };
+}
+
+function normalizeArticle(article: Article): Article {
+  return {
+    ...article,
+    image_url: article.image_url ?? "/gallery/sunny-community.svg",
   };
 }
 
@@ -112,8 +138,10 @@ export async function getArtists(limit = 12): Promise<Artist[]> {
       return fallbackArtists.slice(0, limit);
     }
 
-    return data.length > 0
-      ? mergeWithFallback(data.map(normalizeArtist), fallbackArtists, limit, (artist) => artist.slug)
+    const activeArtists = data.map(normalizeArtist).filter((artist) => artist.status === "active");
+
+    return activeArtists.length > 0
+      ? mergeWithFallback(activeArtists, fallbackArtists, limit, (artist) => artist.slug)
       : fallbackArtists.slice(0, limit);
   } catch (error) {
     console.error("Supabase artists request failed:", error);
@@ -135,15 +163,135 @@ export async function getArtistBySlug(slug: string): Promise<Artist | null> {
     }
 
     if (data) {
-      return normalizeArtist(data);
+    return normalizeArtist(data);
     }
   } catch (error) {
     console.error("Supabase artist profile request failed:", error);
   }
 
-  const fallback = fallbackArtists.find((artist) => artist.slug === slug);
+  const fallback = fallbackArtists.find((artist) => artist.slug === slug && artist.status === "active");
 
   return fallback ? normalizeArtist(fallback) : null;
+}
+
+export async function getWorkshops(limit = 12): Promise<Workshop[]> {
+  try {
+    const { data, error } = await supabase
+      .from("workshops")
+      .select("*")
+      .eq("published", true)
+      .order("start_date", { ascending: true })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase workshops error:", error.message);
+      return fallbackWorkshops.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeWorkshop), fallbackWorkshops, limit, (workshop) => workshop.slug)
+      : fallbackWorkshops.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase workshops request failed:", error);
+    return fallbackWorkshops.slice(0, limit);
+  }
+}
+
+export async function getWorkshopBySlug(slug: string): Promise<Workshop | null> {
+  try {
+    const { data, error } = await supabase
+      .from("workshops")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Supabase workshop detail error:", error.message);
+    }
+
+    if (data) {
+      return normalizeWorkshop(data);
+    }
+  } catch (error) {
+    console.error("Supabase workshop detail request failed:", error);
+  }
+
+  const fallback = fallbackWorkshops.find((workshop) => workshop.slug === slug);
+
+  return fallback ? normalizeWorkshop(fallback) : null;
+}
+
+export async function getArticles(limit = 12): Promise<Article[]> {
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("status", "published")
+      .order("published_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase articles error:", error.message);
+      return fallbackArticles.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeArticle), fallbackArticles, limit, (article) => article.slug)
+      : fallbackArticles.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase articles request failed:", error);
+    return fallbackArticles.slice(0, limit);
+  }
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("slug", slug)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (error) {
+      console.error("Supabase article detail error:", error.message);
+    }
+
+    if (data) {
+      return normalizeArticle(data);
+    }
+  } catch (error) {
+    console.error("Supabase article detail request failed:", error);
+  }
+
+  const fallback = fallbackArticles.find((article) => article.slug === slug && article.status === "published");
+
+  return fallback ? normalizeArticle(fallback) : null;
+}
+
+export async function getSubscriptions(limit = 3): Promise<Subscription[]> {
+  try {
+    const { data, error } = await supabase
+      .from("subscriptions")
+      .select("*")
+      .eq("active", true)
+      .order("featured", { ascending: false })
+      .order("created_at", { ascending: true })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase subscriptions error:", error.message);
+      return fallbackSubscriptions.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data, fallbackSubscriptions, limit, (subscription) => subscription.slug)
+      : fallbackSubscriptions.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase subscriptions request failed:", error);
+    return fallbackSubscriptions.slice(0, limit);
+  }
 }
 
 export async function getGalleryItems(limit = 12): Promise<GalleryItem[]> {

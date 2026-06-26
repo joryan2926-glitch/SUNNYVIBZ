@@ -1,17 +1,21 @@
 import Link from "next/link";
+import { ArticleCard } from "@/components/ArticleCard";
 import { ArtistCard } from "@/components/ArtistCard";
 import { EventCard } from "@/components/EventCard";
 import { GalleryCard } from "@/components/GalleryCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SunnyLogo } from "@/components/SunnyLogo";
-import { getArtists, getEvents, getGalleryItems } from "@/lib/supabase/queries";
+import { WorkshopCard } from "@/components/WorkshopCard";
+import { getArticles, getArtists, getEvents, getGalleryItems, getWorkshops } from "@/lib/supabase/queries";
 
 export const revalidate = 60;
 
 const stats = [
   ["Agenda", "Événements, ateliers, Sunny Friday"],
+  ["Ateliers", "Réserver, créer, apprendre"],
   ["Galerie", "Créations, expositions, ambiances"],
   ["Market", "Œuvres, services, stands"],
+  ["Articles", "Actualités & coulisses"],
   ["Talents", "Photos, vidéos, profils, collaborations"],
   ["Partenaires", "Structures, sponsors, associations"],
 ] as const;
@@ -24,10 +28,12 @@ const marketHighlights = [
 ] as const;
 
 export default async function Home() {
-  const [events, gallery, artists] = await Promise.all([
+  const [events, gallery, artists, workshops, articles] = await Promise.all([
     getEvents(3),
     getGalleryItems(4),
     getArtists(3),
+    getWorkshops(3),
+    getArticles(3),
   ]);
 
   return (
@@ -167,6 +173,24 @@ export default async function Home() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
+            eyebrow="Ateliers"
+            title="Réserver une expérience créative."
+            text="Les ateliers affichent les places restantes, le statut disponible ou complet, et une réservation connectée à Supabase."
+          />
+          <Link href="/ateliers" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+            Voir les ateliers →
+          </Link>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {workshops.map((workshop) => (
+            <WorkshopCard workshop={workshop} key={workshop.id} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading
             eyebrow="Galerie"
             title="Images, œuvres et moments SUNNYVIBZ."
             text="La galerie dynamique lit les éléments publiés dans la table Supabase gallery."
@@ -178,6 +202,24 @@ export default async function Home() {
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {gallery.map((item, index) => (
             <GalleryCard item={item} index={index} key={item.id} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading
+            eyebrow="Articles"
+            title="Actualités, coulisses et culture."
+            text="Une rubrique éditoriale pour publier uniquement les articles validés depuis Supabase."
+          />
+          <Link href="/articles" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+            Lire les articles →
+          </Link>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {articles.map((article) => (
+            <ArticleCard article={article} key={article.id} />
           ))}
         </div>
       </section>

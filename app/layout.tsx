@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   description:
-    "SUNNYVIBZ est une association Art & Culture dédiée à la création, aux talents, au market créatif, aux partenaires, aux événements, aux ateliers et à la communauté.",
+    "SUNNYVIBZ est une association Art & Culture dédiée à la création, aux talents, au market créatif, aux réservations d’ateliers, aux abonnements, aux partenaires, aux événements et à la communauté.",
   keywords: [
     "SUNNYVIBZ",
     "art",
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     "partenaires",
     "galerie",
     "ateliers",
+    "réservations",
+    "abonnements",
+    "articles",
   ],
   openGraph: {
     title: "SUNNYVIBZ | Pôle Art & Culture",

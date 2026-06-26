@@ -1,4 +1,4 @@
-import type { Artist, Event, GalleryItem } from "@/lib/supabase/types";
+import type { Article, Artist, Event, GalleryItem, Subscription, Workshop } from "@/lib/supabase/types";
 
 export const fallbackEvents: Event[] = [
   {
@@ -61,6 +61,7 @@ export const fallbackArtists: Artist[] = [
     image_url: "/artists/maya-sol.svg",
     instagram_url: "https://instagram.com/",
     website_url: null,
+    status: "active",
     featured: true,
     published: true,
     created_at: "2026-01-01T00:00:00+00:00",
@@ -74,6 +75,7 @@ export const fallbackArtists: Artist[] = [
     image_url: "/artists/noam-vibes.svg",
     instagram_url: "https://instagram.com/",
     website_url: null,
+    status: "active",
     featured: true,
     published: true,
     created_at: "2026-01-01T00:00:00+00:00",
@@ -87,8 +89,144 @@ export const fallbackArtists: Artist[] = [
     image_url: "/artists/lina-wave.svg",
     instagram_url: null,
     website_url: "https://sunnyvibz.fr",
+    status: "active",
     featured: true,
     published: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+];
+
+export const fallbackWorkshops: Workshop[] = [
+  {
+    id: "fallback-workshop-peinture",
+    title: "Atelier peinture & techniques mixtes",
+    slug: "atelier-peinture-techniques-mixtes",
+    description:
+      "Un atelier guidé pour explorer la couleur, la matière, le geste et créer une œuvre personnelle dans l’ambiance premium SUNNYVIBZ.",
+    image_url: "/gallery/atelier-couleurs.svg",
+    start_date: "2026-07-10T15:00:00+02:00",
+    location: "Creative Lab",
+    price_label: "25 €",
+    capacity: 18,
+    seats_remaining: 7,
+    status: "available",
+    published: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-workshop-photo",
+    title: "Photo urbaine & storytelling",
+    slug: "photo-urbaine-storytelling",
+    description:
+      "Apprendre à raconter une histoire visuelle avec son téléphone ou son appareil photo : lumière, cadrage, portraits, ambiance.",
+    image_url: "/artists/noam-vibes.svg",
+    start_date: "2026-07-17T18:00:00+02:00",
+    location: "Maison Créative",
+    price_label: "35 €",
+    capacity: 12,
+    seats_remaining: 0,
+    status: "full",
+    published: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-workshop-scene",
+    title: "Scène ouverte & expression",
+    slug: "scene-ouverte-expression",
+    description:
+      "Un format vivant pour tester un texte, une performance, une musique ou une prise de parole dans un cadre bienveillant.",
+    image_url: "/gallery/scene-ouverte.svg",
+    start_date: "2026-07-24T19:30:00+02:00",
+    location: "Sunilounge",
+    price_label: "Entrée libre sur réservation",
+    capacity: 30,
+    seats_remaining: 14,
+    status: "available",
+    published: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+];
+
+export const fallbackArticles: Article[] = [
+  {
+    id: "fallback-article-market",
+    title: "Pourquoi SUNNYVIBZ prépare un Market créatif",
+    slug: "pourquoi-sunnyvibz-prepare-un-market-creatif",
+    excerpt:
+      "Le Market doit devenir une passerelle entre talents, publics, partenaires et projets culturels.",
+    image_url: "/gallery/marche-createurs.svg",
+    category: "Market",
+    author: "Équipe SUNNYVIBZ",
+    published_at: "2026-06-26T10:00:00+02:00",
+    content:
+      "SUNNYVIBZ veut valoriser les créations, les prestations, les ateliers et les stands exposants. Le Market est pensé comme une vitrine simple au départ, puis comme un futur moteur économique connecté aux profils talents, aux réservations et aux événements.",
+    status: "published",
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-article-talents",
+    title: "Mettre les talents au centre de l’écosystème",
+    slug: "mettre-les-talents-au-centre",
+    excerpt:
+      "Photos, vidéos, événements, services : les profils talents deviennent le cœur vivant de la plateforme.",
+    image_url: "/gallery/sunny-community.svg",
+    category: "Talents",
+    author: "SUNNYVIBZ",
+    published_at: "2026-06-26T11:00:00+02:00",
+    content:
+      "Les profils talents sont pensés comme des mini espaces média. Chaque créateur pourra présenter son univers, ses contenus, ses événements, ses prestations et ses collaborations.",
+    status: "published",
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-article-ateliers",
+    title: "Des ateliers pour créer, transmettre et rencontrer",
+    slug: "des-ateliers-pour-creer-transmettre-rencontrer",
+    excerpt:
+      "Les ateliers SUNNYVIBZ connectent pratique artistique, transmission et communauté.",
+    image_url: "/gallery/creative-lab.svg",
+    category: "Ateliers",
+    author: "Creative Lab",
+    published_at: "2026-06-26T12:00:00+02:00",
+    content:
+      "Les ateliers sont l’un des piliers de SUNNYVIBZ : apprendre, expérimenter, se rencontrer et créer des ponts entre disciplines. La réservation en ligne prépare une expérience simple et professionnelle.",
+    status: "published",
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+];
+
+export const fallbackSubscriptions: Subscription[] = [
+  {
+    id: "fallback-subscription-decouverte",
+    slug: "decouverte",
+    name: "Découverte",
+    description: "Pour rejoindre la communauté, suivre l’agenda et tester les premiers formats.",
+    price_label: "Gratuit / lancement",
+    benefits: ["Agenda prioritaire", "Newsletter", "Accès communauté", "Invitations découverte"],
+    featured: false,
+    active: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-subscription-artiste",
+    slug: "artiste",
+    name: "Artiste",
+    description: "Pour disposer d’un profil média et mettre en avant ses créations et prestations.",
+    price_label: "À partir de 9 €/mois",
+    benefits: ["Profil talent", "Galerie média", "Mise en avant Market", "Candidature Sunny Friday"],
+    featured: true,
+    active: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-subscription-premium",
+    slug: "premium",
+    name: "Premium",
+    description: "Pour bénéficier d’une visibilité renforcée, d’avantages événementiels et d’un accompagnement.",
+    price_label: "À partir de 19 €/mois",
+    benefits: ["Boost visibilité", "Accès ateliers premium", "Réductions stands", "Accompagnement projet"],
+    featured: false,
+    active: true,
     created_at: "2026-01-01T00:00:00+00:00",
   },
 ];

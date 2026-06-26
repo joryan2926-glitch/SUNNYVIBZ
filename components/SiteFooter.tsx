@@ -32,10 +32,14 @@ export function SiteFooter() {
           <div className="grid gap-2 text-sm text-[#fbf3df]/70">
             <Link href="/a-propos">À propos</Link>
             <Link href="/agenda">Agenda</Link>
+            <Link href="/ateliers">Ateliers</Link>
+            <Link href="/articles">Articles</Link>
             <Link href="/galerie">Galerie</Link>
             <Link href="/marketplace">Market</Link>
             <Link href="/talents">Talents</Link>
+            <Link href="/abonnements">Abonnements</Link>
             <Link href="/partenaires">Partenaires</Link>
+            <Link href="/connexion">Connexion</Link>
             <Link href="/contact">Contact</Link>
           </div>
         </div>

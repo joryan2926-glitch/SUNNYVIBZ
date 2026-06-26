@@ -23,8 +23,83 @@ export type Artist = {
   image_url: string | null;
   instagram_url: string | null;
   website_url: string | null;
+  status: "active" | "inactive";
   featured: boolean;
   published: boolean;
+  created_at: string;
+};
+
+export type Workshop = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image_url: string | null;
+  start_date: string;
+  location: string;
+  price_label: string;
+  capacity: number;
+  seats_remaining: number;
+  status: "available" | "full" | "cancelled";
+  published: boolean;
+  created_at: string;
+};
+
+export type WorkshopBooking = {
+  id: string;
+  workshop_id: string;
+  workshop_title: string;
+  workshop_date: string;
+  user_id: string | null;
+  name: string;
+  email: string;
+  phone: string | null;
+  status: "pending" | "confirmed" | "cancelled";
+  created_at: string;
+};
+
+export type Article = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  image_url: string | null;
+  category: string | null;
+  author: string;
+  published_at: string | null;
+  content: string;
+  status: "published" | "draft";
+  created_at: string;
+};
+
+export type Profile = {
+  id: string;
+  full_name: string | null;
+  phone: string | null;
+  roles: string[];
+  is_admin: boolean;
+  created_at: string;
+};
+
+export type Subscription = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  price_label: string;
+  benefits: string[];
+  featured: boolean;
+  active: boolean;
+  created_at: string;
+};
+
+export type UserSubscription = {
+  id: string;
+  user_id: string;
+  subscription_id: string;
+  status: "active" | "past_due" | "cancelled" | "expired";
+  started_at: string;
+  ends_at: string | null;
   created_at: string;
 };
 
@@ -69,6 +144,59 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<Artist, "id" | "created_at">>;
+        Relationships: [];
+      };
+      workshops: {
+        Row: Workshop;
+        Insert: Omit<Workshop, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<Workshop, "id" | "created_at">>;
+        Relationships: [];
+      };
+      workshop_bookings: {
+        Row: WorkshopBooking;
+        Insert: Omit<WorkshopBooking, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<WorkshopBooking, "id" | "created_at">>;
+        Relationships: [];
+      };
+      articles: {
+        Row: Article;
+        Insert: Omit<Article, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<Article, "id" | "created_at">>;
+        Relationships: [];
+      };
+      profiles: {
+        Row: Profile;
+        Insert: Omit<Profile, "created_at"> & {
+          created_at?: string;
+        };
+        Update: Partial<Omit<Profile, "id" | "created_at">>;
+        Relationships: [];
+      };
+      subscriptions: {
+        Row: Subscription;
+        Insert: Omit<Subscription, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<Subscription, "id" | "created_at">>;
+        Relationships: [];
+      };
+      user_subscriptions: {
+        Row: UserSubscription;
+        Insert: Omit<UserSubscription, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<UserSubscription, "id" | "created_at">>;
         Relationships: [];
       };
       gallery: {

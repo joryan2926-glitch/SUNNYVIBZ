@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Event } from "@/lib/supabase/types";
 
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
@@ -10,7 +11,20 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
 
 export function EventCard({ event }: { event: Event }) {
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/45 hover:shadow-[#18f2a6]/10">
+    <article className="premium-card group relative overflow-hidden rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/45 hover:shadow-[#18f2a6]/10">
+      <div className="absolute -right-14 -top-14 size-32 rounded-full bg-[#18f2a6]/12 blur-2xl transition duration-500 group-hover:bg-[#18f2a6]/24" />
+      {event.image_url ? (
+        <div className="-mx-6 -mt-6 mb-6 h-48 overflow-hidden">
+          <Image
+            src={event.image_url}
+            alt={event.title}
+            width={900}
+            height={520}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="size-full object-cover transition duration-700 group-hover:scale-105"
+          />
+        </div>
+      ) : null}
       <div className="mb-8 flex items-start justify-between gap-5">
         <span className="rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#18f2a6]">
           {event.category ?? "Événement"}

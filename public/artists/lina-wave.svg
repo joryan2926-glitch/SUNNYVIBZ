@@ -1,0 +1,7 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="900" fill="#03100B"/>
+  <circle cx="450" cy="330" r="180" fill="#18F2A6" opacity=".28"/>
+  <path d="M180 520C300 380 420 660 540 520C640 405 710 430 780 360" stroke="#FFD978" stroke-width="26" stroke-linecap="round"/>
+  <path d="M230 640C350 520 500 690 670 560" stroke="#18F2A6" stroke-width="20" stroke-linecap="round"/>
+  <text x="150" y="810" fill="#FBF3DF" font-family="Arial" font-size="76" letter-spacing="14">LINA WAVE</text>
+</svg>

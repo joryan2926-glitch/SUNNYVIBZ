@@ -96,7 +96,7 @@ grant select on public.gallery to anon, authenticated;
 grant insert on public.contact_messages to anon, authenticated;
 
 insert into public.events
-  (title, slug, excerpt, description, start_date, location, category, price_label, published)
+  (title, slug, excerpt, description, start_date, location, image_url, category, price_label, published)
 values
   (
     'Sunny Friday',
@@ -105,6 +105,7 @@ values
     'Un rendez-vous chaleureux pour découvrir des créateurs et vivre l’énergie SUNNYVIBZ.',
     '2026-07-03 18:30:00+02',
     'SUNNYVIBZ Art & Culture',
+    '/gallery/marche-createurs.svg',
     'Marché créateurs',
     'Entrée libre',
     true
@@ -116,6 +117,7 @@ values
     'Guidé par un artiste invité, cet atelier initie les participants à une pratique créative libre.',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
+    '/gallery/atelier-couleurs.svg',
     'Atelier',
     'Sur inscription',
     true
@@ -127,20 +129,30 @@ values
     'Peinture, photographie, illustration et performance réunies pour célébrer la scène artistique locale.',
     '2026-07-18 19:00:00+02',
     'Maison Créative',
+    '/gallery/galerie-nocturne.svg',
     'Exposition',
     'Billetterie bientôt',
     true
   )
-on conflict (slug) do nothing;
+on conflict (slug) do update set
+  excerpt = excluded.excerpt,
+  description = excluded.description,
+  start_date = excluded.start_date,
+  location = excluded.location,
+  image_url = excluded.image_url,
+  category = excluded.category,
+  price_label = excluded.price_label,
+  published = excluded.published;
 
 insert into public.artists
-  (name, slug, bio, specialty, instagram_url, website_url, featured, published)
+  (name, slug, bio, specialty, image_url, instagram_url, website_url, featured, published)
 values
   (
     'Maya Sol',
     'maya-sol',
     'Plasticienne solaire, entre abstraction organique, couleurs chaudes et énergie collective.',
     'Peinture & installation',
+    '/artists/maya-sol.svg',
     'https://instagram.com/',
     null,
     true,
@@ -151,6 +163,7 @@ values
     'noam-vibes',
     'Photographe documentaire des scènes locales, des coulisses et des visages créatifs.',
     'Photo & culture urbaine',
+    '/artists/noam-vibes.svg',
     'https://instagram.com/',
     null,
     true,
@@ -161,19 +174,37 @@ values
     'lina-wave',
     'Artiste visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs.',
     'Ateliers & médiation',
+    '/artists/lina-wave.svg',
     null,
     'https://sunnyvibz.fr',
     true,
     true
   )
-on conflict (slug) do nothing;
+on conflict (slug) do update set
+  bio = excluded.bio,
+  specialty = excluded.specialty,
+  image_url = excluded.image_url,
+  instagram_url = excluded.instagram_url,
+  website_url = excluded.website_url,
+  featured = excluded.featured,
+  published = excluded.published;
+
+delete from public.gallery
+where title in (
+  'Atelier couleurs',
+  'Marché créateurs',
+  'Galerie nocturne',
+  'Scène ouverte',
+  'Creative Lab',
+  'Communauté Sunny'
+);
 
 insert into public.gallery
   (title, image_url, alt, category, artist_name, sort_order, published)
 values
   (
     'Atelier couleurs',
-    '/sunnyvibz-hero.svg',
+    '/gallery/atelier-couleurs.svg',
     'Ambiance artistique SUNNYVIBZ avec lumière émeraude et dorée',
     'Ateliers',
     'SUNNYVIBZ',
@@ -182,7 +213,7 @@ values
   ),
   (
     'Marché créateurs',
-    '/sunnyvibz-hero.svg',
+    '/gallery/marche-createurs.svg',
     'Marché créatif SUNNYVIBZ',
     'Sunny Friday',
     'Créateurs locaux',
@@ -191,7 +222,7 @@ values
   ),
   (
     'Galerie nocturne',
-    '/sunnyvibz-hero.svg',
+    '/gallery/galerie-nocturne.svg',
     'Galerie nocturne avec lumière néon',
     'Galerie',
     'SUNNYVIBZ',
@@ -200,11 +231,29 @@ values
   ),
   (
     'Scène ouverte',
-    '/sunnyvibz-hero.svg',
+    '/gallery/scene-ouverte.svg',
     'Scène ouverte artistique SUNNYVIBZ',
     'Événements',
     'Collectif',
     4,
+    true
+  ),
+  (
+    'Creative Lab',
+    '/gallery/creative-lab.svg',
+    'Creative Lab SUNNYVIBZ pour ateliers et formations',
+    'Ateliers',
+    'SUNNYVIBZ',
+    5,
+    true
+  ),
+  (
+    'Communauté Sunny',
+    '/gallery/sunny-community.svg',
+    'Communauté artistique et culturelle SUNNYVIBZ',
+    'Communauté',
+    'SUNNYVIBZ',
+    6,
     true
   );
 

@@ -12,7 +12,7 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#ffd978]/15 bg-[#030403]/82 backdrop-blur-2xl">
+    <header className="sticky top-0 z-50 border-b border-[#ffd978]/15 bg-[#030403]/82 shadow-[0_18px_70px_rgba(0,0,0,0.35)] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-4 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
         <Link href="/" className="flex items-center gap-3" aria-label="Accueil SUNNYVIBZ">
           <SunnyLogo />
@@ -34,7 +34,7 @@ export function SiteHeader() {
             <Link
               key={href}
               href={href}
-              className="rounded-full border border-transparent px-3 py-2 transition hover:border-[#18f2a6]/30 hover:bg-[#18f2a6]/10 hover:text-[#18f2a6]"
+              className="rounded-full border border-transparent px-3 py-2 transition duration-300 hover:-translate-y-0.5 hover:border-[#18f2a6]/30 hover:bg-[#18f2a6]/10 hover:text-[#18f2a6]"
             >
               {label}
             </Link>

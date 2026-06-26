@@ -27,7 +27,7 @@ export default async function Home() {
         <div className="absolute inset-0 -z-10 bg-[url('/sunnyvibz-hero.svg')] bg-cover bg-center opacity-[0.42]" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/35" />
         <div className="mx-auto grid min-h-[calc(100vh-88px)] max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
-          <div>
+          <div className="hero-rise">
             <p className="mb-5 text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">
               Association culturelle • Création • Partage
             </p>
@@ -57,15 +57,15 @@ export default async function Home() {
             </div>
           </div>
 
-          <aside className="rounded-[2.4rem] border border-[#ffd978]/18 bg-white/[0.055] p-8 shadow-2xl shadow-black/40 backdrop-blur-2xl">
-            <div className="mx-auto grid size-52 place-items-center rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 shadow-[0_0_46px_rgba(24,242,166,0.28)]">
+          <aside className="premium-card float-panel rounded-[2.4rem] border border-[#ffd978]/18 bg-white/[0.055] p-8 shadow-2xl shadow-black/40 backdrop-blur-2xl">
+            <div className="soft-pulse mx-auto grid size-52 place-items-center rounded-full border border-[#18f2a6]/30 bg-[#18f2a6]/10 shadow-[0_0_46px_rgba(24,242,166,0.28)]">
               <SunnyLogo className="size-36" />
             </div>
             <div className="mt-8 grid gap-4">
               {stats.map(([title, text]) => (
                 <div
                   key={title}
-                  className="rounded-3xl border border-white/10 bg-black/24 p-5"
+                  className="rounded-3xl border border-white/10 bg-black/24 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#18f2a6]/25"
                 >
                   <strong className="text-[#ffd978]">{title}</strong>
                   <p className="mt-1 text-sm text-[#fbf3df]/64">{text}</p>
@@ -83,7 +83,7 @@ export default async function Home() {
             title="Une association artistique chaleureuse, moderne et ouverte."
             text="SUNNYVIBZ connecte artistes, adhérents, bénévoles et partenaires autour de projets créatifs, d’événements, d’ateliers et de rencontres culturelles."
           />
-          <div className="rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
+          <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
             <p>
               Le site est pensé comme une vitrine claire aujourd’hui et comme la base d’un futur
               écosystème : inscriptions, réservations, galerie, marketplace, artistes, agenda et
@@ -152,7 +152,7 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-        <div className="rounded-[2.5rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-8 text-center shadow-[0_0_50px_rgba(24,242,166,0.16)] sm:p-12">
+        <div className="premium-card rounded-[2.5rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-8 text-center shadow-[0_0_50px_rgba(24,242,166,0.16)] sm:p-12">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">Contact</p>
           <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-medium tracking-[-0.055em] text-[#fbf3df] sm:text-6xl">
             Rejoindre, exposer, soutenir ou organiser un projet ?

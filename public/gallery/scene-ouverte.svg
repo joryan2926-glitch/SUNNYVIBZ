@@ -1,0 +1,9 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#030403"/>
+  <ellipse cx="600" cy="640" rx="410" ry="110" fill="#18F2A6" opacity=".2"/>
+  <circle cx="600" cy="330" r="190" fill="#FFD978" opacity=".22"/>
+  <path d="M370 600L510 250H690L830 600H370Z" fill="#07110D" stroke="#FFD978" stroke-width="5"/>
+  <circle cx="600" cy="385" r="68" stroke="#18F2A6" stroke-width="10"/>
+  <path d="M210 180C410 120 790 120 990 180" stroke="#18F2A6" stroke-width="10" stroke-linecap="round" opacity=".65"/>
+  <text x="205" y="800" fill="#FBF3DF" font-family="Arial" font-size="62" letter-spacing="12">SCÈNE OUVERTE</text>
+</svg>

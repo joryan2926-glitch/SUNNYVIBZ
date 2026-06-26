@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     default: "SUNNYVIBZ | Pôle Art & Culture",
     template: "%s | SUNNYVIBZ",
   },
+  alternates: {
+    canonical: "/",
+  },
   description:
     "SUNNYVIBZ est une association Art & Culture dédiée à la création, aux artistes, aux événements, aux ateliers et à la communauté.",
   keywords: [
@@ -29,6 +32,21 @@ export const metadata: Metadata = {
     siteName: "SUNNYVIBZ",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/sunnyvibz-hero.svg",
+        width: 1600,
+        height: 1000,
+        alt: "SUNNYVIBZ Pôle Art & Culture",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SUNNYVIBZ | Pôle Art & Culture",
+    description:
+      "Un écosystème culturel moderne pour créer, exposer, apprendre, rencontrer et soutenir les artistes.",
+    images: ["/sunnyvibz-hero.svg"],
   },
 };
 

@@ -18,6 +18,7 @@ export function ContactForm() {
           Nom
           <input
             name="name"
+            autoComplete="name"
             required
             className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
             placeholder="Votre nom"
@@ -29,6 +30,7 @@ export function ContactForm() {
           <input
             name="email"
             type="email"
+            autoComplete="email"
             required
             className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
             placeholder="vous@email.fr"
@@ -49,6 +51,7 @@ export function ContactForm() {
           <textarea
             name="message"
             required
+            minLength={10}
             rows={6}
             className="resize-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[#fbf3df] outline-none transition focus:border-[#18f2a6]/60"
             placeholder="Écrivez votre message..."
@@ -66,6 +69,8 @@ export function ContactForm() {
 
       {state.message ? (
         <p
+          role="status"
+          aria-live="polite"
           className={`mt-5 rounded-2xl border px-4 py-3 text-sm ${
             state.ok
               ? "border-[#18f2a6]/30 bg-[#18f2a6]/10 text-[#18f2a6]"

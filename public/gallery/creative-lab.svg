@@ -1,0 +1,9 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#03100B"/>
+  <rect x="130" y="120" width="940" height="570" rx="44" fill="#06150F" stroke="#18F2A6" stroke-width="4"/>
+  <path d="M250 540H950M250 420H950M250 300H950" stroke="#FFD978" stroke-width="4" opacity=".4"/>
+  <circle cx="360" cy="300" r="56" fill="#18F2A6" opacity=".5"/>
+  <circle cx="590" cy="420" r="72" fill="#FFD978" opacity=".48"/>
+  <circle cx="810" cy="540" r="62" fill="#18F2A6" opacity=".42"/>
+  <text x="260" y="800" fill="#FBF3DF" font-family="Arial" font-size="64" letter-spacing="12">CREATIVE LAB</text>
+</svg>

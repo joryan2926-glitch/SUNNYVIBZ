@@ -1,17 +1,24 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import type { Artist } from "@/lib/supabase/types";
 
 export function ArtistCard({ artist }: { artist: Artist }) {
   return (
-    <article className="overflow-hidden rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/45">
-      <div className="grid h-72 place-items-center bg-[radial-gradient(circle_at_40%_20%,rgba(255,217,120,0.24),transparent_34%),linear-gradient(135deg,rgba(24,242,166,0.16),rgba(3,4,3,0.92))]">
+    <article className="premium-card overflow-hidden rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/45">
+      <div className="relative grid h-72 place-items-center overflow-hidden bg-[radial-gradient(circle_at_40%_20%,rgba(255,217,120,0.24),transparent_34%),linear-gradient(135deg,rgba(24,242,166,0.16),rgba(3,4,3,0.92))]">
         {artist.image_url ? (
-          <img src={artist.image_url} alt={artist.name} className="size-full object-cover" />
+          <Image
+            src={artist.image_url}
+            alt={artist.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition duration-700 hover:scale-105"
+          />
         ) : (
           <span className="text-7xl font-light text-[#ffd978] drop-shadow-[0_0_24px_rgba(255,217,120,0.42)]">
             {artist.name.slice(0, 1)}
           </span>
         )}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
       <div className="p-6">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-[#18f2a6]">

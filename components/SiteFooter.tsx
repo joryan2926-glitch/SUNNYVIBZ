@@ -9,7 +9,7 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#ffd978]/15 bg-black/35">
+    <footer className="border-t border-[#ffd978]/15 bg-black/35 backdrop-blur">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-3">

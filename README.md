@@ -30,6 +30,7 @@ Puis ouvrir [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run lint
 npm run build
+npm run readiness:check
 ```
 
 ## Variables Vercel / Supabase
@@ -46,6 +47,7 @@ Le site fonctionne uniquement avec ces deux variables publiques côté front. Le
 ## Pages du site
 
 - Accueil : promesse claire, hero premium, parcours, market, agenda, galerie, talents, preuve sociale et contact
+- Comment ça marche : logique du parcours visiteur → membre → talent → market
 - À propos : mission, positionnement, valeurs et ton de marque SunnyVibz
 - Agenda : événements publiés depuis Supabase
 - Ateliers : ateliers disponibles, places restantes, détail atelier et réservation
@@ -59,6 +61,7 @@ Le site fonctionne uniquement avec ces deux variables publiques côté front. Le
 - Connexion : Supabase Auth
 - Mon compte : abonnement actuel, réservations, statut utilisateur, profil artiste actif/inactif et upload média talent
 - FAQ : réponses simples sur SunnyVibz, ateliers, Sunny Friday, market et abonnements
+- Mentions légales / confidentialité / conditions : cadre de confiance à compléter avec les informations officielles
 - Admin : création rapide ateliers, articles, talents et abonnements
 - Contact : formulaire connecté à `contact_messages`
 
@@ -121,6 +124,20 @@ Pour tester aussi l’insertion du formulaire de contact :
 ```bash
 npm run supabase:check -- --write-contact
 ```
+
+### Vérifier la préparation production
+
+```bash
+npm run readiness:check
+```
+
+Cette commande vérifie :
+
+- les variables Supabase ;
+- la présence du schéma SQL ;
+- les tables attendues dans `supabase/schema.sql` ;
+- les tables réellement lisibles dans Supabase ;
+- les variables externes à connecter plus tard : Stripe, email, notification admin.
 
 ## À connecter avec des clés externes
 

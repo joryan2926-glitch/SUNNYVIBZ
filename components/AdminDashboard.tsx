@@ -13,6 +13,15 @@ const modules = [
   ["Abonnements", "Gérer les formules et les abonnements utilisateurs."],
 ] as const;
 
+const readinessItems = [
+  ["Supabase avancé", "Exécuter supabase/schema.sql puis valider avec npm run platform:check."],
+  ["Compte admin", "Créer un compte, récupérer son id Supabase Auth, puis passer is_admin à true."],
+  ["Cadre légal", "Compléter mentions légales, confidentialité et conditions avec les informations officielles."],
+  ["Paiements", "Connecter Stripe avant tout paiement réel d’abonnement, atelier, stand ou Market."],
+  ["Emails", "Connecter Resend, Brevo, SendGrid ou SMTP pour confirmations et notifications."],
+  ["Contenus réels", "Remplacer les images, événements, talents et textes d’exemple par les contenus définitifs."],
+] as const;
+
 const adminCreateForms = [
   {
     table: "workshops",
@@ -263,6 +272,25 @@ export function AdminDashboard() {
             {actionMessage}
           </p>
         ) : null}
+      </section>
+
+      <section className="rounded-[2.2rem] border border-[#ffd978]/18 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 sm:p-8">
+        <p className="text-[0.72rem] font-black uppercase tracking-[0.2em] text-[#ffd978]">
+          Prêt à lancer
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#fbf3df]">
+          Les points à verrouiller avant production.
+        </h2>
+        <div className="mt-6 grid gap-3 md:grid-cols-2">
+          {readinessItems.map(([title, text]) => (
+            <article key={title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <h3 className="text-sm font-black uppercase tracking-[0.14em] text-[#18f2a6]">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-[#fbf3df]/66">{text}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <div className="grid gap-5 lg:grid-cols-2">

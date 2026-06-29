@@ -3,6 +3,7 @@ import { SunnyLogo } from "./SunnyLogo";
 
 const navItems = [
   ["Accueil", "/"],
+  ["Fonctionnement", "/comment-ca-marche"],
   ["Ateliers", "/ateliers"],
   ["Agenda", "/agenda"],
   ["Sunny Friday", "/sunny-friday"],

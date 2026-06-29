@@ -4,6 +4,7 @@ const baseUrl = "https://sunnyvibz.fr";
 
 const routes = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },
+  { path: "/comment-ca-marche", priority: 0.88, changeFrequency: "monthly" as const },
   { path: "/a-propos", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/agenda", priority: 0.85, changeFrequency: "weekly" as const },
   { path: "/ateliers", priority: 0.9, changeFrequency: "weekly" as const },
@@ -17,6 +18,9 @@ const routes = [
   { path: "/partenaires", priority: 0.78, changeFrequency: "monthly" as const },
   { path: "/connexion", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/mentions-legales", priority: 0.35, changeFrequency: "yearly" as const },
+  { path: "/confidentialite", priority: 0.35, changeFrequency: "yearly" as const },
+  { path: "/conditions", priority: 0.35, changeFrequency: "yearly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

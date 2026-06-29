@@ -30,6 +30,11 @@ const marketHighlights = [
 
 const primaryPathways = [
   {
+    title: "Comprendre le parcours",
+    text: "Voir comment SunnyVibz accompagne une personne : découvrir, réserver, adhérer, participer, être visible et soutenir.",
+    href: "/comment-ca-marche",
+  },
+  {
     title: "Réserver un atelier",
     text: "Voir les créneaux disponibles, les places restantes et réserver une expérience créative.",
     href: "/ateliers",
@@ -114,6 +119,12 @@ export default async function Home() {
               >
                 Rejoindre
               </Link>
+              <Link
+                href="/comment-ca-marche"
+                className="rounded-full border border-white/15 bg-black/20 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#fbf3df]/82 transition hover:-translate-y-1 hover:border-[#ffd978]/35 hover:text-[#ffd978]"
+              >
+                Comment ça marche
+              </Link>
             </div>
           </div>
 
@@ -137,7 +148,7 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {primaryPathways.map((pathway) => (
             <Link
               key={pathway.href}

@@ -6,14 +6,14 @@ import { getSubscriptions } from "@/lib/supabase/queries";
 export const metadata: Metadata = {
   title: "Abonnements",
   description:
-    "Abonnements SUNNYVIBZ : Essentielle, Créative, Premium et Annuelle pour accéder aux espaces créatifs, ateliers et avantages abonnés.",
+    "Abonnements SUNNYVIBZ : Essentielle, Créative, Premium et Annuelle pour accéder au lieu, réserver, pratiquer et profiter d’avantages culturels.",
 };
 
 const subscriptionRules = [
-  "Réservation obligatoire pour réguler les créneaux et préserver la qualité d’expérience.",
+  "Réservation obligatoire pour réguler les créneaux et préserver la qualité de chaque expérience.",
   "Contrôle des capacités en temps réel : ateliers disponibles, complets et places restantes visibles.",
   "Tarifs préférentiels sur les ateliers selon la formule.",
-  "Accès prioritaire pour Créative et Premium.",
+  "Accès prioritaire pour Créative et Premium quand la demande est forte.",
 ] as const;
 
 const comparisonRows = [
@@ -32,8 +32,8 @@ export default async function SubscriptionsPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Pass SunnyVibz"
-        title="Un abonnement pour transformer la création en habitude culturelle."
-        text="Le modèle SunnyVibz donne accès à un réseau d’espaces créatifs : Creative Lab, Sunilounge, Maison Créative, ateliers et événements. Il stabilise la fréquentation, favorise la fidélisation et rend la pratique plus régulière."
+        title="Des formules pour passer de la curiosité à une vraie pratique culturelle."
+        text="L’abonnement n’est pas seulement un accès. C’est une manière d’installer une présence régulière : venir créer, profiter du Sunilounge, réserver plus facilement, participer aux ateliers et rester connecté à la communauté."
       />
 
       <div className="grid gap-5 lg:grid-cols-4">
@@ -48,12 +48,12 @@ export default async function SubscriptionsPage() {
             Fonctionnement
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#fbf3df]">
-            Un pass créatif global, mais toujours régulé.
+            Un pass créatif global, mais toujours maîtrisé.
           </h2>
           <p className="mt-4 text-sm leading-7 text-[#fbf3df]/68">
-            L’abonnement devient rentable dès 2 à 3 participations mensuelles. Pour éviter la
-            saturation, chaque atelier reste soumis à réservation, capacité maximum et priorité selon
-            la formule choisie.
+            L’abonnement doit rester simple à comprendre : plus on s’implique, plus on gagne en
+            accès, en priorité et en avantages. Pour garder une expérience confortable, chaque
+            atelier reste soumis à réservation, capacité maximum et priorité selon la formule choisie.
           </p>
           <ul className="mt-6 grid gap-3">
             {subscriptionRules.map((rule) => (

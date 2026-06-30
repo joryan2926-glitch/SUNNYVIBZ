@@ -5,33 +5,33 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "Découvrez la mission SUNNYVIBZ : révéler les talents, créer des rencontres culturelles et transformer l’énergie locale en expériences.",
+    "Découvrez SUNNYVIBZ : un lieu, une communauté et une plateforme pour créer, exposer, apprendre, vendre et connecter les talents culturels.",
 };
 
 const missionPillars = [
   {
     title: "Révéler",
-    text: "Donner une vraie visibilité aux talents : portfolio, événements, market, contenus et rencontres.",
+    text: "Donner aux talents une présence claire : profil, médias, événements, prestations, market et rencontres.",
   },
   {
     title: "Transmettre",
-    text: "Créer des ateliers accessibles où l’on apprend, expérimente et repart avec une expérience concrète.",
+    text: "Créer des ateliers accessibles où l’on apprend, expérimente, partage et repart avec quelque chose de concret.",
   },
   {
     title: "Connecter",
-    text: "Faire se rencontrer talents, publics, partenaires, associations, entreprises et lieux culturels.",
+    text: "Faire se rencontrer talents, publics, associations, entreprises, bénévoles, sponsors et lieux culturels.",
   },
   {
     title: "Faire vivre",
-    text: "Transformer la culture en moments : Sunny Friday, expositions, scènes ouvertes, marchés et projets.",
+    text: "Transformer la culture en moments réguliers : Sunny Friday, expositions, scènes ouvertes, ateliers et projets.",
   },
 ] as const;
 
 const toneRules = [
-  "Parler simplement, avec chaleur et précision.",
-  "Montrer les bénéfices avant les fonctionnalités.",
-  "Valoriser les personnes avant les modules.",
-  "Garder une esthétique premium, mais une énergie accessible.",
+  "Parler simplement, avec chaleur, précision et ambition.",
+  "Raconter les bénéfices avant de détailler les fonctionnalités.",
+  "Mettre les personnes, les disciplines et les parcours avant les modules.",
+  "Assumer une image premium sans perdre l’accessibilité du terrain.",
 ] as const;
 
 export default function AboutPage() {
@@ -39,21 +39,21 @@ export default function AboutPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="À propos"
-        title="SunnyVibz révèle les talents et crée des rencontres culturelles."
-        text="SunnyVibz est né d’une envie simple : offrir aux créateurs un lieu, une visibilité et une communauté pour créer, exposer, transmettre et vivre leur passion."
+        title="SunnyVibz est un écosystème Art & Culture pour faire émerger les talents."
+        text="Le projet réunit un lieu, une communauté et une plateforme : on y vient pour apprendre, montrer son travail, rencontrer un public, vendre une création ou construire un projet culturel."
       />
 
       <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <article className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-8 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl">
           <p>
-            SUNNYVIBZ, c’est l’art, la culture et la vibz réunis dans un même mouvement. Un espace
-            pour apprendre, vendre, exposer, rencontrer, réserver, collaborer et faire grandir des
-            projets artistiques avec une vraie énergie collective.
+            SUNNYVIBZ, c’est l’art, la culture et la vibz réunis dans un même mouvement. Le projet
+            veut créer un cadre où les créateurs ne restent pas invisibles : ils peuvent pratiquer,
+            exposer, documenter leur univers, proposer des services et rencontrer les bonnes personnes.
           </p>
           <p className="mt-5">
-            La plateforme numérique prolonge cette vision : ateliers, Sunny Friday, talents, market,
-            abonnements, partenaires et contenus. Chaque page doit aider quelqu’un à passer à
-            l’action : réserver, rejoindre, exposer, soutenir ou proposer un projet.
+            La plateforme numérique prolonge le lieu : ateliers, Sunny Friday, profils talents,
+            market, abonnements, partenaires et articles. Chaque page doit aider quelqu’un à passer
+            à l’action : réserver, rejoindre, exposer, acheter, soutenir ou proposer une idée.
           </p>
           <Link
             href="/abonnements"
@@ -84,8 +84,8 @@ export default function AboutPage() {
       <section className="mt-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <SectionHeading
           eyebrow="Voix de marque"
-          title="Premium dans l’image, humain dans le ton."
-          text="SunnyVibz doit donner envie sans perdre les gens. La promesse est claire : créer plus de visibilité, plus de rencontres et plus d’opportunités pour la culture locale."
+          title="Premium dans l’image, humain dans le ton, concret dans les actions."
+          text="La marque doit donner envie, mais surtout faire comprendre. La promesse est simple : créer plus de visibilité, plus de rencontres et plus d’opportunités pour la culture locale."
         />
         <div className="grid gap-3 sm:grid-cols-2">
           {toneRules.map((rule) => (

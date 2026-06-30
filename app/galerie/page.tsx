@@ -18,8 +18,8 @@ export default async function GalleryPage() {
     <main className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
       <SectionHeading
         eyebrow="Galerie"
-        title="Une vitrine visuelle pour les œuvres, les talents et les moments qui comptent."
-        text="La galerie met en avant ce que SunnyVibz sublime : photos, peintures, sculptures, scènes, ateliers, coulisses, événements et énergie collective."
+        title="Une vitrine visuelle pour ressentir le lieu avant d’y venir."
+        text="La galerie montre ce que SunnyVibz sublime : photos, peintures, sculptures, scènes, ateliers, coulisses, événements, portraits et énergie collective."
       />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

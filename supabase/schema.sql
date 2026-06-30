@@ -427,8 +427,8 @@ values
   (
     'Sunny Friday',
     'sunny-friday',
-    'Le rendez-vous créateurs : stands, musique, ventes, rencontres et vraie vibz culturelle.',
-    'Un moment vivant pour découvrir des talents, soutenir la création locale, tester des offres et créer des connexions autour d’une ambiance premium et accessible.',
+    'Le marché culturel où les créateurs testent, vendent et rencontrent leur public.',
+    'Un moment vivant pour découvrir des talents, soutenir la création locale, tester des offres, créer des contacts et connecter les exposants aux profils talents et au Market.',
     '2026-07-03 18:30:00+02',
     'SUNNYVIBZ Art & Culture',
     '/gallery/marche-createurs.svg',
@@ -439,8 +439,8 @@ values
   (
     'Atelier peinture & techniques mixtes',
     'atelier-peinture-techniques-mixtes',
-    'Explorer la couleur, la matière et repartir avec une œuvre personnelle.',
-    'Un atelier guidé, sans niveau requis, pour apprendre des techniques simples, libérer le geste et vivre un moment créatif en groupe.',
+    'Explorer la couleur, la matière et repartir avec une création personnelle.',
+    'Un atelier guidé, sans niveau requis, pour apprendre des techniques simples, libérer le geste, partager un moment créatif et repartir avec du concret.',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
     '/gallery/atelier-couleurs.svg',
@@ -451,8 +451,8 @@ values
   (
     'Exposition Couleurs Urbaines',
     'exposition-couleurs-urbaines',
-    'Une exposition collective autour de l’énergie urbaine et des cultures visuelles.',
-    'Peinture, photographie, illustration et performance réunies pour donner de la visibilité aux talents et provoquer des rencontres.',
+    'Une exposition collective autour de l’énergie urbaine, des portraits et des cultures visuelles.',
+    'Peinture, photographie, illustration et performances réunies pour donner une scène aux talents, attirer un public et provoquer des rencontres.',
     '2026-07-18 19:00:00+02',
     'Maison Créative',
     '/gallery/galerie-nocturne.svg',
@@ -476,7 +476,7 @@ values
   (
     'Maya Sol',
     'maya-sol',
-    'Plasticienne solaire qui transforme la couleur en expérience sensible, entre abstraction organique, chaleur visuelle et énergie collective.',
+    'Plasticienne solaire qui transforme la couleur en expérience sensible, entre abstraction organique, chaleur visuelle et énergie collective. Son univers incarne l’esprit SunnyVibz : beau, accessible et vivant.',
     'Peinture & installation',
     '/artists/maya-sol.svg',
     'https://instagram.com/',
@@ -488,7 +488,7 @@ values
   (
     'Noam Vibes',
     'noam-vibes',
-    'Photographe des scènes locales, des coulisses et des visages créatifs, avec un regard documentaire et urbain.',
+    'Photographe des scènes locales, des coulisses et des visages créatifs, avec un regard documentaire et urbain. Il capte les moments où une communauté commence à exister.',
     'Photo & culture urbaine',
     '/artists/noam-vibes.svg',
     'https://instagram.com/',
@@ -500,7 +500,7 @@ values
   (
     'Lina Wave',
     'lina-wave',
-    'Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs qui donnent confiance aux publics.',
+    'Créatrice visuelle et animatrice d’ateliers, spécialisée dans les formats participatifs qui donnent confiance aux publics et transforment une idée en geste créatif.',
     'Ateliers & médiation',
     '/artists/lina-wave.svg',
     null,
@@ -675,7 +675,7 @@ values
   (
     'Atelier peinture & techniques mixtes',
     'atelier-peinture-techniques-mixtes',
-    'On explore la couleur, la matière et le geste dans une ambiance bienveillante. Chaque participant repart avec une création personnelle et des techniques faciles à réutiliser.',
+    'On explore la couleur, la matière et le geste dans une ambiance bienveillante. Chaque participant repart avec une création personnelle, des repères simples et l’envie de continuer.',
     '/gallery/atelier-couleurs.svg',
     '2026-07-10 15:00:00+02',
     'Creative Lab',
@@ -689,13 +689,13 @@ values
     'available',
     true,
     true,
-    'Réservation obligatoire. Créative et Premium bénéficient d’un accès prioritaire.',
+    'Réservation obligatoire. Les formules Créative et Premium bénéficient d’un accès prioritaire.',
     true
   ),
   (
     'Photo urbaine & storytelling',
     'photo-urbaine-storytelling',
-    'Apprendre à composer une image, capter une ambiance et raconter une histoire visuelle avec son téléphone ou son appareil photo.',
+    'Apprendre à composer une image, capter une ambiance, raconter une histoire visuelle et préparer des contenus utiles pour un portfolio ou les réseaux sociaux.',
     '/artists/noam-vibes.svg',
     '2026-07-17 18:00:00+02',
     'Maison Créative',
@@ -709,13 +709,13 @@ values
     'full',
     true,
     true,
-    'Atelier complet. Les listes d’attente et priorités abonnés seront gérées depuis l’admin.',
+    'Atelier complet. Les listes d’attente et priorités membres seront gérées depuis l’admin.',
     true
   ),
   (
     'Scène ouverte & expression',
     'scene-ouverte-expression',
-    'Un format vivant pour tester un texte, une performance, une musique ou une prise de parole dans un cadre chaleureux et sans jugement.',
+    'Un format vivant pour tester un texte, une performance, une musique, une lecture ou une prise de parole dans un cadre chaleureux et sans jugement.',
     '/gallery/scene-ouverte.svg',
     '2026-07-24 19:30:00+02',
     'Sunilounge',
@@ -756,12 +756,12 @@ values
   (
     'Pourquoi SUNNYVIBZ prépare un Market créatif',
     'pourquoi-sunnyvibz-prepare-un-market-creatif',
-    'Acheter, réserver, commander, soutenir : le Market doit aider les talents à transformer leur visibilité en opportunités.',
+    'Acheter, réserver, commander, soutenir : le Market doit aider les talents à transformer leur visibilité en opportunités concrètes.',
     '/gallery/marche-createurs.svg',
     'Market',
     'Équipe SUNNYVIBZ',
     '2026-06-26 10:00:00+02',
-    'Le Market SUNNYVIBZ est pensé comme une passerelle concrète entre la création et le public. On pourra y trouver des œuvres, des prestations, des ateliers, des stands exposants et des services créatifs reliés aux profils talents. L’objectif est simple : donner de la visibilité, créer des commandes et soutenir l’économie culturelle locale.',
+    'Le Market SUNNYVIBZ est pensé comme une passerelle concrète entre la création et le public. On pourra y trouver des œuvres, des prestations, des ateliers, des stands exposants et des services créatifs reliés aux profils talents. L’objectif est simple : donner de la visibilité, créer des commandes, financer des idées et soutenir l’économie culturelle locale.',
     'published'
   ),
   (
@@ -772,18 +772,18 @@ values
     'Talents',
     'SUNNYVIBZ',
     '2026-06-26 11:00:00+02',
-    'Un profil talent ne doit pas être une fiche froide. Il doit montrer une énergie, un univers, des créations, des vidéos, des événements, des prestations et des envies de collaboration. SunnyVibz veut rendre ces parcours plus visibles et plus accessibles.',
+    'Un profil talent ne doit pas être une fiche froide. Il doit montrer une énergie, un univers, des créations, des vidéos, des événements, des prestations et des envies de collaboration. SunnyVibz veut rendre ces parcours visibles, accessibles et connectés à de vraies opportunités.',
     'published'
   ),
   (
     'Des ateliers pour créer, transmettre et rencontrer',
     'des-ateliers-pour-creer-transmettre-rencontrer',
-    'Les ateliers SUNNYVIBZ sont des portes d’entrée simples pour apprendre, tester et rencontrer.',
+    'Les ateliers SUNNYVIBZ sont des portes d’entrée simples pour apprendre, tester, rencontrer et repartir avec du concret.',
     '/gallery/creative-lab.svg',
     'Ateliers',
     'Creative Lab',
     '2026-06-26 12:00:00+02',
-    'Un atelier réussi n’est pas seulement un cours. C’est un moment où l’on ose essayer, où l’on échange, où l’on repart avec quelque chose de concret. SUNNYVIBZ veut créer des formats accessibles, beaux, utiles et humains.',
+    'Un atelier réussi n’est pas seulement un cours. C’est un moment où l’on ose essayer, où l’on échange, où l’on repart avec quelque chose de concret. SUNNYVIBZ veut créer des formats accessibles, beaux, utiles, humains et bien encadrés.',
     'published'
   ),
   (
@@ -828,7 +828,7 @@ values
   (
     'essentielle',
     'Essentielle',
-    'Le pass d’entrée pour découvrir le lieu, venir en heures creuses et commencer à installer une habitude créative.',
+    'Le pass d’entrée pour découvrir le lieu, venir en heures creuses et commencer à installer une habitude créative sans pression.',
     '39 € / mois',
     3900,
     'month',
@@ -862,7 +862,7 @@ values
   (
     'premium',
     'Premium',
-    'Pour les membres les plus engagés : accès élargi, priorité forte, événements réservés et avantages exclusifs.',
+    'Pour les membres les plus engagés : accès élargi, priorité forte, événements, avantages exclusifs et accompagnement renforcé.',
     '85 € / mois',
     8500,
     'month',

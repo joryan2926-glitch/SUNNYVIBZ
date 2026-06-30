@@ -18,8 +18,8 @@ export default async function AgendaPage() {
     <main className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
       <SectionHeading
         eyebrow="Agenda"
-        title="Les prochains rendez-vous pour créer, exposer, rencontrer et vibrer."
-        text="Ateliers, expositions, Sunny Friday, performances, rencontres et temps forts : l’agenda donne une vision claire de ce qui se prépare dans l’écosystème SunnyVibz."
+        title="Les rendez-vous qui donnent un rythme à la communauté."
+        text="Ateliers, expositions, Sunny Friday, performances, rencontres et temps forts : l’agenda montre où se créent les rencontres, les ventes, les idées et les prochains projets."
       />
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

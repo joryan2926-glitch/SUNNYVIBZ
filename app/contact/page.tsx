@@ -15,6 +15,8 @@ const contactReasons = [
   "Je veux rejoindre SunnyVibz",
   "Je veux proposer un projet",
   "Je veux candidater Sunny Friday",
+  "Je veux mettre en avant un talent",
+  "Je veux organiser une action culturelle",
 ] as const;
 
 export default function ContactPage() {
@@ -23,14 +25,15 @@ export default function ContactPage() {
       <div>
         <SectionHeading
           eyebrow="Contact"
-          title="Dites-nous ce que vous voulez faire vivre."
-          text="Exposer, réserver, rejoindre, soutenir, proposer, collaborer : SunnyVibz est là pour transformer une idée culturelle en action concrète."
+          title="Parlez-nous de ce que vous voulez créer, montrer ou soutenir."
+          text="Exposer, réserver, rejoindre, soutenir, proposer, vendre, collaborer : SunnyVibz sert à transformer une intention culturelle en parcours concret."
         />
 
         <div className="rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl">
           <p className="text-lg leading-8">
-            Choisissez votre porte d’entrée. L’équipe vous répondra avec le bon parcours : atelier,
-            Sunny Friday, talent, partenariat, abonnement, market ou projet sur mesure.
+            Choisissez votre porte d’entrée. L’équipe pourra vous orienter vers le bon parcours :
+            atelier, Sunny Friday, profil talent, partenariat, abonnement, market, action culturelle
+            ou projet sur mesure.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {contactReasons.map((reason) => (

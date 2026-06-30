@@ -6,31 +6,31 @@ import { SunnyFridayApplicationForm } from "@/components/SunnyFridayApplicationF
 export const metadata: Metadata = {
   title: "Sunny Friday",
   description:
-    "Sunny Friday SUNNYVIBZ : rendez-vous des créateurs, exposants, curieux, partenaires, stands, performances et marché culturel.",
+    "Sunny Friday SUNNYVIBZ : marché culturel, stands créateurs, performances, ventes, rencontres, QR exposant et mise en avant des talents.",
 };
 
 const exhibitorSteps = [
-  ["Candidater", "Présenter son univers, ses créations, ses prestations ou son projet."],
-  ["Réserver un stand", "Choisir une formule exposant et préparer sa présence Sunny Friday."],
-  ["Être visible", "Relier son stand au profil talent, au Market, aux réseaux et au QR exposant."],
-  ["Rencontrer", "Vendre, tester, échanger, créer des contacts et rejoindre la communauté."],
+  ["Candidater", "Présenter son univers, ses créations, ses prestations, sa discipline ou son projet."],
+  ["Préparer son stand", "Choisir une formule exposant, clarifier son offre et organiser sa présence."],
+  ["Être visible", "Relier son stand au profil talent, au Market, aux réseaux sociaux et au QR exposant."],
+  ["Rencontrer", "Vendre, tester, échanger, créer des contacts et rejoindre une communauté active."],
 ] as const;
 
 const standOffers = [
   {
     title: "Stand découverte",
     price: "À partir de 15 €",
-    text: "Idéal pour tester une première présence, présenter quelques créations et rencontrer le public.",
+    text: "Idéal pour tester une première présence, présenter quelques créations et rencontrer le public dans un cadre simple.",
   },
   {
     title: "Stand créateur",
     price: "À partir de 35 €",
-    text: "Pour exposer, vendre, capter des contacts et connecter son espace au Market SUNNYVIBZ.",
+    text: "Pour exposer, vendre, capter des contacts et connecter son espace au profil talent et au Market SUNNYVIBZ.",
   },
   {
     title: "Stand premium",
     price: "Sur sélection",
-    text: "Mise en avant renforcée, emplacement prioritaire, interview courte et visibilité social media.",
+    text: "Mise en avant renforcée, emplacement prioritaire, interview courte, contenu photo/vidéo et visibilité social media.",
   },
 ] as const;
 
@@ -42,17 +42,17 @@ export default function SunnyFridayPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeading
             eyebrow="Sunny Friday"
-            title="Le rendez-vous où les créateurs rencontrent leur public."
-            text="Sunny Friday, c’est le marché culturel SUNNYVIBZ : stands, ventes, performances, musique, rencontres, QR exposant et passerelle directe vers le Market."
+            title="Le rendez-vous où les créateurs testent, vendent et rencontrent leur public."
+            text="Sunny Friday, c’est le marché culturel SUNNYVIBZ : stands, ventes, performances, musique, rencontres, QR exposant et passerelle directe vers les profils talents et le Market."
           />
 
           <div className="premium-card rounded-[2.4rem] border border-[#ffd978]/18 bg-white/[0.055] p-7 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-9">
             <p className="text-[0.72rem] font-black uppercase tracking-[0.22em] text-[#18f2a6]">
               Exposants
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-              Un parcours simple : candidater, exposer, vendre, se connecter.
-            </h2>
+              <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
+              Un parcours simple : candidater, préparer, exposer, vendre, se connecter.
+              </h2>
             <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
               Chaque exposant doit pouvoir être visible avant, pendant et après l’événement :
               candidature, stand, profil talent, QR exposant, offre Market et contact public.
@@ -98,7 +98,7 @@ export default function SunnyFridayPage() {
         <SectionHeading
           eyebrow="Stands"
           title="Des formules exposants prêtes à connecter."
-          text="Ces offres structurent le modèle économique Sunny Friday : tester, vendre, être visible et créer des contacts."
+          text="Ces offres structurent le modèle économique Sunny Friday : tester une présence, vendre, documenter son univers, être visible et créer des contacts."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {standOffers.map((offer) => (
@@ -119,8 +119,8 @@ export default function SunnyFridayPage() {
       <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeading
           eyebrow="Candidature"
-          title="Préparer l’espace exposant."
-          text="Le formulaire capte les candidatures. L’étape suivante sera la sélection, le paiement du stand, le QR exposant et le plan interactif."
+          title="Préparer l’espace exposant avec une vraie logique de parcours."
+          text="Le formulaire capte les candidatures. L’étape suivante sera la sélection, le paiement du stand, le QR exposant, le plan interactif et la connexion au profil talent."
         />
         <SunnyFridayApplicationForm />
       </section>

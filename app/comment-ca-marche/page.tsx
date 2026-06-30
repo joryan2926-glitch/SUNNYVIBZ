@@ -5,38 +5,38 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Comment ça marche",
   description:
-    "Comprendre la logique SunnyVibz : découvrir, réserver, adhérer, participer, exposer, vendre et faire vivre la communauté Art & Culture.",
+    "Comprendre le parcours SunnyVibz : découvrir, réserver, adhérer, participer, être visible, vendre et construire des projets culturels.",
 };
 
 const steps = [
   {
     title: "Découvrir",
-    text: "Le visiteur comprend l’univers SunnyVibz : ateliers, talents, Sunny Friday, market, abonnements et communauté.",
+    text: "Le visiteur comprend rapidement l’univers : lieu culturel, ateliers, talents, Sunny Friday, market, abonnements et communauté.",
     href: "/a-propos",
   },
   {
     title: "Réserver",
-    text: "Les ateliers affichent la date, le lieu, la capacité, les places restantes, le statut et les tarifs selon abonnement.",
+    text: "Les ateliers affichent ce qu’on apprend, la date, le lieu, les places restantes, le statut et les tarifs selon abonnement.",
     href: "/ateliers",
   },
   {
     title: "Adhérer",
-    text: "Les formules Essentielle, Créative, Premium et Annuelle structurent l’accès aux espaces et aux avantages.",
+    text: "Les formules Essentielle, Créative, Premium et Annuelle donnent un cadre clair pour accéder au lieu et aux avantages.",
     href: "/abonnements",
   },
   {
     title: "Participer",
-    text: "Le membre rejoint des ateliers, événements, scènes ouvertes, rencontres et temps forts de la communauté.",
+    text: "Le membre rejoint des ateliers, événements, scènes ouvertes, expositions, temps forts et rencontres de la communauté.",
     href: "/agenda",
   },
   {
     title: "Être visible",
-    text: "Les talents disposent d’une vitrine vivante : profil, médias, discipline, liens, événements et futures offres.",
+    text: "Les talents disposent d’une vitrine vivante : profil, discipline, photos, vidéos, liens, événements, services et projets.",
     href: "/talents",
   },
   {
     title: "Vendre et soutenir",
-    text: "Le Market prépare la vente de créations, prestations, services, stands et commandes liées aux talents.",
+    text: "Le Market prépare la vente de créations, prestations, services, stands exposants, commandes et soutiens liés aux talents.",
     href: "/marketplace",
   },
 ] as const;
@@ -44,15 +44,15 @@ const steps = [
 const priorities = [
   {
     title: "Fondation",
-    text: "Supabase, pages, formulaires, réservations, abonnements, compte membre et contenu fiable.",
+    text: "Pages claires, données Supabase, formulaires, réservations, abonnements, compte membre et contenus fiables.",
   },
   {
     title: "Économie",
-    text: "Paiements, abonnements actifs, ateliers payants, stands Sunny Friday et premières offres Market.",
+    text: "Paiements, abonnements actifs, ateliers payants, stands Sunny Friday, premières offres Market et suivi des commandes.",
   },
   {
     title: "Communauté",
-    text: "Profils talents enrichis, médias, modération, interactions, groupes, messages et projets collaboratifs.",
+    text: "Profils talents enrichis, médias, modération, interactions, groupes, messages, projets et collaborations.",
   },
 ] as const;
 
@@ -62,7 +62,7 @@ export default function HowItWorksPage() {
       <SectionHeading
         eyebrow="Logique SunnyVibz"
         title="Un parcours simple pour transformer une visite en engagement culturel."
-        text="SunnyVibz doit avancer comme une plateforme complète : attirer, expliquer, réserver, faire adhérer, rendre visible, vendre et fidéliser."
+        text="La logique SunnyVibz est progressive : donner envie, expliquer clairement, permettre de réserver, faire adhérer, rendre visible, vendre puis fidéliser."
       />
 
       <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -88,12 +88,12 @@ export default function HowItWorksPage() {
           Construction progressive
         </p>
         <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-5xl">
-          Solide d’abord, spectaculaire ensuite.
+          Solide d’abord, immersif ensuite.
         </h2>
         <p className="mt-5 max-w-3xl text-sm leading-7 text-[#fbf3df]/70">
-          La bonne logique n’est pas d’ajouter tous les modules en même temps. Il faut d’abord
-          fiabiliser les réservations, les données, les abonnements et les contenus, puis connecter
-          l’économie, puis ouvrir les fonctions communautaires.
+          La bonne logique n’est pas d’empiler des modules. Il faut d’abord fiabiliser les parcours
+          essentiels, puis connecter l’économie du projet, puis ouvrir les fonctions communautaires
+          qui donneront au site son effet réseau.
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">

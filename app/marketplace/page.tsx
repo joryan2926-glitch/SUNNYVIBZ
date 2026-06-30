@@ -5,17 +5,17 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Market créatif",
   description:
-    "Market créatif SUNNYVIBZ : acheter des créations, réserver des prestations, commander des services artistiques et soutenir les talents locaux.",
+    "Market créatif SUNNYVIBZ : acheter des créations, réserver des prestations, commander des services, soutenir les talents et valoriser l’économie culturelle locale.",
 };
 
 const categories = [
   {
     title: "Œuvres & objets",
-    text: "Peinture, photo, sculpture, illustration, artisanat, éditions limitées et créations uniques.",
+    text: "Peinture, photo, sculpture, illustration, artisanat, mode, éditions limitées et créations uniques.",
   },
   {
     title: "Services créatifs",
-    text: "Shooting photo, animation d’atelier, performance, scénographie, musique, vidéo et médiation.",
+    text: "Shooting photo, animation d’atelier, performance, scénographie, musique, vidéo, médiation et accompagnement.",
   },
   {
     title: "Stands exposants",
@@ -23,7 +23,7 @@ const categories = [
   },
   {
     title: "Offres partenaires",
-    text: "Mettre en avant les structures qui soutiennent les talents : lieux, sponsors, entreprises et associations.",
+    text: "Mettre en avant les structures qui soutiennent les talents : lieux, sponsors, associations, entreprises et mécènes.",
   },
 ] as const;
 
@@ -49,13 +49,13 @@ const featuredOffers = [
     title: "Œuvre originale",
     category: "Création",
     price: "Sur devis",
-    text: "Peinture, illustration, sculpture ou pièce unique proposée par les talents SUNNYVIBZ.",
+    text: "Peinture, illustration, sculpture, photo ou pièce unique proposée par les talents SUNNYVIBZ.",
   },
   {
     title: "Animation atelier",
     category: "Service",
     price: "À partir de 120 €",
-    text: "Intervention créative pour associations, entreprises, centres de loisirs ou événements.",
+    text: "Intervention créative pour associations, entreprises, centres de loisirs, écoles ou événements.",
   },
 ] as const;
 
@@ -75,8 +75,8 @@ export default function MarketplacePage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <SectionHeading
               eyebrow="Market créatif"
-              title="Acheter une création, réserver une prestation, soutenir un talent."
-              text="Le Market SUNNYVIBZ est pensé comme le prolongement naturel des profils talents : une vitrine pour vendre, réserver, commander, financer et faire circuler la création locale."
+              title="Acheter une création, réserver une prestation, faire circuler la valeur."
+              text="Le Market SUNNYVIBZ est le prolongement économique des profils talents : une vitrine pour vendre, réserver, commander, financer et rendre la création locale plus durable."
             />
 
             <div className="premium-card rounded-[2.4rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-7 shadow-[0_0_54px_rgba(24,242,166,0.15)] sm:p-9">
@@ -84,12 +84,12 @@ export default function MarketplacePage() {
                 Pré-lancement
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-                Une vitrine prête à devenir un moteur économique.
+                Une vitrine prête à devenir un moteur économique culturel.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
                 Le public pourra découvrir une offre, contacter le talent, réserver une prestation
                 ou acheter une création. L’étape suivante sera de connecter les commandes, les
-                paiements, les stocks et les boutiques talents.
+                paiements, les stocks, les devis et les boutiques talents.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
@@ -133,7 +133,7 @@ export default function MarketplacePage() {
         <SectionHeading
           eyebrow="Offres exemples"
           title="Des offres concrètes, lisibles et prêtes à vendre."
-          text="Le Market doit aider le visiteur à comprendre rapidement ce qu’il peut acheter, réserver ou demander : une œuvre, un service, une animation, une prestation ou un stand."
+          text="Le Market doit aider le visiteur à comprendre rapidement ce qu’il peut acheter, réserver ou demander : une œuvre, un service, une animation, une prestation, un devis ou un stand."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {featuredOffers.map((offer) => (
@@ -162,11 +162,11 @@ export default function MarketplacePage() {
                 Modules possibles
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-4xl">
-                Le Market peut devenir un vrai moteur économique pour l’association.
+                Le Market peut devenir le moteur économique visible de l’association.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
                 L’objectif est de valoriser tout ce que SUNNYVIBZ sublime : photographes, peintres,
-                sculpteurs, musiciens, ateliers, événements, partenaires, projets et services créatifs.
+                sculpteurs, musiciens, vidéastes, ateliers, événements, partenaires, projets et services créatifs.
               </p>
             </div>
 

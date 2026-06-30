@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Partenaires",
   description:
-    "Partenaires SUNNYVIBZ : associations, entreprises, sponsors, lieux culturels et structures qui soutiennent les talents.",
+    "Partenaires SUNNYVIBZ : associations, entreprises, sponsors, institutions, lieux culturels et structures qui soutiennent les talents.",
 };
 
 const partnerTypes = [
@@ -15,11 +15,11 @@ const partnerTypes = [
   },
   {
     title: "Entreprises",
-    text: "Soutenir la création locale, proposer des expériences à vos équipes et associer votre image à un projet positif.",
+    text: "Soutenir la création locale, proposer des expériences à vos équipes et associer votre image à un projet culturel positif.",
   },
   {
     title: "Sponsors",
-    text: "Financer des ateliers, des stands, des événements ou des parcours talents avec une visibilité claire et mesurable.",
+    text: "Financer des ateliers, des stands, des événements ou des parcours talents avec une visibilité claire et assumée.",
   },
   {
     title: "Lieux & institutions",
@@ -41,7 +41,7 @@ export default function PartnersPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Partenaires"
-        title="Des partenaires pour donner plus de scène aux talents."
+        title="Des partenaires pour donner plus de scène, de moyens et d’avenir aux talents."
         text="SunnyVibz ne veut pas seulement organiser des événements : la plateforme veut créer des alliances utiles entre talents, publics, associations, entreprises, sponsors et lieux culturels."
       />
 
@@ -72,8 +72,8 @@ export default function PartnersPage() {
           </h2>
           <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70">
             Chaque partenaire pourra être relié aux événements, ateliers, talents, candidatures
-            Sunny Friday, projets locaux et contenus éditoriaux. L’objectif : créer de la visibilité,
-            mais aussi des opportunités concrètes pour celles et ceux qui créent.
+            Sunny Friday, projets locaux, actions de médiation et contenus éditoriaux. L’objectif :
+            créer de la visibilité, mais aussi des opportunités concrètes pour celles et ceux qui créent.
           </p>
           <Link
             href="/contact"

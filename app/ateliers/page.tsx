@@ -6,16 +6,16 @@ import { getWorkshops } from "@/lib/supabase/queries";
 export const metadata: Metadata = {
   title: "Ateliers",
   description:
-    "Réservez un atelier SUNNYVIBZ : apprendre, expérimenter, créer et repartir avec une expérience artistique concrète.",
+    "Réservez un atelier SUNNYVIBZ : apprendre, pratiquer, rencontrer, expérimenter et repartir avec une création ou une compétence concrète.",
 };
 
 export const revalidate = 60;
 
 const workshopBenefits = [
-  "Réservation obligatoire pour garantir une bonne expérience.",
-  "Places restantes visibles et statut disponible/complet.",
+  "Réservation obligatoire pour garantir un cadre confortable.",
+  "Places restantes visibles et statut disponible ou complet.",
   "Tarifs préférentiels selon la formule SunnyVibz.",
-  "Accès prioritaire pour les formules Créative et Premium.",
+  "Priorité pour les membres Créative et Premium.",
 ] as const;
 
 export default async function WorkshopsPage() {
@@ -25,8 +25,8 @@ export default async function WorkshopsPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Ateliers"
-        title="Réservez une expérience créative, pas juste une place."
-        text="Chaque atelier indique la date, le lieu, la capacité, les places restantes, le statut disponible/complet et les tarifs selon abonnement. La réservation permet de réguler les flux et de préserver la qualité du moment."
+        title="Réservez un moment pour apprendre, pratiquer et rencontrer."
+        text="Chaque atelier doit donner envie et rassurer : ce qu’on va faire, où ça se passe, combien ça coûte, combien de places restent et quels avantages existent selon l’abonnement."
       />
 
       <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

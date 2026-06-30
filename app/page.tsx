@@ -11,42 +11,42 @@ import { getArticles, getArtists, getEvents, getGalleryItems, getWorkshops } fro
 export const revalidate = 60;
 
 const stats = [
-  ["Agenda", "Événements, ateliers, Sunny Friday"],
-  ["Ateliers", "Réserver, créer, apprendre"],
-  ["Sunny Friday", "Stands, exposants, rencontres"],
-  ["Galerie", "Créations, expositions, ambiances"],
-  ["Market", "Œuvres, services, stands"],
-  ["Articles", "Actualités & coulisses"],
-  ["Talents", "Photos, vidéos, profils, collaborations"],
-  ["Partenaires", "Structures, sponsors, associations"],
+  ["Agenda", "Les rendez-vous qui font vivre la communauté"],
+  ["Ateliers", "Apprendre, pratiquer, repartir avec du concret"],
+  ["Sunny Friday", "Le marché vivant des créateurs et exposants"],
+  ["Galerie", "Images, coulisses, expositions et ambiances"],
+  ["Market", "Œuvres, prestations, services et stands"],
+  ["Articles", "Récits, coulisses et culture de terrain"],
+  ["Talents", "Profils média, photos, vidéos et collaborations"],
+  ["Partenaires", "Associations, entreprises, sponsors et lieux"],
 ] as const;
 
 const marketHighlights = [
-  ["Œuvres & créations", "Peinture, photo, sculpture, illustration, artisanat et éditions limitées."],
-  ["Services & prestations", "Ateliers, animations, performances, shooting, scénographie et accompagnement."],
-  ["Sunny Friday", "Réservation de stands, exposants, QR exposant et mise en avant événementielle."],
-  ["Profils talents", "Chaque offre pourra être reliée à un profil avec photos, vidéos et réseau social."],
+  ["Œuvres & créations", "Peinture, photo, sculpture, illustration, mode, artisanat et pièces uniques."],
+  ["Services & prestations", "Shooting, animation d’atelier, performance, musique, vidéo, scénographie et médiation."],
+  ["Sunny Friday", "Stands exposants, QR, mise en avant, ventes et rencontre directe avec le public."],
+  ["Profils talents", "Chaque offre peut vivre sur un profil avec photos, vidéos, événements et liens sociaux."],
 ] as const;
 
 const primaryPathways = [
   {
     title: "Comprendre le parcours",
-    text: "Voir comment SunnyVibz accompagne une personne : découvrir, réserver, adhérer, participer, être visible et soutenir.",
+    text: "Comprendre comment une simple visite devient une expérience : découvrir, réserver, adhérer, exposer, vendre ou collaborer.",
     href: "/comment-ca-marche",
   },
   {
     title: "Réserver un atelier",
-    text: "Voir les créneaux disponibles, les places restantes et réserver une expérience créative.",
+    text: "Choisir un créneau, voir les places restantes et vivre un moment créatif guidé, accessible et bien organisé.",
     href: "/ateliers",
   },
   {
     title: "Découvrir les talents",
-    text: "Explorer les profils, disciplines, photos, vidéos, prestations et univers créatifs.",
+    text: "Explorer des profils vivants : discipline, univers, photos, vidéos, prestations, événements et projets.",
     href: "/talents",
   },
   {
     title: "Rejoindre SunnyVibz",
-    text: "Créer un compte, choisir une formule et entrer dans la communauté Art & Culture.",
+    text: "Choisir une formule, accéder aux espaces, profiter d’avantages et entrer dans une communauté culturelle active.",
     href: "/abonnements",
   },
 ] as const;
@@ -54,17 +54,17 @@ const primaryPathways = [
 const proofPoints = [
   {
     quote:
-      "Je viens pour créer, mais je repars surtout avec des idées, des contacts et l’envie de revenir.",
+      "On vient pour créer, mais on repart surtout avec des idées, des contacts et l’envie de recommencer.",
     name: "Membre atelier",
   },
   {
     quote:
-      "SunnyVibz donne un cadre clair pour montrer son travail, rencontrer un public et tester une offre.",
+      "SunnyVibz donne un cadre pour montrer son travail, tester une offre et rencontrer un vrai public.",
     name: "Talent créatif",
   },
   {
     quote:
-      "Le projet parle autant aux artistes qu’aux partenaires : il crée du lien et une vraie énergie locale.",
+      "Le projet parle aux artistes comme aux partenaires : il crée du lien, du passage et une énergie locale visible.",
     name: "Partenaire culturel",
   },
 ] as const;
@@ -86,7 +86,7 @@ export default async function Home() {
         <div className="mx-auto grid min-h-[calc(100vh-88px)] max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
           <div className="hero-rise">
             <p className="mb-5 text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">
-              Plateforme Art & Culture • Talents • Ateliers • Sunny Friday
+              Lieu vivant • Plateforme culturelle • Communauté créative
             </p>
             <h1 className="text-balance text-5xl font-light leading-[0.9] tracking-[-0.07em] text-[#18f2a6] drop-shadow-[0_0_28px_rgba(24,242,166,0.45)] sm:text-7xl lg:text-8xl">
               L’ART.
@@ -97,8 +97,10 @@ export default async function Home() {
               </span>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-[#fbf3df]/76 sm:text-lg">
-              SUNNYVIBZ révèle les talents, crée des rencontres culturelles et transforme la
-              créativité locale en ateliers, événements, market, projets et opportunités.
+              SUNNYVIBZ est un écosystème Art & Culture pour créer, apprendre, exposer,
+              vendre, rencontrer et faire grandir les talents. Un lieu physique, une
+              communauté, et une plateforme pour transformer la créativité locale en
+              opportunités concrètes.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
@@ -171,18 +173,19 @@ export default async function Home() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeading
             eyebrow="Présentation"
-            title="Un lieu d’énergie pour créer, exposer, apprendre et se rencontrer."
-            text="Le site n’est pas seulement une vitrine : c’est la porte d’entrée d’un écosystème culturel où chacun peut trouver sa place — talent, public, exposant, bénévole, partenaire ou futur membre."
+            title="Un lieu pour créer, une scène pour être vu, une communauté pour avancer."
+            text="SunnyVibz ne se limite pas à programmer des activités. Le projet organise un parcours complet : accueillir les publics, révéler les talents, structurer les ateliers, soutenir les ventes et créer des rencontres utiles."
           />
           <div className="premium-card rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-7 leading-8 text-[#fbf3df]/72 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
             <p>
-              SunnyVibz part d’une conviction simple : la culture a besoin d’espaces où les idées
-              circulent, où les talents deviennent visibles et où les projets passent du rêve au
-              concret.
+              Ici, on ne vient pas seulement assister à un événement. On vient tester une idée,
+              apprendre une technique, présenter une création, rencontrer un public ou trouver
+              une collaboration.
             </p>
             <p className="mt-5">
-              Les ateliers donnent envie d’apprendre. Sunny Friday donne envie d’exposer. Le Market
-              donne envie de soutenir. Les profils talents donnent envie de collaborer.
+              Les ateliers donnent un cadre pour pratiquer. Sunny Friday donne une scène pour
+              exposer. Le Market donne un chemin pour vendre. Les profils talents donnent une
+              présence durable à celles et ceux que SunnyVibz sublime.
             </p>
           </div>
         </div>
@@ -196,12 +199,12 @@ export default async function Home() {
                 Market créatif
               </p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.045em] text-[#fbf3df] sm:text-5xl">
-                Une vitrine pour acheter, réserver et soutenir les talents.
+                Une vitrine économique pour soutenir ce qui se crée ici.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#fbf3df]/70 sm:text-base">
-                Le Market prolonge naturellement les profils talents : acheter une création,
-                réserver une prestation, commander un service artistique ou soutenir un exposant
-                Sunny Friday.
+                Le Market prolonge naturellement les profils talents : acheter une œuvre,
+                réserver une prestation, commander une intervention, soutenir un exposant
+                Sunny Friday ou financer une idée artistique.
               </p>
               <Link
                 href="/marketplace"
@@ -233,7 +236,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Agenda"
             title="Des rendez-vous pour vivre la culture, pas seulement la regarder."
-            text="Ateliers, expositions, Sunny Friday, scènes ouvertes : l’agenda rassemble les moments où la communauté se rencontre."
+            text="Ateliers, expositions, Sunny Friday, scènes ouvertes : l’agenda donne du rythme à la communauté et transforme le lieu en point de rencontre."
           />
           <Link href="/agenda" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Tout l’agenda →
@@ -250,8 +253,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Ateliers"
-            title="Réserver une expérience créative."
-            text="Chaque atelier annonce ce qu’on apprend, où ça se passe, combien de places restent et comment réserver simplement."
+            title="Des ateliers pour apprendre, oser, transmettre et repartir avec du concret."
+            text="Chaque atelier doit être lisible : ce qu’on pratique, le lieu, la date, le prix, les places restantes, les avantages abonnés et le niveau d’accès."
           />
           <Link href="/ateliers" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Voir les ateliers →
@@ -304,8 +307,8 @@ export default async function Home() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Talents"
-            title="Des profils média pour rendre les talents visibles."
-            text="Chaque profil devient une mini vitrine : univers, discipline, photos, vidéos, événements, services et liens sociaux."
+            title="Des profils vivants pour rendre les créateurs visibles."
+            text="Photographes, peintres, sculpteurs, musiciens, vidéastes, animateurs ou performeurs : chaque talent doit pouvoir montrer son univers, ses médias, ses services et ses prochains rendez-vous."
           />
           <Link href="/talents" className="mb-10 text-sm font-black uppercase tracking-[0.16em] text-[#18f2a6]">
             Découvrir les talents →
@@ -321,8 +324,8 @@ export default async function Home() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <SectionHeading
           eyebrow="Pourquoi ça compte"
-          title="La culture avance quand les gens se rencontrent."
-          text="SunnyVibz veut créer ce moment rare où un talent trouve un public, un partenaire découvre un projet, et une idée devient une action concrète."
+          title="La culture avance quand les talents trouvent un cadre et un public."
+          text="SunnyVibz veut créer ce moment rare où une personne ose montrer ce qu’elle fait, où un partenaire découvre une idée, et où un projet trouve enfin une trajectoire concrète."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {proofPoints.map((proof) => (
@@ -343,7 +346,7 @@ export default async function Home() {
         <div className="premium-card rounded-[2.5rem] border border-[#18f2a6]/22 bg-[#18f2a6]/10 p-8 text-center shadow-[0_0_50px_rgba(24,242,166,0.16)] sm:p-12">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-[#ffd978]">Contact</p>
           <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-medium tracking-[-0.055em] text-[#fbf3df] sm:text-6xl">
-            Vous venez pour apprendre, exposer, soutenir ou proposer une idée ?
+            Vous voulez apprendre, exposer, vendre, soutenir ou proposer une idée ?
           </h2>
           <Link
             href="/contact"

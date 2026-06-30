@@ -6,7 +6,7 @@ import { getArtists } from "@/lib/supabase/queries";
 export const metadata: Metadata = {
   title: "Talents",
   description:
-    "Découvrez les talents SUNNYVIBZ : portfolios, photos, vidéos, services, événements et profils média.",
+    "Découvrez les talents SUNNYVIBZ : profils vivants, portfolios, photos, vidéos, services, événements, disciplines et collaborations.",
 };
 
 export const revalidate = 60;
@@ -24,9 +24,9 @@ const disciplines = [
 
 const talentPromise = [
   "Un portfolio public pour montrer son univers.",
-  "Un futur mur média pour photos, vidéos et coulisses.",
-  "Une passerelle vers les ateliers, événements et prestations.",
-  "Une visibilité possible dans le Market et Sunny Friday.",
+  "Des médias pour partager photos, vidéos, coulisses et créations.",
+  "Une passerelle vers les ateliers, événements, services et prestations.",
+  "Une visibilité possible dans le Market, Sunny Friday et les projets partenaires.",
 ] as const;
 
 export default async function TalentsPage() {
@@ -36,8 +36,8 @@ export default async function TalentsPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Talents"
-        title="Plus qu’un annuaire : une vitrine vivante pour les créateurs."
-        text="SunnyVibz met en avant les photographes, peintres, musiciens, sculpteurs, vidéastes, animateurs, performeurs et créateurs que la plateforme accompagne et sublime."
+        title="Plus qu’un annuaire : une vitrine vivante pour celles et ceux qui créent."
+        text="SunnyVibz met en avant les photographes, peintres, musiciens, sculpteurs, vidéastes, animateurs, performeurs et créateurs que la plateforme accompagne, sublime et connecte à un public."
       />
 
       <div className="mb-8 flex flex-wrap gap-2">

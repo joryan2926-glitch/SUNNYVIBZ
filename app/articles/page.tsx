@@ -18,8 +18,8 @@ export default async function ArticlesPage() {
     <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
       <SectionHeading
         eyebrow="Articles"
-        title="Des récits pour suivre la vibz de l’intérieur."
-        text="Ici, SunnyVibz raconte ses coulisses : talents, ateliers, market, Sunny Friday, partenaires, idées et prochains projets."
+        title="Des récits pour comprendre ce qui se construit derrière la vibz."
+        text="Les articles racontent la vie du projet : portraits de talents, coulisses des ateliers, préparation du Market, Sunny Friday, partenaires, idées et prochaines étapes."
       />
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

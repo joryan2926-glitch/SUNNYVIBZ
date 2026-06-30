@@ -26,7 +26,54 @@ La direction globale : un écosystème premium, chaleureux, artistique et modern
 
 ---
 
-## 2. Identité visuelle
+## 2. Ligne éditoriale officielle
+
+SunnyVibz doit parler comme un lieu culturel vivant, pas comme une application froide.
+
+Promesse principale :
+
+> SUNNYVIBZ est un écosystème Art & Culture pour créer, apprendre, exposer, vendre, rencontrer et faire grandir les talents.
+
+Ton à utiliser :
+
+- humain ;
+- clair ;
+- chaleureux ;
+- artistique ;
+- premium mais accessible ;
+- concret dans les appels à l’action.
+
+Les textes doivent toujours expliquer :
+
+- pour qui la page existe ;
+- ce que la personne peut faire ;
+- ce que SunnyVibz apporte ;
+- quelle est la prochaine action logique.
+
+À privilégier :
+
+- « créer » ;
+- « apprendre » ;
+- « exposer » ;
+- « vendre » ;
+- « rencontrer » ;
+- « soutenir » ;
+- « mettre en lumière » ;
+- « transformer une idée en action concrète ».
+
+À éviter :
+
+- les textes trop génériques ;
+- les promesses impossibles à tenir ;
+- les mots trop administratifs ;
+- les phrases longues sans action ;
+- les modules présentés comme des fonctionnalités isolées.
+
+Chaque page doit donner la sensation suivante : SunnyVibz est un lieu réel, une communauté active et une plateforme en construction solide.
+
+---
+
+## 3. Identité visuelle
 
 Le design doit rester fidèle à la maquette validée :
 
@@ -57,7 +104,7 @@ Le design doit rester fidèle à la maquette validée :
 
 ---
 
-## 3. Stack technique
+## 4. Stack technique
 
 Le site utilise :
 
@@ -92,7 +139,7 @@ http://localhost:3000
 
 ---
 
-## 4. Variables Supabase / Vercel
+## 5. Variables Supabase / Vercel
 
 Le site doit fonctionner avec ces variables :
 
@@ -110,7 +157,7 @@ Ne pas utiliser `SUPABASE_DATABASE_URL` pour ce projet côté front.
 
 ---
 
-## 5. Pages existantes
+## 6. Pages existantes
 
 ### Accueil `/`
 
@@ -306,7 +353,7 @@ Rôle : répondre simplement aux questions fréquentes.
 
 ---
 
-## 6. Base de données Supabase
+## 7. Base de données Supabase
 
 Le fichier principal est :
 
@@ -345,7 +392,7 @@ Le SQL configure aussi :
 
 ---
 
-## 7. Ordre correct pour configurer Supabase
+## 8. Ordre correct pour configurer Supabase
 
 1. Aller dans Supabase.
 2. Ouvrir SQL Editor.
@@ -371,7 +418,7 @@ Si tout est bon, les tables doivent être lisibles.
 
 ---
 
-## 8. Créer un compte admin
+## 9. Créer un compte admin
 
 1. Aller sur `/connexion`.
 2. Créer un compte.
@@ -393,7 +440,7 @@ Ensuite, retourner sur :
 
 ---
 
-## 9. Réservations d’ateliers
+## 10. Réservations d’ateliers
 
 Logique actuelle :
 
@@ -420,7 +467,7 @@ Logique actuelle :
 
 ---
 
-## 10. Abonnements
+## 11. Abonnements
 
 Table :
 
@@ -450,7 +497,7 @@ user_subscriptions
 
 ---
 
-## 11. Market
+## 12. Market
 
 Le market est stratégique.
 
@@ -475,7 +522,7 @@ Priorité recommandée :
 
 ---
 
-## 12. Talents et futur réseau social
+## 13. Talents et futur réseau social
 
 Aujourd’hui :
 
@@ -503,7 +550,7 @@ Important : ne pas ouvrir un réseau social complet trop tôt. Il faut d’abord
 
 ---
 
-## 13. Contenu à préparer
+## 14. Contenu à préparer
 
 Pour rendre le site plus fort, il faut préparer :
 
@@ -528,7 +575,7 @@ Pages légales à ajouter :
 
 ---
 
-## 14. SEO
+## 15. SEO
 
 Déjà présent :
 
@@ -555,7 +602,7 @@ Déjà présent :
 
 ---
 
-## 15. Déploiement Vercel
+## 16. Déploiement Vercel
 
 Workflow normal :
 
@@ -590,7 +637,7 @@ git push origin main
 
 ---
 
-## 16. Diagnostic global
+## 17. Diagnostic global
 
 Une commande de diagnostic a été ajoutée :
 
@@ -613,7 +660,7 @@ Si la commande indique `MANQUANT remote workshops`, `MANQUANT remote articles` o
 
 ---
 
-## 17. Méthode pour bien travailler
+## 18. Méthode pour bien travailler
 
 Ne pas tout faire en même temps.
 
@@ -662,7 +709,7 @@ Ordre recommandé :
 
 ---
 
-## 18. Checklist avant mise en production forte
+## 19. Checklist avant mise en production forte
 
 - [ ] SQL Supabase exécuté.
 - [ ] Variables Vercel configurées.
@@ -680,7 +727,7 @@ Ordre recommandé :
 
 ---
 
-## 19. Actions externes que Codex ne peut pas faire seul
+## 20. Actions externes que Codex ne peut pas faire seul
 
 Certaines actions demandent des accès ou informations officielles. Codex peut préparer le code, mais il faut fournir ou faire ces étapes :
 
@@ -695,7 +742,7 @@ Certaines actions demandent des accès ou informations officielles. Codex peut p
 
 ---
 
-## 20. Erreurs à éviter
+## 21. Erreurs à éviter
 
 - Changer la base Supabase sans mettre à jour les types dans `lib/supabase/types.ts`.
 - Modifier une table sans adapter `supabase/schema.sql`.
@@ -708,7 +755,7 @@ Certaines actions demandent des accès ou informations officielles. Codex peut p
 
 ---
 
-## 21. Résumé simple
+## 22. Résumé simple
 
 SunnyVibz doit avancer en 3 temps :
 

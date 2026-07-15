@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CommunityPostCard } from "@/components/CommunityPostCard";
+import { CommunityPostComposer } from "@/components/CommunityPostComposer";
 import { CommunityProfileCard } from "@/components/CommunityProfileCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getCommunityPosts, getCommunityProfiles } from "@/lib/supabase/queries";
@@ -113,6 +114,8 @@ export default async function CommunityPage() {
           </article>
         ))}
       </section>
+
+      <CommunityPostComposer />
 
       <section className="mb-16">
         <SectionHeading

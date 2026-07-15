@@ -969,6 +969,7 @@ begin
     and status <> 'cancelled'
     and (
       user_id = auth.uid()
+      or public.is_admin()
       or lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))
     )
   returning workshop_id into booking_workshop_id;
@@ -1004,6 +1005,7 @@ begin
     and status <> 'cancelled'
     and (
       user_id = auth.uid()
+      or public.is_admin()
       or lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))
     )
   returning space_id into booking_space_id;

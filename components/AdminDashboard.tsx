@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { createBrowserSupabase } from "@/lib/supabase/browser";
+import { AdminReservationsPanel } from "@/components/AdminReservationsPanel";
 
 type AdminFormField = {
   name: string;
@@ -594,6 +595,8 @@ export function AdminDashboard() {
           </form>
         ))}
       </div>
+
+      <AdminReservationsPanel />
 
       <section className="rounded-[2.2rem] border border-[#ffd978]/18 bg-white/[0.055] p-6 shadow-2xl shadow-black/30 sm:p-8">
         <p className="text-[0.72rem] font-black uppercase tracking-[0.2em] text-[#ffd978]">

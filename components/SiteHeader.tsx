@@ -6,6 +6,7 @@ const navItems = [
   ["Fonctionnement", "/comment-ca-marche"],
   ["Ateliers", "/ateliers"],
   ["Espaces", "/espaces"],
+  ["Communauté", "/communaute"],
   ["Agenda", "/agenda"],
   ["Sunny Friday", "/sunny-friday"],
   ["Talents", "/talents"],

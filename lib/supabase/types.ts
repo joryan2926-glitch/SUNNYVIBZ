@@ -108,6 +108,45 @@ export type SpaceBooking = {
   status: "pending" | "confirmed" | "cancelled";
   created_at: string;
 };
+export type CommunityProfile = {
+  id: string;
+  user_id: string | null;
+  display_name: string;
+  slug: string;
+  headline: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+  profile_type:
+    | "adherent"
+    | "artiste"
+    | "association"
+    | "entreprise"
+    | "partenaire"
+    | "benevole"
+    | "admin";
+  roles: string[];
+  location: string | null;
+  skills: string[];
+  needs: string[];
+  status: "active" | "inactive";
+  featured: boolean;
+  published: boolean;
+  created_at: string;
+};
+
+export type CommunityPost = {
+  id: string;
+  author_user_id: string | null;
+  author_name: string;
+  author_role: string | null;
+  title: string;
+  content: string;
+  category: string | null;
+  call_to_action_label: string | null;
+  call_to_action_href: string | null;
+  published: boolean;
+  created_at: string;
+};
 export type Article = {
   id: string;
   title: string;
@@ -241,6 +280,24 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<SpaceBooking, "id" | "created_at">>;
+        Relationships: [];
+      };
+      community_profiles: {
+        Row: CommunityProfile;
+        Insert: Omit<CommunityProfile, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<CommunityProfile, "id" | "created_at">>;
+        Relationships: [];
+      };
+      community_posts: {
+        Row: CommunityPost;
+        Insert: Omit<CommunityPost, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<CommunityPost, "id" | "created_at">>;
         Relationships: [];
       };      articles: {
         Row: Article;

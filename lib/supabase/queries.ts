@@ -1,6 +1,8 @@
 import {
   fallbackArticles,
   fallbackArtists,
+  fallbackCommunityPosts,
+  fallbackCommunityProfiles,
   fallbackEvents,
   fallbackGallery,
   fallbackSpaces,
@@ -8,7 +10,7 @@ import {
   fallbackWorkshops,
 } from "@/lib/data/fallbacks";
 import { supabase } from "./client";
-import type { Article, Artist, Event, GalleryItem, Space, Subscription, Workshop } from "./types";
+import type { Article, Artist, CommunityPost, CommunityProfile, Event, GalleryItem, Space, Subscription, Workshop } from "./types";
 
 const eventImages: Record<string, string> = {
   "sunny-friday": "/gallery/marche-createurs.svg",
@@ -306,6 +308,79 @@ export async function getSpaceBySlug(slug: string): Promise<Space | null> {
   const fallback = fallbackSpaces.find((space) => space.slug === slug);
 
   return fallback ? normalizeSpace(fallback) : null;
+}
+function normalizeCommunityProfile(profile: CommunityProfile): CommunityProfile {
+  return {
+    ...profile,
+    roles: profile.roles ?? [],
+    skills: profile.skills ?? [],
+    needs: profile.needs ?? [],
+    headline: profile.headline ?? null,
+    bio: profile.bio ?? null,
+    avatar_url: profile.avatar_url ?? null,
+    location: profile.location ?? null,
+    status: profile.status ?? "active",
+    published: profile.published ?? true,
+  };
+}
+
+function normalizeCommunityPost(post: CommunityPost): CommunityPost {
+  return {
+    ...post,
+    author_role: post.author_role ?? null,
+    category: post.category ?? "Communauté",
+    call_to_action_label: post.call_to_action_label ?? null,
+    call_to_action_href: post.call_to_action_href ?? null,
+    published: post.published ?? true,
+  };
+}
+
+export async function getCommunityProfiles(limit = 12): Promise<CommunityProfile[]> {
+  try {
+    const { data, error } = await supabase
+      .from("community_profiles")
+      .select("*")
+      .eq("published", true)
+      .eq("status", "active")
+      .order("featured", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase community_profiles error:", error.message);
+      return fallbackCommunityProfiles.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeCommunityProfile), fallbackCommunityProfiles, limit, (profile) => profile.slug)
+      : fallbackCommunityProfiles.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase community_profiles request failed:", error);
+    return fallbackCommunityProfiles.slice(0, limit);
+  }
+}
+
+export async function getCommunityPosts(limit = 6): Promise<CommunityPost[]> {
+  try {
+    const { data, error } = await supabase
+      .from("community_posts")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase community_posts error:", error.message);
+      return fallbackCommunityPosts.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeCommunityPost), fallbackCommunityPosts, limit, (post) => post.id)
+      : fallbackCommunityPosts.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase community_posts request failed:", error);
+    return fallbackCommunityPosts.slice(0, limit);
+  }
 }
 export async function getArticles(limit = 12): Promise<Article[]> {
   try {

@@ -58,7 +58,7 @@ create index if not exists reward_transactions_user_created_idx
 drop policy if exists "reward_accounts_insert_own" on public.reward_accounts;
 create policy "reward_accounts_insert_own"
   on public.reward_accounts for insert
-  with check (auth.uid() = user_id and points = 0 and level = 'membre_actif');
+  with check (auth.uid() = user_id and points = 0 and level in ('membre', 'membre_actif'));
 
 create or replace function public.redeem_reward(p_reward_id uuid)
 returns boolean

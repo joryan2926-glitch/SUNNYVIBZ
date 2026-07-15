@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/lib/supabase/client";
+import { sendBookingNotification } from "@/lib/notifications";
 
 export type BookingFormState = {
   ok: boolean;
@@ -79,6 +80,15 @@ export async function reserveWorkshop(
           "La réservation n’a pas pu être enregistrée. Si l’atelier vient de se remplir, réessayez ou contactez l’équipe.",
       };
     }
+    const notification = await sendBookingNotification({
+      to: email,
+      name,
+      title: workshop.title,
+      date: workshop.start_date,
+      kind: "atelier",
+      status: "pending",
+    });
+    if (!notification.sent) console.info("Booking email skipped:", notification.reason);
   } catch (error) {
     console.error("Supabase workshop booking request failed:", error);
     return {

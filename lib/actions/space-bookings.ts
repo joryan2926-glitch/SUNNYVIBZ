@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/lib/supabase/client";
+import { sendBookingNotification } from "@/lib/notifications";
 
 export type SpaceBookingFormState = {
   ok: boolean;
@@ -84,6 +85,16 @@ export async function reserveSpace(
           "La demande n’a pas pu être enregistrée. Le créneau vient peut-être de se remplir : réessayez ou contactez l’équipe.",
       };
     }
+    const notification = await sendBookingNotification({
+      to: email,
+      name,
+      title: space.title,
+      date: requestedDate,
+      timeSlot: requestedTimeSlot,
+      kind: "espace",
+      status: "pending",
+    });
+    if (!notification.sent) console.info("Space booking email skipped:", notification.reason);
   } catch (error) {
     console.error("Supabase space booking request failed:", error);
     return {

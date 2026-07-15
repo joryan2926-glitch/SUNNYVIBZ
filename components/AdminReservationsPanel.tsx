@@ -41,21 +41,28 @@ export function AdminReservationsPanel() {
   async function changeStatus(booking: BookingRow, status: Status) {
     setWorking(booking.id);
     setMessage("");
-    const client = supabase as unknown as AdminClient;
-    if (status === "cancelled") {
-      const functionName = booking.source === "workshop" ? "cancel_workshop_booking" : "cancel_space_booking";
-      const { data, error } = await client.rpc(functionName, { p_booking_id: booking.id });
-      if (error || data !== true) { setMessage("L’annulation admin a échoué. Vérifiez que le SQL mis à jour est exécuté."); setWorking(null); return; }
-    } else {
-      const table = booking.source === "workshop" ? "workshop_bookings" : "space_bookings";
-      const { error } = await client.from(table).update({ status }).eq("id", booking.id);
-      if (error) { setMessage(`La mise à jour a échoué : ${error.message}`); setWorking(null); return; }
+    const { data: sessionData } = await supabase.auth.getSession();
+    const accessToken = sessionData.session?.access_token;
+    if (!accessToken) {
+      setMessage("Session admin expiree. Reconnectez-vous.");
+      setWorking(null);
+      return;
+    }
+    const response = await fetch("/api/admin/booking-status", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ booking_id: booking.id, source: booking.source, status }),
+    });
+    const result = await response.json() as { message?: string; emailSent?: boolean };
+    if (!response.ok) {
+      setMessage(result.message ?? "La mise a jour de la reservation a echoue.");
+      setWorking(null);
+      return;
     }
     setBookings((current) => current.map((item) => item.id === booking.id && item.source === booking.source ? { ...item, status } : item));
-    setMessage(status === "confirmed" ? "Réservation confirmée. Elle est prête pour une notification email lorsque le fournisseur sera connecté." : "Réservation annulée et capacité restaurée.");
+    setMessage(status === "confirmed" ? result.emailSent ? "Reservation confirmee et notification envoyee." : "Reservation confirmee. Ajoutez RESEND_API_KEY pour envoyer l email." : "Reservation annulee et capacite restauree.");
     setWorking(null);
   }
-
   const visible = filter === "all" ? bookings : bookings.filter((booking) => booking.status === filter);
   const pendingCount = bookings.filter((booking) => booking.status === "pending").length;
   if (loading) return <section className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 text-sm text-[#fbf3df]/60">Chargement des réservations admin...</section>;

@@ -68,6 +68,46 @@ export type WorkshopBooking = {
   created_at: string;
 };
 
+export type Space = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image_url: string | null;
+  location: string;
+  area_label: string;
+  price_label: string;
+  hourly_price_cents: number | null;
+  half_day_price_cents: number | null;
+  full_day_price_cents: number | null;
+  capacity: number;
+  slots_capacity: number;
+  slots_remaining: number;
+  status: "available" | "full" | "maintenance";
+  requires_booking: boolean;
+  subscriber_priority: boolean;
+  access_notes: string | null;
+  published: boolean;
+  created_at: string;
+};
+
+export type SpaceBooking = {
+  id: string;
+  space_id: string;
+  space_title: string;
+  requested_date: string;
+  requested_time_slot: string;
+  user_id: string | null;
+  name: string;
+  email: string;
+  phone: string | null;
+  intended_use: string | null;
+  subscription_plan_slug: string | null;
+  pricing_note: string | null;
+  priority_access: boolean;
+  status: "pending" | "confirmed" | "cancelled";
+  created_at: string;
+};
 export type Article = {
   id: string;
   title: string;
@@ -185,7 +225,24 @@ export type Database = {
         Update: Partial<Omit<WorkshopBooking, "id" | "created_at">>;
         Relationships: [];
       };
-      articles: {
+      spaces: {
+        Row: Space;
+        Insert: Omit<Space, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<Space, "id" | "created_at">>;
+        Relationships: [];
+      };
+      space_bookings: {
+        Row: SpaceBooking;
+        Insert: Omit<SpaceBooking, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<SpaceBooking, "id" | "created_at">>;
+        Relationships: [];
+      };      articles: {
         Row: Article;
         Insert: Omit<Article, "id" | "created_at"> & {
           id?: string;

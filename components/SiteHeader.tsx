@@ -5,6 +5,7 @@ const navItems = [
   ["Accueil", "/"],
   ["Fonctionnement", "/comment-ca-marche"],
   ["Ateliers", "/ateliers"],
+  ["Espaces", "/espaces"],
   ["Agenda", "/agenda"],
   ["Sunny Friday", "/sunny-friday"],
   ["Talents", "/talents"],
@@ -24,7 +25,7 @@ export function SiteHeader() {
               SUNNYVIBZ
             </strong>
             <small className="block text-xs uppercase tracking-[0.22em] text-[#d8a62a]">
-              Pôle Art & Culture
+              PÃ´le Art & Culture
             </small>
           </span>
         </Link>

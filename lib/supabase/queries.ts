@@ -3,11 +3,12 @@ import {
   fallbackArtists,
   fallbackEvents,
   fallbackGallery,
+  fallbackSpaces,
   fallbackSubscriptions,
   fallbackWorkshops,
 } from "@/lib/data/fallbacks";
 import { supabase } from "./client";
-import type { Article, Artist, Event, GalleryItem, Subscription, Workshop } from "./types";
+import type { Article, Artist, Event, GalleryItem, Space, Subscription, Workshop } from "./types";
 
 const eventImages: Record<string, string> = {
   "sunny-friday": "/gallery/marche-createurs.svg",
@@ -21,13 +22,19 @@ const artistImages: Record<string, string> = {
   "lina-wave": "/artists/lina-wave.svg",
 };
 
+
+const spaceImages: Record<string, string> = {
+  "creative-lab": "/gallery/creative-lab.svg",
+  sunilounge: "/gallery/sunny-community.svg",
+  "maison-creative": "/gallery/galerie-nocturne.svg",
+};
 const galleryImages: Record<string, string> = {
   "Atelier couleurs": "/gallery/atelier-couleurs.svg",
-  "Marché créateurs": "/gallery/marche-createurs.svg",
+  "MarchÃ© crÃ©ateurs": "/gallery/marche-createurs.svg",
   "Galerie nocturne": "/gallery/galerie-nocturne.svg",
-  "Scène ouverte": "/gallery/scene-ouverte.svg",
+  "ScÃ¨ne ouverte": "/gallery/scene-ouverte.svg",
   "Creative Lab": "/gallery/creative-lab.svg",
-  "Communauté Sunny": "/gallery/sunny-community.svg",
+  "CommunautÃ© Sunny": "/gallery/sunny-community.svg",
 };
 
 function mergeWithFallback<T extends { id: string }>(
@@ -95,6 +102,24 @@ function normalizeWorkshop(workshop: Workshop): Workshop {
   };
 }
 
+
+function normalizeSpace(space: Space): Space {
+  return {
+    ...space,
+    image_url: space.image_url ?? spaceImages[space.slug] ?? null,
+    hourly_price_cents: space.hourly_price_cents ?? null,
+    half_day_price_cents: space.half_day_price_cents ?? null,
+    full_day_price_cents: space.full_day_price_cents ?? null,
+    slots_remaining: Math.max(0, space.slots_remaining ?? 0),
+    status:
+      space.status === "available" && (space.slots_remaining ?? 0) <= 0
+        ? "full"
+        : space.status,
+    requires_booking: space.requires_booking ?? true,
+    subscriber_priority: space.subscriber_priority ?? false,
+    access_notes: space.access_notes ?? null,
+  };
+}
 function normalizeArticle(article: Article): Article {
   return {
     ...article,
@@ -234,6 +259,54 @@ export async function getWorkshopBySlug(slug: string): Promise<Workshop | null> 
   return fallback ? normalizeWorkshop(fallback) : null;
 }
 
+
+export async function getSpaces(limit = 12): Promise<Space[]> {
+  try {
+    const { data, error } = await supabase
+      .from("spaces")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase spaces error:", error.message);
+      return fallbackSpaces.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeSpace), fallbackSpaces, limit, (space) => space.slug)
+      : fallbackSpaces.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase spaces request failed:", error);
+    return fallbackSpaces.slice(0, limit);
+  }
+}
+
+export async function getSpaceBySlug(slug: string): Promise<Space | null> {
+  try {
+    const { data, error } = await supabase
+      .from("spaces")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Supabase space detail error:", error.message);
+    }
+
+    if (data) {
+      return normalizeSpace(data);
+    }
+  } catch (error) {
+    console.error("Supabase space detail request failed:", error);
+  }
+
+  const fallback = fallbackSpaces.find((space) => space.slug === slug);
+
+  return fallback ? normalizeSpace(fallback) : null;
+}
 export async function getArticles(limit = 12): Promise<Article[]> {
   try {
     const { data, error } = await supabase

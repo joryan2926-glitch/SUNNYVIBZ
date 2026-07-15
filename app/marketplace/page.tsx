@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MarketOfferCard } from "@/components/MarketOfferCard";
+import { MarketOfferGrid } from "@/components/MarketOfferGrid";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getMarketOffers } from "@/lib/supabase/queries";
 
@@ -124,11 +124,9 @@ export default async function MarketplacePage() {
           text="Le Market affiche maintenant des offres structurées : création, prestation, atelier, stand exposant ou service. Les fiches détaillées préparent les futures commandes et paiements."
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {visibleOffers.map((offer) => (
-            <MarketOfferCard key={offer.id} offer={offer} />
-          ))}
-        </div>
+
+        <MarketOfferGrid offers={visibleOffers} />
+
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">

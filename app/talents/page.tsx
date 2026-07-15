@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArtistCard } from "@/components/ArtistCard";
+import { TalentGrid } from "@/components/TalentGrid";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getArtists } from "@/lib/supabase/queries";
 
@@ -62,11 +62,9 @@ export default async function TalentsPage() {
         ))}
       </section>
 
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {talents.map((artist) => (
-          <ArtistCard artist={artist} key={artist.id} />
-        ))}
-      </div>
+
+      <TalentGrid talents={talents} />
+
     </main>
   );
 }

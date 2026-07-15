@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNav } from "./MobileNav";
 import { SunnyLogo } from "./SunnyLogo";
 
 const navItems = [
@@ -32,7 +33,7 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold uppercase tracking-[0.1em] text-[#fbf3df]/72 sm:gap-3"
+          className="hidden flex-wrap items-center gap-2 text-[0.68rem] lg:flex font-bold uppercase tracking-[0.1em] text-[#fbf3df]/72 sm:gap-3"
           aria-label="Navigation principale"
         >
           {navItems.map(([label, href]) => (
@@ -51,6 +52,7 @@ export function SiteHeader() {
             Connexion
           </Link>
         </nav>
+        <MobileNav items={navItems} />
       </div>
     </header>
   );

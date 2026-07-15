@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/SectionHeading";
-import { WorkshopCard } from "@/components/WorkshopCard";
+import { WorkshopGrid } from "@/components/WorkshopGrid";
 import { getWorkshops } from "@/lib/supabase/queries";
 
 export const metadata: Metadata = {
@@ -40,11 +40,9 @@ export default async function WorkshopsPage() {
         ))}
       </section>
 
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {workshops.map((workshop) => (
-          <WorkshopCard workshop={workshop} key={workshop.id} />
-        ))}
-      </div>
+
+      <WorkshopGrid workshops={workshops} />
+
     </main>
   );
 }

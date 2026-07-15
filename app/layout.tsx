@@ -70,8 +70,11 @@ export default function RootLayout({
     <html lang="fr" className="h-full antialiased">
       <body className="min-h-full">
         <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_14%_8%,rgba(24,242,166,0.20),transparent_30rem),radial-gradient(circle_at_86%_4%,rgba(255,217,120,0.16),transparent_32rem),linear-gradient(135deg,#000_0%,#030403_44%,#06170f_100%)]" />
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-emerald-300 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#032017]">Aller au contenu</a>
         <SiteHeader />
-        {children}
+        <div id="contenu">
+          {children}
+        </div>
         <SiteFooter />
       </body>
     </html>

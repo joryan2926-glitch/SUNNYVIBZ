@@ -52,6 +52,16 @@ on public.conversation_members for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
+drop policy if exists "conversations_select_creator" on public.conversations;
+create policy "conversations_select_creator"
+on public.conversations for select
+using (
+  auth.uid() = created_by
+  or exists (
+    select 1 from public.conversation_members cm
+    where cm.conversation_id = id and cm.user_id = auth.uid()
+  )
+);
 drop policy if exists "conversations_select_member" on public.conversations;
 create policy "conversations_select_member"
 on public.conversations for select
@@ -94,5 +104,23 @@ create index if not exists conversation_members_user_idx
   on public.conversation_members(user_id);
 create index if not exists messages_conversation_created_idx
   on public.messages(conversation_id, created_at asc);
+
+do $$
+begin
+  alter publication supabase_realtime add table public.conversations;
+exception when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public.conversation_members;
+exception when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public.messages;
+exception when duplicate_object then null;
+end $$;
 
 notify pgrst, 'reload schema';

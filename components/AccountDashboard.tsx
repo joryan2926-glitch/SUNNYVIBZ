@@ -1,7 +1,9 @@
-"use client";
+﻿"use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
+import { SunnyPassCard } from "@/components/SunnyPassCard";
 import { TalentMediaUploader } from "@/components/TalentMediaUploader";
 import { createBrowserSupabase } from "@/lib/supabase/browser";
 
@@ -18,9 +20,11 @@ type BookingRow = {
 
 type ProfileRow = {
   full_name: string | null;
+  phone: string | null;
   roles: string[] | null;
   artist_status: "active" | "inactive" | null;
   is_admin: boolean | null;
+  created_at: string | null;
 };
 
 type AccountSubscriptionPlan = {
@@ -101,6 +105,48 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   minute: "2-digit",
 });
 
+const accountModules = [
+  {
+    title: "Réservations",
+    text: "Suivre vos ateliers, inscriptions et prochaines participations.",
+    href: "/mon-compte/reservations",
+  },
+  {
+    title: "SUNNY PASS",
+    text: "Retrouver votre carte membre numérique et son QR Code.",
+    href: "/mon-compte/sunny-pass",
+  },
+  {
+    title: "Wallet",
+    text: "Préparer les paiements, crédits et futurs historiques.",
+    href: "/mon-compte/wallet",
+  },
+  {
+    title: "Rewards",
+    text: "Visualiser les avantages, points et statuts à venir.",
+    href: "/mon-compte/rewards",
+  },
+  {
+    title: "Messages",
+    text: "Centraliser les échanges avec SunnyVibz et les partenaires.",
+    href: "/mon-compte/messages",
+  },
+  {
+    title: "Market",
+    text: "Explorer les offres et préparer vos futurs services.",
+    href: "/marketplace",
+  },
+] as const;
+
+const userJourney = [
+  "Visiteur",
+  "Adhérent",
+  "Participant",
+  "Abonné",
+  "Créateur de projet",
+  "Ambassadeur",
+] as const;
+
 function formatRoles(roles: string[] | null | undefined, isAdmin: boolean | null | undefined) {
   const safeRoles = roles && roles.length > 0 ? roles : ["adherent"];
   const labels = safeRoles.map((role) => role.charAt(0).toUpperCase() + role.slice(1));
@@ -110,6 +156,26 @@ function formatRoles(roles: string[] | null | undefined, isAdmin: boolean | null
   }
 
   return labels.join(" · ");
+}
+
+function getJourneyIndex(profile: ProfileRow | null, subscription: AccountSubscriptionRow | null, bookings: BookingRow[]) {
+  if (profile?.roles?.includes("ambassadeur")) {
+    return 5;
+  }
+
+  if (profile?.artist_status === "active" || profile?.roles?.includes("createur")) {
+    return 4;
+  }
+
+  if (subscription) {
+    return 3;
+  }
+
+  if (bookings.length > 0) {
+    return 2;
+  }
+
+  return 1;
 }
 
 export function AccountDashboard() {
@@ -135,7 +201,7 @@ export function AccountDashboard() {
       const profileClient = supabase as unknown as ProfileQueryClient;
       const { data: profileData, error: profileError } = await profileClient
         .from("profiles")
-        .select("full_name,roles,artist_status,is_admin")
+        .select("full_name,phone,roles,artist_status,is_admin,created_at")
         .eq("id", currentSession.user.id)
         .maybeSingle();
 
@@ -201,15 +267,15 @@ export function AccountDashboard() {
           Connexion requise
         </h2>
         <p className="mt-3 text-sm leading-7 text-[#fbf3df]/68">
-          Connectez-vous pour retrouver vos réservations, votre abonnement, votre statut utilisateur
-          et votre futur profil talent.
+          Connectez-vous pour retrouver votre SUNNY PASS, vos réservations, votre abonnement, votre
+          statut utilisateur et votre futur profil talent.
         </p>
-        <a
+        <Link
           href="/connexion"
           className="mt-6 inline-flex rounded-full border border-[#18f2a6]/36 bg-[#18f2a6]/10 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#18f2a6]"
         >
           Se connecter
-        </a>
+        </Link>
       </div>
     );
   }
@@ -221,6 +287,7 @@ export function AccountDashboard() {
         ? "Profil artiste actif"
         : "Profil artiste inactif"
       : "Profil artiste non demandé";
+  const journeyIndex = getJourneyIndex(profile, subscription, bookings);
 
   return (
     <div className="grid gap-8">
@@ -232,6 +299,52 @@ export function AccountDashboard() {
           {profile?.full_name || session.user.email}
         </h2>
         <p className="mt-2 text-sm text-[#fbf3df]/62">{session.user.email}</p>
+      </section>
+
+      <SunnyPassCard
+        artistStatus={profile?.artist_status}
+        createdAt={profile?.created_at}
+        email={session.user.email ?? ""}
+        fullName={profile?.full_name}
+        planName={plan?.name}
+        roles={profile?.roles}
+        userId={session.user.id}
+      />
+
+      <section className="rounded-[2rem] border border-[#ffd978]/16 bg-white/[0.055] p-6 shadow-2xl shadow-black/25">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-[#ffd978]">
+              Parcours usager
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+              Votre progression dans l’écosystème SunnyVibz
+            </h2>
+          </div>
+          <p className="text-sm text-[#fbf3df]/60">Niveau actuel : {userJourney[journeyIndex]}</p>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+          {userJourney.map((step, index) => {
+            const active = index <= journeyIndex;
+
+            return (
+              <div
+                className={`rounded-2xl border p-4 text-sm font-semibold transition ${
+                  active
+                    ? "border-[#18f2a6]/34 bg-[#18f2a6]/12 text-[#fbf3df]"
+                    : "border-white/10 bg-black/18 text-[#fbf3df]/45"
+                }`}
+                key={step}
+              >
+                <span className="block text-[0.65rem] font-black uppercase tracking-[0.14em] text-[#ffd978]">
+                  0{index + 1}
+                </span>
+                <span className="mt-2 block">{step}</span>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">
@@ -266,6 +379,29 @@ export function AccountDashboard() {
             </p>
           ) : null}
         </article>
+      </section>
+
+      <section>
+        <h2 className="mb-5 text-2xl font-semibold tracking-[-0.04em] text-[#fbf3df]">
+          Modules de votre espace
+        </h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {accountModules.map((module) => (
+            <Link
+              className="rounded-[1.6rem] border border-white/10 bg-white/[0.045] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#18f2a6]/36 hover:bg-[#18f2a6]/10"
+              href={module.href}
+              key={module.href}
+            >
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#18f2a6]">
+                MVP
+              </p>
+              <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[#fbf3df]">
+                {module.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-[#fbf3df]/62">{module.text}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {message ? (

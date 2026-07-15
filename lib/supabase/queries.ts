@@ -5,12 +5,13 @@ import {
   fallbackCommunityProfiles,
   fallbackEvents,
   fallbackGallery,
+  fallbackMarketOffers,
   fallbackSpaces,
   fallbackSubscriptions,
   fallbackWorkshops,
 } from "@/lib/data/fallbacks";
 import { supabase } from "./client";
-import type { Article, Artist, CommunityPost, CommunityProfile, Event, GalleryItem, Space, Subscription, Workshop } from "./types";
+import type { Article, Artist, CommunityPost, CommunityProfile, Event, GalleryItem, MarketOffer, Space, Subscription, Workshop } from "./types";
 
 const eventImages: Record<string, string> = {
   "sunny-friday": "/gallery/marche-createurs.svg",
@@ -381,6 +382,71 @@ export async function getCommunityPosts(limit = 6): Promise<CommunityPost[]> {
     console.error("Supabase community_posts request failed:", error);
     return fallbackCommunityPosts.slice(0, limit);
   }
+}
+function normalizeMarketOffer(offer: MarketOffer): MarketOffer {
+  return {
+    ...offer,
+    seller_profile_id: offer.seller_profile_id ?? null,
+    image_url: offer.image_url ?? "/gallery/marche-createurs.svg",
+    category: offer.category ?? "SUNNY Market",
+    amount_cents: offer.amount_cents ?? null,
+    currency: offer.currency ?? "EUR",
+    delivery_mode: offer.delivery_mode ?? "Sur demande",
+    status: offer.status ?? "available",
+    featured: offer.featured ?? false,
+    published: offer.published ?? true,
+  };
+}
+
+export async function getMarketOffers(limit = 12): Promise<MarketOffer[]> {
+  try {
+    const { data, error } = await supabase
+      .from("market_offers")
+      .select("*")
+      .eq("published", true)
+      .neq("status", "draft")
+      .order("featured", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Supabase market_offers error:", error.message);
+      return fallbackMarketOffers.slice(0, limit);
+    }
+
+    return data.length > 0
+      ? mergeWithFallback(data.map(normalizeMarketOffer), fallbackMarketOffers, limit, (offer) => offer.slug)
+      : fallbackMarketOffers.slice(0, limit);
+  } catch (error) {
+    console.error("Supabase market_offers request failed:", error);
+    return fallbackMarketOffers.slice(0, limit);
+  }
+}
+
+export async function getMarketOfferBySlug(slug: string): Promise<MarketOffer | null> {
+  try {
+    const { data, error } = await supabase
+      .from("market_offers")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .neq("status", "draft")
+      .maybeSingle();
+
+    if (error) {
+      console.error("Supabase market offer detail error:", error.message);
+    }
+
+    if (data) {
+      return normalizeMarketOffer(data);
+    }
+  } catch (error) {
+    console.error("Supabase market offer detail request failed:", error);
+  }
+
+  const fallback = fallbackMarketOffers.find((offer) => offer.slug === slug && offer.published);
+
+  return fallback ? normalizeMarketOffer(fallback) : null;
 }
 export async function getArticles(limit = 12): Promise<Article[]> {
   try {

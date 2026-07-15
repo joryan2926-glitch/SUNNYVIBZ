@@ -147,6 +147,27 @@ export type CommunityPost = {
   published: boolean;
   created_at: string;
 };
+
+export type MarketOffer = {
+  id: string;
+  seller_profile_id: string | null;
+  seller_name: string;
+  title: string;
+  slug: string;
+  short_description: string;
+  description: string;
+  image_url: string | null;
+  offer_type: "artwork" | "service" | "workshop" | "stand" | "digital";
+  category: string | null;
+  price_label: string;
+  amount_cents: number | null;
+  currency: string;
+  delivery_mode: string | null;
+  status: "available" | "reserved" | "sold" | "draft";
+  featured: boolean;
+  published: boolean;
+  created_at: string;
+};
 export type Article = {
   id: string;
   title: string;
@@ -299,7 +320,17 @@ export type Database = {
         };
         Update: Partial<Omit<CommunityPost, "id" | "created_at">>;
         Relationships: [];
-      };      articles: {
+      };
+      market_offers: {
+        Row: MarketOffer;
+        Insert: Omit<MarketOffer, "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<MarketOffer, "id" | "created_at">>;
+        Relationships: [];
+      };
+      articles: {
         Row: Article;
         Insert: Omit<Article, "id" | "created_at"> & {
           id?: string;

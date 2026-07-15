@@ -1,4 +1,4 @@
-import type { Article, Artist, CommunityPost, CommunityProfile, Event, GalleryItem, Space, Subscription, Workshop } from "@/lib/supabase/types";
+import type { Article, Artist, CommunityPost, CommunityProfile, Event, GalleryItem, MarketOffer, Space, Subscription, Workshop } from "@/lib/supabase/types";
 
 export const fallbackEvents: Event[] = [
   {
@@ -354,6 +354,92 @@ export const fallbackCommunityPosts: CommunityPost[] = [
     call_to_action_href: "/marketplace",
     published: true,
     created_at: "2026-01-03T00:00:00+00:00",
+  },
+];
+export const fallbackMarketOffers: MarketOffer[] = [
+  {
+    id: "fallback-market-photo-portrait",
+    seller_profile_id: null,
+    seller_name: "Noam Vibes",
+    title: "Portrait photo artistique",
+    slug: "portrait-photo-artistique",
+    short_description: "Shooting créatif pour portfolio, réseaux sociaux, exposition ou communication professionnelle.",
+    description:
+      "Une séance photo pensée comme une expérience artistique : direction légère, ambiance premium, sélection d’images et livraison optimisée pour profil, portfolio ou communication. Idéal pour artistes, associations, entrepreneurs créatifs et événements.",
+    image_url: "/artists/noam-vibes.svg",
+    offer_type: "service",
+    category: "Photo & vidéo",
+    price_label: "À partir de 80 €",
+    amount_cents: 8000,
+    currency: "EUR",
+    delivery_mode: "Sur rendez-vous",
+    status: "available",
+    featured: true,
+    published: true,
+    created_at: "2026-01-01T00:00:00+00:00",
+  },
+  {
+    id: "fallback-market-oeuvre-originale",
+    seller_profile_id: null,
+    seller_name: "Maya Sol",
+    title: "Œuvre originale sur commande",
+    slug: "oeuvre-originale-sur-commande",
+    short_description: "Création visuelle unique : peinture, illustration ou pièce décorative pour lieu, événement ou collection.",
+    description:
+      "Une œuvre conçue avec le commanditaire : intention, couleurs, format, usage et ambiance. Cette offre prépare les futures commandes personnalisées du SUNNY Market, avec suivi, devis et validation SUNNYVIBZ.",
+    image_url: "/artists/maya-sol.svg",
+    offer_type: "artwork",
+    category: "Œuvres & objets",
+    price_label: "Sur devis",
+    amount_cents: null,
+    currency: "EUR",
+    delivery_mode: "Commande personnalisée",
+    status: "available",
+    featured: true,
+    published: true,
+    created_at: "2026-01-02T00:00:00+00:00",
+  },
+  {
+    id: "fallback-market-animation-atelier",
+    seller_profile_id: null,
+    seller_name: "Lina Wave",
+    title: "Animation atelier créatif",
+    slug: "animation-atelier-creatif",
+    short_description: "Atelier clé en main pour associations, écoles, entreprises, centres de loisirs ou événements.",
+    description:
+      "Un format participatif, accessible et élégant pour faire créer un groupe : peinture, collage, expression visuelle, initiation ou atelier sur mesure. Le Market servira à réserver, demander un devis et suivre la prestation.",
+    image_url: "/gallery/atelier-couleurs.svg",
+    offer_type: "workshop",
+    category: "Ateliers & médiation",
+    price_label: "À partir de 120 €",
+    amount_cents: 12000,
+    currency: "EUR",
+    delivery_mode: "SUNNYVIBZ ou hors les murs",
+    status: "available",
+    featured: true,
+    published: true,
+    created_at: "2026-01-03T00:00:00+00:00",
+  },
+  {
+    id: "fallback-market-stand-sunny-friday",
+    seller_profile_id: null,
+    seller_name: "SUNNYVIBZ",
+    title: "Stand exposant Sunny Friday",
+    slug: "stand-exposant-sunny-friday",
+    short_description: "Pré-réservation d’un stand pour exposer, vendre et rencontrer le public lors du marché créatif.",
+    description:
+      "Cette offre prépare le parcours exposant : candidature, validation, emplacement, paiement, QR exposant et visibilité sur le site. Elle relie directement Sunny Friday au SUNNY Market.",
+    image_url: "/gallery/marche-createurs.svg",
+    offer_type: "stand",
+    category: "Sunny Friday",
+    price_label: "Pré-réservation",
+    amount_cents: null,
+    currency: "EUR",
+    delivery_mode: "Sur événement",
+    status: "available",
+    featured: false,
+    published: true,
+    created_at: "2026-01-04T00:00:00+00:00",
   },
 ];
 export const fallbackArticles: Article[] = [

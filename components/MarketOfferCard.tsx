@@ -80,7 +80,7 @@ export function MarketOfferCard({ offer }: { offer: MarketOffer }) {
             Voir l’offre
           </Link>
           <Link
-            href="/contact"
+            href={`/marketplace/${offer.slug}#demande`}
             className="rounded-full border border-[#ffd978]/24 px-4 py-2 font-semibold text-[#ffd978] transition hover:bg-[#ffd978]/10"
           >
             Demander

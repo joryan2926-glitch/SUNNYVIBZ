@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/SectionHeading";
+import { MarketInquiryForm } from "@/components/MarketInquiryForm";
 import { getMarketOfferBySlug, getMarketOffers } from "@/lib/supabase/queries";
 
 type MarketOfferPageProps = {
@@ -128,6 +129,12 @@ export default async function MarketOfferPage({ params }: MarketOfferPageProps) 
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-3xl">
+          <MarketInquiryForm offerId={offer.id} offerTitle={offer.title} />
         </div>
       </section>
 

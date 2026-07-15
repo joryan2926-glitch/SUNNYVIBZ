@@ -952,3 +952,74 @@ create policy "Users can update own talent media"
   );
 
 notify pgrst, 'reload schema';
+
+-- Annulation sécurisée d’une réservation atelier par son propriétaire.
+create or replace function public.cancel_workshop_booking(p_booking_id uuid)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  booking_workshop_id uuid;
+begin
+  update public.workshop_bookings
+  set status = 'cancelled'
+  where id = p_booking_id
+    and status <> 'cancelled'
+    and (
+      user_id = auth.uid()
+      or lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+    )
+  returning workshop_id into booking_workshop_id;
+
+  if booking_workshop_id is null then
+    return false;
+  end if;
+
+  update public.workshops
+  set
+    seats_remaining = least(capacity, seats_remaining + 1),
+    status = case when status = 'full' then 'available' else status end
+  where id = booking_workshop_id;
+
+  return true;
+end;
+$$;
+
+grant execute on function public.cancel_workshop_booking(uuid) to authenticated;
+-- Annulation sécurisée d’une demande espace par son propriétaire.
+create or replace function public.cancel_space_booking(p_booking_id uuid)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  booking_space_id uuid;
+begin
+  update public.space_bookings
+  set status = 'cancelled'
+  where id = p_booking_id
+    and status <> 'cancelled'
+    and (
+      user_id = auth.uid()
+      or lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+    )
+  returning space_id into booking_space_id;
+
+  if booking_space_id is null then
+    return false;
+  end if;
+
+  update public.spaces
+  set
+    slots_remaining = least(slots_capacity, slots_remaining + 1),
+    status = case when status = 'full' then 'available' else status end
+  where id = booking_space_id;
+
+  return true;
+end;
+$$;
+
+grant execute on function public.cancel_space_booking(uuid) to authenticated;

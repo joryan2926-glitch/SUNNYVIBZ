@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -135,6 +135,11 @@ const accountModules = [
     title: "Market",
     text: "Explorer les offres et préparer vos futurs services.",
     href: "/marketplace",
+  },
+  {
+    title: "Mon profil",
+    text: "Gérer vos rôles, votre visibilité et votre profil public.",
+    href: "/mon-compte/profil",
   },
 ] as const;
 

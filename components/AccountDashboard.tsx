@@ -133,8 +133,8 @@ const accountModules = [
   },
   {
     title: "Market",
-    text: "Explorer les offres et préparer vos futurs services.",
-    href: "/marketplace",
+    text: "Suivre vos demandes et retrouver les offres du SUNNY Market.",
+    href: "/mon-compte/market",
   },
   {
     title: "Mon profil",

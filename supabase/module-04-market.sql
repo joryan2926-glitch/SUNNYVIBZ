@@ -81,7 +81,7 @@ drop policy if exists "Anyone can create market inquiries" on public.market_inqu
 create policy "Anyone can create market inquiries"
 on public.market_inquiries
 for insert
-with check (true);
+with check (user_id is null or user_id = auth.uid());
 
 drop policy if exists "Users can read their market inquiries" on public.market_inquiries;
 create policy "Users can read their market inquiries"
